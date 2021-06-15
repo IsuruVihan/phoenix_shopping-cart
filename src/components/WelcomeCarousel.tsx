@@ -25,7 +25,7 @@ const WelcomeCarousel: React.FC = () => {
                     src={Banner1}
                     alt="Third Banner"
                 />
-                <span aria-hidden="false" className="carousel-control-prev-icon" />
+                <span aria-hidden="false" className="carousel-control-prev-icon"/>
             </Carousel.Item>
         </Carousel>
     )
