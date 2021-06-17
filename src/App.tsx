@@ -5,8 +5,8 @@ import Checkout from "./views/Checkout";
 
 const App: FC = () => {
   return (
-    // <ShoppingSite/>
-    <Checkout />
+    <ShoppingSite/>
+    //<Checkout />
   );
 }
 

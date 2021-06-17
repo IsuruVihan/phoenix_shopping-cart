@@ -1,0 +1,24 @@
+.carousel-caption {
+  position: relative;
+  z-index: 1;
+  display: table;
+  align-items: center;
+}
+
+.absolute-div {
+  position: absolute;
+  top: 80%;
+  right: 10%;
+  left: 40%;
+}
+
+.carousel-caption h3 {
+  display: table-row;
+  align-content: center;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.item {
+  position: relative;
+}
