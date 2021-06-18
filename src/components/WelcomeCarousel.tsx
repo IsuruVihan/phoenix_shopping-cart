@@ -1,6 +1,5 @@
 import React from 'react';
 import Banner1 from '../assets/images/CarouselBanner1.webp';
-import Banner2 from '../assets/images/CarouselBanner2.webp';
 import Carousel from 'react-bootstrap/Carousel';
 import {Button, Col, Row} from "react-bootstrap";
 
@@ -12,17 +11,17 @@ const WelcomeCarousel: React.FC = () => {
                 <Row className="absolute-div">
                     <Col className="carousel-caption">
                         <Row>
-                            <Col className="">
-                                <h3 className="">Organic Vegetables</h3>
+                            <Col className="text-center py-1">
+                                <h2>Organic Vegetables</h2>
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col className="text-center py-1">
                                 <h3>Small Changes. Big Difference.</h3>
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col className="text-center py-1">
                                 <Button variant="light" className="rounded-pill my-2">Shop now</Button>
                             </Col>
                         </Row>
@@ -30,10 +29,48 @@ const WelcomeCarousel: React.FC = () => {
                 </Row>
             </Carousel.Item>
             <Carousel.Item>
-                <img className="d-block w-100" src={Banner2} alt="Second Banner"/>
+                <img className="d-block w-100" src={Banner1} alt="Second Banner"/>
+                <Row className="absolute-div">
+                    <Col className="carousel-caption">
+                        <Row>
+                            <Col className="text-center py-1">
+                                <h2>Organic Vegetables</h2>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="text-center py-1">
+                                <h3>Small Changes. Big Difference.</h3>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="text-center py-1">
+                                <Button variant="light" className="rounded-pill my-2">Shop now</Button>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
             </Carousel.Item>
             <Carousel.Item>
                 <img className="d-block w-100" src={Banner1} alt="Third Banner"/>
+                <Row className="absolute-div">
+                    <Col className="carousel-caption">
+                        <Row>
+                            <Col className="text-center py-1">
+                                <h2>Organic Vegetables</h2>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="text-center py-1">
+                                <h3>Small Changes. Big Difference.</h3>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="text-center py-1">
+                                <Button variant="light" className="rounded-pill my-2">Shop now</Button>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
                 <span aria-hidden="false" className="carousel-control-prev-icon"/>
             </Carousel.Item>
         </Carousel>

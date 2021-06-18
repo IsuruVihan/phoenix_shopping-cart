@@ -7,16 +7,22 @@
 
 .absolute-div {
   position: absolute;
-  top: 80%;
+  top: 70%;
   right: 10%;
-  left: 40%;
+  left: 50%;
 }
 
-.carousel-caption h3 {
+.carousel-caption {
   display: table-row;
   align-content: center;
   vertical-align: middle;
   text-align: center;
+
+  h2 {
+    font-family: 'Courgette', serif;
+    font-size: 3.5em;
+    font-weight: bold;
+  }
 }
 
 .item {
