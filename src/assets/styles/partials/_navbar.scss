@@ -1,0 +1,60 @@
+/* =============================
+    Navbar Section CSS
+================================ */
+
+.navbar-section {
+  .navbar-top {
+    font-size: 0.9em;
+
+    .phone {
+      margin-left: auto;
+      right: 0;
+      margin-right: 2.5em;
+    }
+
+    .btn {
+      font-size: 1.1em;
+      padding: 1px 10px;
+      margin-top: 4px;
+      margin-bottom: 1px;
+    }
+
+    .icon {
+      color: black;
+      font-size: 1.4em;
+      margin-right: 10px;
+    }
+  }
+}
+
+/* =============================
+    CSS Media Queries
+================================ */
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .navbar-section {
+    .navbar-top {
+      margin-left: auto;
+      width: fit-content;
+    }
+  }
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {
+}
+
