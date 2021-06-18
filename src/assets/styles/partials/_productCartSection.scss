@@ -1,0 +1,77 @@
+$project-green : #4caf50;
+$project-gray : #757575;
+$border-color : #BDBDBD;
+
+.search-bar-section{
+  .search-bar{
+    width: 40%;
+    border-color: $project-green;
+    border-radius: 1em ;
+    padding-right: 5em;
+  }
+
+  .search-icon{
+    margin-left: -4em;
+    //margin-bottom: -1em;
+    margin-top: 0.5em;
+    width: 3em;
+    height: 3em;
+
+    :hover{
+      cursor: pointer;
+    }
+  }
+  :hover{
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+
+.our-products{
+  color: $project-green;
+}
+
+.category-cont{
+  display: block;
+  width: 12em;
+  border: 1px solid $border-color;
+  border-radius: 0.5em;
+}
+
+.our-products-category-items{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.item-card{
+  width: 16.25em;
+  border: 1px solid $border-color;
+  border-radius: 0.5em;
+}
+
+.crossed-val{
+  text-decoration: line-through;
+  color: $project-gray;
+}
+
+.item-val{
+  color: $project-green ;
+
+  .cent-val {
+    font-size: 0.8em;
+  }
+}
+
+.add-btn{
+  border-radius: 2.3em;
+  background-color: $project-green;
+  border-color: transparent;
+}
+
+.product-cards-selection{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
