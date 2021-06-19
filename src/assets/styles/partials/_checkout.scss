@@ -19,20 +19,25 @@
 
         &:hover {
           background: transparent;
-          color: blue;
+          color: $continue_shopping_btn_hover_color;
         }
       }
     }
   }
 
   .checkout-table {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+
     .table-title {
       font-size: 0.9em;
       font-weight: 500;
     }
+
     .table-col {
       border-bottom: 1px solid lightgray;
       margin-bottom: 1em;
+
       .table {
         .headings {
           font-size: 0.8em;
@@ -54,10 +59,6 @@
       }
     }
 
-    //.btn {
-    //  width: 4em;
-    //}
-
     .dropdown {
       .dropdown-btn {
         .dropdown-option {
@@ -66,19 +67,57 @@
         }
       }
     }
+
     .results-text {
       font-size: 0.95em;
       color: $show_results_grey_color;
     }
+
     .pagination-btn {
       background: none;
       color: $pagination_btn_font_color;
       border-color: $pagination_btn_border_color;
+
       &:hover {
         background: $pagination_btn_hover_color;
       }
-      &::selection {
-        color: red;
+
+      &:focus {
+        background: $selected_pagination_btn_bgcolor;
+        color: white;
+      }
+
+      .pagination-btn-txt {
+        border-bottom: 1px solid white;
+      }
+    }
+
+    .table-bottom {
+      .delivery-charge {
+        border-bottom: 1px solid lightgrey;
+
+        .delivery-charge-text {
+          font-weight: 600;
+        }
+
+        .delivery-charge-amount {
+          text-align: right;
+          padding-right: 1em;
+        }
+      }
+
+      .total {
+        .total-text {
+          font-weight: 600;
+        }
+
+        .total-amount {
+          text-align: right;
+          padding-right: 1em;
+          font-weight: 700;
+          font-size: 1.1em;
+          color: $est_total_font_color;
+        }
       }
     }
   }
@@ -104,6 +143,7 @@
 
     .table {
       width: 52.8em;
+
       .headings-container {
         border-bottom: 1px solid lightgrey;
       }
@@ -122,6 +162,7 @@
 
     .table {
       width: 51.6em;
+
       .headings-container {
         border-bottom: 1px solid lightgrey;
       }
@@ -145,7 +186,7 @@
   .checkout-table {
     .table-col {
       .headings-container {
-        border-bottom: 2px solid lightgrey;
+        border-bottom: 1.5px solid lightgrey;
       }
     }
   }

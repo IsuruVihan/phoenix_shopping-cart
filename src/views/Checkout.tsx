@@ -1,13 +1,13 @@
 import React, {FC} from 'react';
-import {Container, Row, Col, Table, Image} from "react-bootstrap";
-import CheckoutTable from '../components/Checkout/CheckoutTable';
+import {Container} from "react-bootstrap";
+import CheckoutTable from '../components/Checkout/CheckoutTable/CheckoutTable';
 import Header from "../components/Checkout/Header";
 
 const Checkout: FC = () => {
   return (
-    <Container fluid className="checkout px-xl-5">
+    <Container fluid className="checkout px-xl-5 pt-5">
       <Header/>
-      <CheckoutTable />
+      <CheckoutTable/>
     </Container>
   );
 }
