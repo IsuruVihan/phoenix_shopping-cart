@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Col, Navbar, Row} from "react-bootstrap";
 import {FiShoppingCart} from "react-icons/all";
+import {Link} from "react-router-dom";
 
 const NavbarMain: React.FC = () => {
     return (
@@ -13,7 +14,9 @@ const NavbarMain: React.FC = () => {
                 </Col>
                 <Col xs={2} sm={4} md={4} lg={3} className="m-0 p-0 text-end">
                     <span className="cart-icon me-4 mt-2"><FiShoppingCart/></span>
-                    <Button variant="outline-light" className="d-none d-sm-inline">Checkout</Button>
+                    <Button variant="outline-light" className="d-none d-sm-inline">
+                        <Link to="/checkout">Checkout</Link>
+                    </Button>
                 </Col>
             </Row>
         </>

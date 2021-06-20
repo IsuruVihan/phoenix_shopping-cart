@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Container, Row, Col} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 
 const Checkout: FC = () => {
   return (
@@ -9,7 +9,6 @@ const Checkout: FC = () => {
           Checkout
         </Col>
         <Col className="px-0 checkout-table" xs={12}>
-
         </Col>
       </Row>
     </Container>
