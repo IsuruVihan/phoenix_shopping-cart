@@ -26,14 +26,12 @@ $border-color : #BDBDBD;
   }
 }
 
-
 .our-products{
   color: $project-green;
 }
 
 .category-cont{
-  display: block;
-  width: 12em;
+  width: 12.5em;
   border: 1px solid $border-color;
   border-radius: 0.5em;
 }
@@ -43,7 +41,6 @@ $border-color : #BDBDBD;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
 
 .item-card{
   width: 16.25em;
