@@ -1,6 +1,6 @@
 import React from 'react';
 import WelcomeCarousel from "../components/WelcomeCarousel";
-import {Container, Row, Col} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 
 const ShoppingSite: React.FC = () => {
   return (
