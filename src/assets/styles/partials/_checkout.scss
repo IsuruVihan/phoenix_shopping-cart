@@ -1,25 +1,27 @@
 .checkout {
   font-family: 'Montserrat', sans-serif;
 
-  .header {
-    .title {
-      font-size: 1.2em;
-      font-weight: 600;
-    }
+  .header-row {
+    .header {
+      .title {
+        font-size: 1.2em;
+        font-weight: 600;
+      }
 
-    .back-btn-col {
-      .back-btn {
-        font-size: 12px;
-        height: 30px;
-        border-radius: 50px;
+      .back-btn-col {
+        .back-btn {
+          font-size: 12px;
+          height: 30px;
+          border-radius: 50px;
 
-        .back-icon {
-          width: 10px;
-        }
+          .back-icon {
+            width: 10px;
+          }
 
-        &:hover {
-          background: transparent;
-          color: $continue_shopping_btn_hover_color;
+          &:hover {
+            background: transparent;
+            color: $continue_shopping_btn_hover_color;
+          }
         }
       }
     }
@@ -39,21 +41,23 @@
       margin-bottom: 1em;
 
       .table {
-        .headings {
-          font-size: 0.8em;
-          color: $heading_font_color;
+        .headings-container {
+          .headings {
+            font-size: 0.8em;
+            color: $heading_font_color;
 
-          .black-arrow {
-            font-weight: 600;
-            color: $sort_arrow_black_color;
-          }
+            .black-arrow {
+              font-weight: 600;
+              color: $sort_arrow_black_color;
+            }
 
-          .grey-arrow {
-            color: $sort_arrow_grey_color;
-          }
+            .grey-arrow {
+              color: $sort_arrow_grey_color;
+            }
 
-          .last-arrow {
-            margin-left: -5px;
+            .last-arrow {
+              margin-left: -5px;
+            }
           }
         }
       }
@@ -78,6 +82,10 @@
       color: $pagination_btn_font_color;
       border-color: $pagination_btn_border_color;
 
+      .pagination-btn-txt {
+        border-bottom: 1px solid white;
+      }
+
       &:hover {
         background: $pagination_btn_hover_color;
       }
@@ -85,10 +93,6 @@
       &:focus {
         background: $selected_pagination_btn_bgcolor;
         color: white;
-      }
-
-      .pagination-btn-txt {
-        border-bottom: 1px solid white;
       }
     }
 
@@ -124,7 +128,7 @@
 }
 
 @media screen and (max-width: 576px) {
-  .checkout-table {
+  .checkout-table, .quit-checkout {
     margin-left: 0.5em !important;
     margin-right: 0.5em !important;
   }
@@ -206,7 +210,7 @@
 }
 
 @media screen and (min-width: 1200px) {
-  .header-row, .checkout-table {
+  .header-row, .checkout-table, .quit-checkout {
     margin-left: 8.8em !important;
     margin-right: 8.8em !important;
   }
