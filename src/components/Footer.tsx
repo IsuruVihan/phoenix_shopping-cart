@@ -5,20 +5,21 @@ import SoftVesselLogo from "../assets/images/logo.png";
 
 const Footer: React.FC = () => {
     return(
-        <Row className="footer-section mx-0 bg-dark container-fluid flex-column text-center">
-            <Col className="align-content-center">
-                <Navbar variant="dark" className="justify-content-center">
+        <Row className="footer-section mx-0 container-fluid flex-column text-center pb-2">
+            <Col className="align-content-center py-2">
+                <Navbar variant="dark" className="footer-nav justify-content-center">
                     <Nav>
-                        <Nav.Link href="">HOME</Nav.Link>
-                        <Nav.Link href="">ABOUT US</Nav.Link>
-                        <Nav.Link href="">FAQ</Nav.Link>
-                        <Nav.Link href="">PRICING</Nav.Link>
-                        <Nav.Link href="">CONTACT US</Nav.Link>
+                        <Nav.Link href="" className="mx-2">HOME</Nav.Link>
+                        <Nav.Link href="" className="mx-2">ABOUT US</Nav.Link>
+                        <Nav.Link href="" className="mx-2">FAQ</Nav.Link>
+                        <Nav.Link href="" className="mx-2">PRICING</Nav.Link>
+                        <Nav.Link href="" className="mx-2">CONTACT US</Nav.Link>
                     </Nav>
                 </Navbar>
+                <hr />
             </Col>
             <Col className="">
-                <Image src={SoftVesselLogo}/>
+                <Image src={SoftVesselLogo} alt={'SoftVessel Logo'}/>
             </Col>
             <Col>
                 <p>SoftVessel (Pvt) Ltd.<br/>
@@ -30,7 +31,9 @@ const Footer: React.FC = () => {
                 </p>
             </Col>
             <Col>
-                <Icon.Trash2 color="#bb1d1e" size="25"/>
+                <Icon.Facebook size="25" className="mx-1"/>
+                <Icon.Twitter size="25" className="mx-2"/>
+                <Icon.Instagram size="25" className="mx-1"/>
             </Col>
         </Row>
     );
