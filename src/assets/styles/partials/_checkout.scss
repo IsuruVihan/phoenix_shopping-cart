@@ -1,63 +1,71 @@
+@import "../variables";
+
 .checkout {
-  .checkout-title {
+  font-family: 'Montserrat', sans-serif;
 
-  }
-  .checkout-table {
+  .header {
+    .title {
+      font-size: 1.2em;
+      font-weight: 600;
+    }
 
+    .back-btn-col {
+      .back-btn {
+        font-size: 12px;
+        height: 30px;
+        border-radius: 50px;
+
+        .back-icon {
+          width: 10px;
+        }
+
+        &:hover {
+          background: transparent;
+          color: $continue_shopping_btn_hover_color;
+        }
+      }
+    }
   }
 }
 
 @media screen and (max-width: 576px) {
   .checkout {
-    .checkout-title {
-
-    }
-    .checkout-table {
-
+    .header {
+      .back-btn-col {
+        .back-btn {
+          width: 100%;
+        }
+      }
     }
   }
 }
 
 @media screen and (min-width: 576px) {
   .checkout {
-    .checkout-title {
-
-    }
-    .checkout-table {
-
+    .header {
+      .back-btn-col {
+        .back-btn {
+          width: 100%;
+        }
+      }
     }
   }
 }
 
 @media screen and (min-width: 768px) {
   .checkout {
-    .checkout-title {
+    .header {
+      .title {
+        text-align: left;
+      }
 
-    }
-    .checkout-table {
+      .back-btn-col {
+        text-align: right;
 
-    }
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .checkout {
-    .checkout-title {
-
-    }
-    .checkout-table {
-
-    }
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .checkout {
-    .checkout-title {
-
-    }
-    .checkout-table {
-
+        .back-btn {
+          width: 14.5em;
+        }
+      }
     }
   }
 }
