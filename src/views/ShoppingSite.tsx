@@ -7,7 +7,7 @@ const ShoppingSite: React.FC = () => {
     return (
         <>
             <Container fluid className="px-0">
-                <Row>
+                <Row className="navbar-section m-0">
                     <Col>
                         <NavbarSection/>
                     </Col>

@@ -5,7 +5,7 @@ import {FaTruck, FiPhone, FiUser} from "react-icons/all";
 const NavbarTop: React.FC = () => {
     return (
         <>
-            <Navbar expand="lg" className="navbar-top py-0 mx-2 my-2 ms-lg-auto my-lg-0">
+            <Navbar expand="lg" className="navbar-top py-0 mx-3 my-2 ms-lg-auto my-lg-0">
                 <span className="me-3 ms-auto">
                     <FiPhone className="icon"/>
                     <a href="tel:+94779510260" className="text-secondary text-decoration-none">+94779 510 260</a>
@@ -34,7 +34,7 @@ const NavbarTop: React.FC = () => {
 
                 </Navbar.Collapse>
             </Navbar>
-            <hr className="m-0"/>
+            <hr className="m-0 text-black-50"/>
         </>
     );
 };
