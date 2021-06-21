@@ -6,9 +6,12 @@ import Footer from "./components/Footer";
 
 const App: FC = () => {
   return (
-    // <ShoppingSite/>
-    // <Checkout />
-      <Footer />
+      <>
+        <ShoppingSite/>
+        <Checkout/>
+        <Footer/>
+      </>
+
   );
 }
 
