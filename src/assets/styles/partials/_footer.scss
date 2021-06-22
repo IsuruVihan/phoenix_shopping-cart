@@ -1,0 +1,22 @@
+@import '../variables';
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.footer-section {
+  background: $footer-background-color;
+  color: $footer-text-color;
+
+  hr{
+    color: rgba(0,0,0,.1);
+  }
+
+  img {
+    width: 180px;
+  }
+  .footer-icon{
+    cursor: pointer;
+  }
+}
