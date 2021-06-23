@@ -140,11 +140,7 @@
     .account-sign-in {
       border: 1px solid lightgray;
       border-radius: 5px;
-      .text {
-        line-height: 60px;
-      }
       .btn-container {
-        line-height: 60px;
         .sign-in-btn {
           width: 8.5em;
           border: none;
@@ -154,11 +150,28 @@
       }
     }
     .shipping-form {
+      border: 1px solid lightgray;
+      border-radius: 5px;
       .form-title {
-
+        border-bottom: 1px solid lightgray;
+        font-weight: 500;
       }
       .form-body {
-
+        .label {
+          margin: 0;
+          font-size: 0.85em;
+          .prepend-group {
+            width: auto;
+            border: 1px solid gray;
+          }
+        }
+        .input-field {
+          border-color: gray;
+          font-size: 0.85em;
+        }
+        .no-left-border {
+          border-left: 0;
+        }
       }
     }
     .change-address {
