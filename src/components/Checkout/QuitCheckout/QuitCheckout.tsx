@@ -3,7 +3,10 @@ import {Row, Col, Image, Button, Form, InputGroup} from 'react-bootstrap';
 import DiscountBanner from '../../../assets/images/discount1.png';
 import SLFlag from '../../../assets/images/srilanka.svg';
 import Select from "react-select";
-import customStyles from "../../../assets/styles/partials/customStyles";;
+import customStyles from "../../../assets/styles/partials/customStyles";
+import PasswordStrengthBar from "react-password-strength-bar";
+
+;
 
 const QuitCheckout: FC = () => {
   const [countryList, setCountryList] = useState([
@@ -106,8 +109,8 @@ const QuitCheckout: FC = () => {
                 <Col className="px-0 pt-1" xs={12}>
                   <Form.Group>
                     <Form.Label className="label">Choose your password<sup>*</sup></Form.Label>
-                    {/*<Form.Control className="input-field" type="password" />*/}
-                    
+                    <Form.Control className="input-field" type="password" />
+                    <PasswordStrengthBar password={""} />
                   </Form.Group>
                 </Col>
               </Row>
