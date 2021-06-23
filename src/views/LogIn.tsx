@@ -1,71 +1,60 @@
-import React, {FC} from 'react';
-import {Col, Container, InputGroup, Row, Form, Button} from "react-bootstrap";
-import * as Icon from "react-feather";
+import React, {FC, useState} from 'react';
+import {Col, Container, Row, Form, Button} from "react-bootstrap";
 import Grid from '@material-ui/core/Grid';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AlternateEmail from '@material-ui/icons/AlternateEmail';
+import Lock from '@material-ui/icons/Lock';
 import TextField from '@material-ui/core/TextField';
-import {
-    fade,
-    ThemeProvider,
-    withStyles,
-    makeStyles,
-    createMuiTheme,
-} from '@material-ui/core/styles';
+import {makeStyles} from "@material-ui/core";
 
-const CssTextField = withStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
-        '& label.Mui-focused': {
-            color: 'green',
-        },
-        '& .MuiInput-underline:after': {
-            borderBottomColor: 'green',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'red',
-            },
-            '&:hover fieldset': {
-                borderColor: 'yellow',
-            },
-            '&.Mui-focused fieldset': {
-                borderColor: 'green',
-            },
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '25ch',
         },
     },
-})(TextField);
+}));
 
 const LogIn: FC = () => {
     const classes = useStyles();
+    const [inputInvalid, setInputInvalid] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const handleChange = (event) => {
+        setName(event.target.value);
+    };
 
     return (
         <Container fluid className="login-section px-lg-5 px-sm-2 px-xl-5 py-5">
-            <Row xs={12} md={10} lg={9}>
-                <Col>
+            <Row>
+                <Col xs={12}>
                     <h3>Log In to Your Account!</h3>
                 </Col>
-            </Row>
-            <Row xs={12} md={10} lg={9}>
-                <Col>
-                    <Grid container spacing={2} alignItems="flex-end">
-                        <Grid item>
-                            <AccountCircle />
+                <Form className={classes.root} noValidate autoComplete="off">
+                    <Col xs={12}>
+                        <Grid container spacing={2} alignItems="flex-end">
+                            <Grid item>
+                                <AlternateEmail style={{ fontSize: 45 }}/>
+                            </Grid>
+                            <Grid item>
+                                <TextField id="input-with-icon-grid"
+                                           value={userEmail}
+                                           label="Email"
+                                           helperText={inputInvalid} onChange={handleChange}/>
+                            </Grid>
                         </Grid>
-                        <Grid item>
-                            <TextField id="input-with-icon-grid" label="With a grid" helperText="Incorrect entry."/>
-                            <CssTextField
-                                className={classes.margin}
-                                label="Custom CSS"
-                                variant="outlined"
-                                id="custom-css-outlined-input"
-                            />
+                        <Grid container spacing={2} alignItems="flex-end">
+                            <Grid item>
+                                <Lock />
+                            </Grid>
+                            <Grid item>
+                                <TextField id="input-with-icon-grid" label="With a grid" helperText="Incorrect entry."/>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </Col>
-            </Row>
-            <Row xs={12} md={10} lg={9}>
-                <Col className="mt-2">
-                    <Button className="login-button">Log In</Button>
-                </Col>
+                    </Col>
+                    <Col className="mt-2">
+                        <Button className="login-button">Log In</Button>
+                    </Col>
+                </Form>
             </Row>
         </Container>
     );
