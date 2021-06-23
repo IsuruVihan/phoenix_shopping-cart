@@ -6,7 +6,7 @@ import ProductCardsSection from "./ProductCardSection";
 
 const ProductCartSectionDOM: React.FC = () => {
     return (
-        <Container className="px-4">
+        <Container className="product-cart-cont px-4">
             <SearchBarSection/>
             <ProductCategorySection/>
             <ProductCardsSection/>

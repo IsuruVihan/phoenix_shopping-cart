@@ -1,10 +1,11 @@
 import React  from 'react';
-import {Col,Image, Row} from "react-bootstrap";
+import {Col, Container, Image, Row} from "react-bootstrap";
 import vegImg from '../../assets/images/vegi.webp'
 
 const CategoryItem: React.FC = () => {
     return (
-            <Row className="category-cont justify-content-center px-2 py-2 m-1">
+            // <Col className="category-cont justify-content-center px-0 py-2">
+        <Container className="category-cont justify-content-center px-0">
                 <Row className="text-center" >
                     <Col>
                         <Image src={vegImg}
@@ -16,7 +17,7 @@ const CategoryItem: React.FC = () => {
                 <Row className="text-center">
                     <Col><label>Vegetable</label> </Col>
                 </Row>
-            </Row>
+        </Container>
     )
 }
 
