@@ -6,6 +6,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import NavbarSection from "./components/NavbarSection/NavbarSection";
 import Checkout from "./views/Checkout";
 import Footer from "./components/Footer";
+import LogIn from "./views/LogIn";
 
 const App: FC = () => {
   return (
@@ -20,7 +21,8 @@ const App: FC = () => {
           </Container>
           <Switch>
             <Route exact path="/">
-              <ShoppingSite/>
+              <LogIn/>
+              {/*<ShoppingSite/>*/}
             </Route>
             <Route path="/about-us">
               <h1>About us</h1>
