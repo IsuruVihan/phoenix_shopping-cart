@@ -1,0 +1,33 @@
+@import "../variables";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.login-section {
+  width: 380px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $box-shadow;
+
+  .input-section {
+    justify-content: center;
+    margin-top: 10px;
+    padding: 10px 0 0 10px;
+    align-items: center;
+  }
+  .login-button {
+    background-color: $primary-colour;
+    width: 350px;
+    padding: 10px 0 10px 0;
+  }
+}
+
+@media only screen and (max-width: $max-width-phone) {
+
+}
+
+@media only screen and (min-width: $min-width-tablet) and (max-width: $max-width-tablet) {
+
+}
