@@ -22,8 +22,7 @@ const App: FC = () => {
           </Container>
           <Switch>
             <Route exact path="/">
-              <Registration/>
-              {/*<ShoppingSite/>*/}
+              <ShoppingSite/>
             </Route>
             <Route path="/about-us">
               <h1>About us</h1>
