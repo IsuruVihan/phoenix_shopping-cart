@@ -55,8 +55,8 @@ const LogIn: React.FC = () => {
         <Container fluid className="login-section px-lg-1 px-sm-2 px-xl-1 mt-3 mb-5">
             <Row>
                 <Col xs={12} className="my-3">
-                    <h3 className="text-center">Log In to Your Account</h3>
-                    <hr className="mb-2 mx-2"/>
+                    <h5 className="text-center py-2">Log In to Your Account</h5>
+                    <hr className="mb-2 mx-3"/>
                 </Col>
                 <Form className={classes.root} noValidate autoComplete="off">
                     <Col xs={12} className="input-section">
@@ -113,7 +113,7 @@ const LogIn: React.FC = () => {
                         </Grid>
                     </Col>
                     <Col className="mt-3 mb-4 text-center">
-                        <Button className="login-button">Log In</Button>
+                        <Button className="login-button" type="submit">Log In</Button>
                     </Col>
                     <Col xs={12} className="my-3">
                         <p className="text-center">Don't have an account? <a href='#'>Register</a></p>
