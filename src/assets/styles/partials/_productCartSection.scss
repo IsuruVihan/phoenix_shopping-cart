@@ -57,10 +57,13 @@ $border-color-add-btn-active: #17A2B8;
   .crossed-val{
     text-decoration: line-through;
     color: $project-gray;
+    font-size: medium;
   }
 
   .item-val{
     color: $project-green ;
+    font-size: medium;
+    font-weight: 600;
 
     .cent-val {
       font-size: 0.8em;
@@ -71,6 +74,8 @@ $border-color-add-btn-active: #17A2B8;
     border-radius: 2.3em;
     background-color: $project-green;
     border-color: transparent;
+    font-size: medium;
+    font-weight: normal;
   }
   .add-btn-update{
     background-color: transparent;
@@ -86,4 +91,28 @@ $border-color-add-btn-active: #17A2B8;
   //  flex-wrap: wrap;
   //  justify-content: center;
   //}
+
+  .product-cards-selection{
+    padding: 0 10em;
+  }
 }
+
+.category-name{
+  font-size: small;
+  font-weight: bold;
+}
+
+.cat-title{
+  font-weight: 500;
+}
+
+//
+//@media only screen and (max-width: 1200px) {
+//  .category-cont{
+//    width: 4.5em;
+//    background-color: #4caf50;
+//  }
+//  .cat-img{
+//    width: 2em;
+//  }
+//}

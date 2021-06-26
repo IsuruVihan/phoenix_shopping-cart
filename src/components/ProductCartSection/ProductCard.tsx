@@ -14,8 +14,8 @@ const ProductCard: React.FC = () => {
     }
 
     return (
-        <Col lg={3} sm={6}  className="px-0">
-        <Card className="item-card text-center my-2 mx-3">
+        <Col lg={3} sm={6}  className="px-0 mx-0">
+        <Card className="item-card text-center my-2 mx-3 px-1">
             <Row className="text-center py-0">
                 <Col className="p-0">
                     <Image className="text-center"   width = "145em"
@@ -38,7 +38,7 @@ const ProductCard: React.FC = () => {
                 </Row>
                 <Row className="py-1">
                     <Col className="col-5">
-                        <Form.Control  className="item-input px-0"
+                        <Form.Control  className="item-input px-2////////"
                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                                        handleQtyChange(event.target.value)}
                                        type="number"
@@ -46,7 +46,9 @@ const ProductCard: React.FC = () => {
                                        value={cardQty}/>
                     </Col>
                     <Col className="col-7 px-0" >
-                        <Button onClick={handleAddToCartClick} className= {isFocused ? "add-btn-update py-1 px-3":"add-btn py-1 px-3" }  >{isFocused ? "Update": "Add to Cart"}</Button>
+                        <Button onClick={handleAddToCartClick}
+                                className= {isFocused ? "add-btn-update py-1 px-4":"add-btn py-1 px-3" }>
+                                {isFocused ? "Update": "Add to Cart"}</Button>
                     </Col>
                 </Row>
             </Card.Body>

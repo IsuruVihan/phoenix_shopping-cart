@@ -9,32 +9,7 @@ const ProductCategorySection: React.FC = () => {
                 <Col className="our-products text-center"><h3>Our Products</h3></Col>
             </Row>
             <Row>
-                <Col className="our-products-category-items py-4 px-4 mx-4">
-                    {/*<Row className="mx-0">*/}
-                    {/*    <Col className="px-0">*/}
-                    {/*        <Row className="mx-0">*/}
-                    {/*            <Col xs={4} className="px-0">*/}
-                    {/*                <CategoryItem/>*/}
-                    {/*            </Col>*/}
-                    {/*            <Col xs={4} className="px-0">*/}
-                    {/*                <CategoryItem/>*/}
-                    {/*            </Col>*/}
-                    {/*            <Col xs={4} className="px-0">*/}
-                    {/*                <CategoryItem/>*/}
-                    {/*            </Col>*/}
-                    {/*        </Row>*/}
-                    {/*    </Col>*/}
-                    {/*    <Col className="px-0">*/}
-                    {/*        <Row className="mx-0">*/}
-                    {/*            <Col xs={6} className="px-0">*/}
-                    {/*                <CategoryItem/>*/}
-                    {/*            </Col>*/}
-                    {/*            <Col xs={6} className="px-0">*/}
-                    {/*                <CategoryItem/>*/}
-                    {/*            </Col>*/}
-                    {/*        </Row>*/}
-                    {/*    </Col>*/}
-                    {/*</Row>*/}
+                <Col className="our-products-category-items py-4 px-2 mx-3">
                     <CategoryItem/>
                     <CategoryItem/>
                     <CategoryItem/>
