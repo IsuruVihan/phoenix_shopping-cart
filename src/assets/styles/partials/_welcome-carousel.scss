@@ -11,36 +11,22 @@
   display: grid;
   text-align: left !important;
   vertical-align: middle;
-
-  h2 {
-    font-family: 'Salsa', cursive;
-    color: $organic-title-color;
-    font-size: 2em;
-    font-style: italic;
-    margin: 0 0 0 0;
-    font-weight: bold;
-  }
-
-  h3 {
-    font-family: 'Times New Roman', Times, serif;
-    color: black;
-    font-size: 1.2em;
-    margin: 0 0 0 0;
-  }
-
-  button {
-    margin-top: 20px;
-    padding: 8px 25px;
-  }
 }
 
 .absolute-div {
   position: absolute;
-  width: 450px;
-  height: 350px;
-  right: 10%;
+  width: 200px;
+  height: 100px;
+  top: 59%;
+  right: 25%;
   bottom: 24%;
   display: grid;
+
+  button {
+    margin: 21px 0 0 1px;
+    vertical-align: middle;
+    padding: 8px 27px;
+  }
 }
 
 .item {
@@ -48,53 +34,29 @@
 }
 
 @media only screen and (max-width: $max-width-phone) {
-  .carousel-caption {
-    top: 5%;
-    left: 10%;
-    transform: translate(-20%, -50%);
-    width: 50%;
-    height: 10%;
-
-    h2 {
-      font-size: 1em;
-      margin: -5px 0 2px 0;
-      font-weight: bold;
-    }
-
-    h3 {
-      font-size: 0.6em;
-      margin: -10px 0 -10px 0;
-    }
+  .absolute-div {
+    width: 150px;
+    height: 50px;
+    top: 40%;
+    right: 10%;
 
     button {
-      font-size: 10px;
-      margin-top: 10px;
-      padding: 1px 10px;
+      margin: 10px 0 0 1px;
+      padding: 4px 10px;
     }
-  }
-
-  .absolute-div {
-    width: 60%;
-    height: 30%;
-    right: -10%;
-    bottom: 40%;
   }
 }
 
 @media only screen and (min-width: $min-width-tablet) and (max-width: $max-width-tablet) {
-  .carousel-caption {
-    h2 {
-      font-size: 2em;
-    }
-
-    h3 {
-      font-size: 1.1em;
-    }
-  }
   .absolute-div {
-    width: 55%;
-    height: 10%;
-    right: 1%;
-    bottom: 10%;
+    width: 200px;
+    height: 100px;
+    top: 55%;
+    right: 15%;
+
+    button {
+      margin: 20px 0 0 0;
+      padding: 4px 15px;
+    }
   }
 }
