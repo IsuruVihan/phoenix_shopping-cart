@@ -7,6 +7,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import NavbarSection from "./components/NavbarSection/NavbarSection";
 import Checkout from "./views/Checkout";
 import Footer from "./components/Footer";
+import Registration from "./views/Registration";
 
 const App: FC = () => {
   return (

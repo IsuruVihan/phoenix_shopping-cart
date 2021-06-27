@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Nav, Navbar} from "react-bootstrap";
 import {FaTruck, FiPhone, FiUser} from "react-icons/all";
+import {NavLink} from "react-router-dom";
 
 const NavbarTop: React.FC = () => {
     return (
@@ -25,7 +26,7 @@ const NavbarTop: React.FC = () => {
                     <span className="ms-2 me-0">
                         <Button id="btnRegister"
                                 className="bg-white mx-2 rounded-1 btn-outline">
-                            Register
+                            <NavLink to="/Login">Register</NavLink>
                         </Button>
                         <Button id="btnLogin" className="bg-white px-2 mx-1 border-0 rounded-1">
                             Login
