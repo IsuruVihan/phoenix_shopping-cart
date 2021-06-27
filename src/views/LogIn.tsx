@@ -8,6 +8,8 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import {ErrorOutline} from "@material-ui/icons";
 import {red} from "@material-ui/core/colors";
+import {NavLink} from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -116,7 +118,7 @@ const LogIn: React.FC = () => {
                         <Button className="login-button" type="submit">Log In</Button>
                     </Col>
                     <Col xs={12} className="my-3">
-                        <p className="text-center">Don't have an account? <a href='#'>Register</a></p>
+                        <p className="text-center">Don't have an account? <NavLink to="/Register">Register</NavLink></p>
                     </Col>
                 </Form>
             </Row>
