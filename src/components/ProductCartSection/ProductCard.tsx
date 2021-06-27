@@ -14,11 +14,11 @@ const ProductCard: React.FC = () => {
     }
 
     return (
-        <Col lg={3} sm={6}  className="px-0 mx-0">
+        <Col lg={4} md={6} sm={6} xs={6}  className="px-0 mx-0">
         <Card className="item-card text-center my-2 mx-3 px-1">
             <Row className="text-center py-0">
                 <Col className="p-0">
-                    <Image className="text-center"   width = "145em"
+                    <Image className="text-center"   width = "50%"
                            height="auto"
                            src={coconutImg}/>
                 </Col>
@@ -36,18 +36,18 @@ const ProductCard: React.FC = () => {
                         <h5 className="item-val"> Rs.35.<span className="cent-val">00</span></h5>
                     </Col>
                 </Row>
-                <Row className="py-1">
-                    <Col className="col-5">
-                        <Form.Control  className="item-input px-2////////"
+                <Row className="py-1" >
+                    <Col className="col-5" lg={5} md={5} sm={12} xs={12}>
+                        <Form.Control  className="item-input px-2"
                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                                        handleQtyChange(event.target.value)}
                                        type="number"
                                        min = "1"
                                        value={cardQty}/>
                     </Col>
-                    <Col className="col-7 px-0" >
+                    <Col className="col-7 px-0" lg={7} md={7} sm={12} xs={12}>
                         <Button onClick={handleAddToCartClick}
-                                className= {isFocused ? "add-btn-update py-1 px-4":"add-btn py-1 px-3" }>
+                                className= {isFocused ? "add-btn-update py-2 px-4":"add-btn py-1 px-3" }>
                                 {isFocused ? "Update": "Add to Cart"}</Button>
                     </Col>
                 </Row>
