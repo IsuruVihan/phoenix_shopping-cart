@@ -7,6 +7,8 @@ import {Col, Container, Row} from "react-bootstrap";
 import NavbarSection from "./components/NavbarSection/NavbarSection";
 import Checkout from "./views/Checkout";
 import Footer from "./components/Footer";
+import Registration from "./views/Registration";
+import LogIn from "./views/LogIn";
 
 const App: FC = () => {
   return (
@@ -37,6 +39,12 @@ const App: FC = () => {
             </Route>
             <Route path="/checkout">
               <Checkout/>
+            </Route>
+            <Route path="/Login">
+             <LogIn/>
+            </Route>
+            <Route path="/Register">
+              <Registration/>
             </Route>
           </Switch>
           <Container fluid className="px-0">
