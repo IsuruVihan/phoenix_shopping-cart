@@ -6,10 +6,10 @@ const ProductCategorySection: React.FC = () => {
     return (
         <React.Fragment>
             <Row>
-                <Col className="our-products text-center"><h3>Our Products</h3></Col>
+                <Col className="our-products text-center "><h3>Our Products</h3></Col>
             </Row>
             <Row>
-                <Col className="our-products-category-items py-4 px-4 mx-4">
+                <Col className="our-products-category-items py-4 px-4 mx-3">
                     <CategoryItem/>
                     <CategoryItem/>
                     <CategoryItem/>
