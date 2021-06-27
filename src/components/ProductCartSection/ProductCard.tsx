@@ -14,7 +14,7 @@ const ProductCard: React.FC = () => {
     }
 
     return (
-        <Col lg={4} md={6} sm={6} xs={6}  className="px-0 mx-0">
+        <Col lg={3} md={6} sm={6} xs={6}  className="px-0 mx-0">
         <Card className="item-card text-center my-2 mx-3 px-1">
             <Row className="text-center py-0">
                 <Col className="p-0">
