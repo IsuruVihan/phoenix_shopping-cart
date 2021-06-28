@@ -9,7 +9,7 @@ const EmptyCart: FC = () => {
         <Container fluid>
           <Row className="mx-0">
             <Col className="text-center px-0" xs={12}>
-              <Image className="empty-image" src={EmptyCartPic} alt="Empty" />
+              <Image className="empty-image" src={EmptyCartPic} alt="Empty"/>
             </Col>
             <Col className="empty-text text-center px-0 pb-3" xs={12}>
               Your Cart is empty

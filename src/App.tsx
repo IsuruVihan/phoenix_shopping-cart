@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import './App.scss';
-
 import {BrowserRouter as Router, Route, Switch,} from "react-router-dom";
 import ShoppingSite from "./views/ShoppingSite";
 import {Col, Container, Row} from "react-bootstrap";

@@ -4,8 +4,8 @@ import {BiDownArrowAlt, BiUpArrowAlt} from 'react-icons/bi';
 const DefaultOrder: FC = () => {
   return (
     <span>
-      <BiUpArrowAlt className="grey-arrow" />
-      <BiDownArrowAlt className="last-arrow grey-arrow" />
+      <BiUpArrowAlt className="grey-arrow"/>
+      <BiDownArrowAlt className="last-arrow grey-arrow"/>
     </span>
   );
 }
