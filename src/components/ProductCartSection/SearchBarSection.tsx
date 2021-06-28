@@ -1,7 +1,6 @@
-import React  from 'react';
+import React from 'react';
 import {FormControl, Row} from "react-bootstrap";
 import * as Icon from "react-feather";
-
 
 const SearchBarSection: React.FC = () => {
     return (

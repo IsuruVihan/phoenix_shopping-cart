@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import {Container} from "react-bootstrap";
 import SearchBarSection from "./SearchBarSection";
 import ProductCategorySection from "./ProductCategorySection";

@@ -10,8 +10,8 @@ const CheckoutTable: FC = () => {
     <Row className="checkout-table mx-sm-2 mt-2 p-3 pb-0">
       <TableHeading/>
       <TableBody/>
-      <PaginationRow />
-      <TableBottom />
+      <PaginationRow/>
+      <TableBottom/>
     </Row>
   );
 }

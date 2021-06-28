@@ -21,7 +21,7 @@ const TableBody: FC = () => {
           </tr>
         </thead>
         <tbody>
-          <EmptyCart/>
+        <EmptyCart/>
         </tbody>
       </Table>
     </Col>

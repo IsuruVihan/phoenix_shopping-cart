@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import CartPopupButton from "./CartPopup/CartPopupButton";
 
 const NavbarMain: React.FC = () => {
-    return (
+  return (
         <>
             <Row className="navbar-main justify-content-between text-center pt-2 pb-1">
                 <Col xs={6} sm={6} md={8} lg={8}>

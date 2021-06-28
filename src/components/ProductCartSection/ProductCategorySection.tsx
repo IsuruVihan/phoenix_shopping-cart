@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import {Col, Row} from "react-bootstrap";
 import CategoryItem from "./CategoryItem";
 
@@ -18,9 +18,7 @@ const ProductCategorySection: React.FC = () => {
                 </Col>
             </Row>
         </React.Fragment>
-
-    )
+  )
 }
-
 
 export default ProductCategorySection;
