@@ -9,7 +9,7 @@
   line-height: 1.4;
 
   .navbar-shadow {
-    //box-shadow: 0 3px 5px 0 rgba(0 0 0 / 0.15);
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.15);
   }
 
   .navbar-top {
@@ -33,6 +33,62 @@
 
   .navbar-main {
 
+    .navbar-cart-popup {
+      #dropdown-menu {
+        width: 400px;
+        border-radius: 6px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+
+        .item-list {
+          .item {
+            .info {
+              font-size: 0.7em;
+
+              .item-qty {
+                color: $primary-font-colour;
+              }
+
+              .item-price {
+                color: $primary-colour;
+              }
+
+              .item-delete-btn {
+                font-size: 1em;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .cart-info {
+          font-size: 0.7em;
+
+          .subtotal-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: $est_total_font_color;
+          }
+
+          .discount-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: $primary-font-colour;
+          }
+
+          .est-total-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: $est_total_font_color;
+          }
+
+          .btn-checkout {
+            border-radius: 20px;
+            font-size: 0.9em;
+          }
+        }
+      }
+    }
+
     .navbar-brand {
       text-transform: uppercase;
       font-size: 1.9rem;
@@ -49,12 +105,32 @@
     .cart-icon {
       color: $primary-colour;
       font-size: 1.9rem;
+
+      .item-count {
+        background-color: $primary-colour;
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        position: absolute;
+        margin-top: 2px;
+        margin-left: -12px;
+        box-shadow: 0 1px 1px 1px #808080;
+
+        .count-value {
+          text-align: center;
+          position: absolute;
+          font-weight: bold;
+          font-size: 0.72rem;
+          color: white;
+          margin-top: 2px;
+          margin-left: -4px;
+        }
+      }
     }
 
     button {
       background-color: $primary-colour;
     }
-
   }
 
   .navbar-links {
@@ -80,7 +156,6 @@
       .btn:hover a {
         color: white;
       }
-
     }
 
 
@@ -118,7 +193,6 @@
 
 // X-Large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-
 }
 
 // XX-Large devices (larger desktops, 1400px and up)

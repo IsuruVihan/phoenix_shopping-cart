@@ -5,13 +5,13 @@ import ProductCategorySection from "./ProductCategorySection";
 import ProductCardsSection from "./ProductCardSection";
 
 const ProductCartSectionDOM: React.FC = () => {
-  return (
-    <Container className="px-4">
-      <SearchBarSection/>
-      <ProductCategorySection/>
-      <ProductCardsSection/>
-    </Container>
-  )
+    return (
+        <Container className="product-cart-cont px-lg-3 px-md-1 px-xs-0">
+            <SearchBarSection/>
+            <ProductCategorySection/>
+            <ProductCardsSection/>
+        </Container>
+    )
 }
 
 export default ProductCartSectionDOM;
