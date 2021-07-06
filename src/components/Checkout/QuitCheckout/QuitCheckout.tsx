@@ -3,6 +3,8 @@ import {Row, Col} from 'react-bootstrap';
 import DiscountBanner from "./DiscountBanner";
 import AccountSignIn from "./AccountSignIn";
 import ShippingForm from "./ShippingForm";
+import ChangeAddress from "./ChangeAddress/ChangeAddress";
+import DeliveryInstructions from "./DeliveryInstructions";
 
 const QuitCheckout: FC = () => {
   return (
@@ -11,22 +13,8 @@ const QuitCheckout: FC = () => {
       <Col className="ps-lg-4 ps-sm-0 pe-0 pt-lg-0 pt-sm-2" lg={7} sm={12} xs={12}>
         <AccountSignIn/>
         <ShippingForm/>
-        <Row className="change-address mx-0">
-          <Col className="title px-0" xs={12}>
-
-          </Col>
-          <Col className="address-options px-0" xs={12}>
-
-          </Col>
-        </Row>
-        <Row className="delivery-instructions mx-0">
-          <Col className="title px-0" xs={12}>
-
-          </Col>
-          <Col className="instruction-text px-0" xs={12}>
-
-          </Col>
-        </Row>
+        <ChangeAddress />
+        <DeliveryInstructions />
         <Row className="checkout-pay mx-0">
           <Col className="title px-0" xs={12}>
 

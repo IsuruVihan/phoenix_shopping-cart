@@ -189,7 +189,34 @@
       }
 
       .address-options {
+        cursor: pointer;
+        font-size: 0.9em;
+      }
 
+      .change-address-form {
+        border: 1px solid lightgray;
+        border-radius: 5px;
+
+        .form-body {
+          .label {
+            margin: 0;
+            font-size: 0.85em;
+
+            .prepend-group {
+              width: auto;
+              border: 1px solid gray;
+            }
+          }
+
+          .input-field {
+            border-color: gray;
+            font-size: 0.85em;
+          }
+
+          .no-left-border {
+            border-left: 0;
+          }
+        }
       }
     }
 
