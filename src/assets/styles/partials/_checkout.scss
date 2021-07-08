@@ -232,15 +232,32 @@
 
     .checkout-pay {
       .title {
-
+        font-weight: 500;
+        font-size: 0.9em;
       }
 
       .options {
+        .option-card {
+          border: 1px solid lightblue;
+          border-radius: 5px;
 
+          .icon {
+            font-size: 6em;
+          }
+        }
       }
 
       .order {
-
+        .order-btn {
+          font-size: 14.4px;
+          line-height: 21.6px;
+          text-align: center;
+          letter-spacing: normal;
+          fill: white;
+          background: $order-btn-background-color;
+          border-radius: 3.6px;
+          width: 8em;
+        }
       }
     }
   }
