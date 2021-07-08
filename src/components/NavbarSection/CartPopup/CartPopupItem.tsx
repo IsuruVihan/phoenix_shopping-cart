@@ -13,16 +13,16 @@ const CartPopupItem: React.FC = () => {
                 <Col xs={8} className="info px-3">
                     <Row>
                         <Col xs={10} className="mb-3 pt-1">
-                            <span className="item-name">Burger</span>
+                            <label className="item-name">Burger</label>
                         </Col>
-                        <Col xs={2} className="mb-3 pt-1">
-                            <span className="item-delete-btn"><FiTrash/></span>
+                        <Col xs={2} className="mb-3 pt-1 text-end">
+                            <label className="item-delete-btn"><FiTrash/></label>
                         </Col>
                         <Col xs={7} className="mb-3">
-                            <span className="item-qty">Qty: 2</span>
+                            <label className="item-qty">Qty: 2</label>
                         </Col>
-                        <Col xs={5} className="mb-3">
-                            <span className="item-price">Rs: 770</span>
+                        <Col xs={5} className="mb-3  text-end">
+                            <label className="item-price">Rs: 770</label>
                         </Col>
                     </Row>
                 </Col>

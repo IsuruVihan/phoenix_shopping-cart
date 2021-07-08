@@ -4,13 +4,13 @@
     Navbar Section CSS
 ================================ */
 
+.navbar-shadow {
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.15);
+}
+
 .navbar-section {
   color: $primary-font-colour;
   line-height: 1.4;
-
-  .navbar-shadow {
-    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.15);
-  }
 
   .navbar-top {
     font-size: 0.82em;
@@ -35,7 +35,7 @@
 
     .navbar-cart-popup {
       #dropdown-menu {
-        width: 400px;
+        width: 380px;
         border-radius: 6px;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
 
@@ -83,18 +83,19 @@
 
           .btn-checkout {
             border-radius: 20px;
-            font-size: 0.9em;
+            font-size: 1em;
           }
         }
       }
     }
 
-    .navbar-brand {
+    .navbar-brand a {
       text-transform: uppercase;
       font-size: 1.9rem;
       font-weight: bolder;
       white-space: nowrap;
       color: $primary-colour;
+      text-decoration: none;
     }
 
     .btn a {
@@ -105,6 +106,7 @@
     .cart-icon {
       color: $primary-colour;
       font-size: 1.9rem;
+      cursor: pointer;
 
       .item-count {
         background-color: $primary-colour;
@@ -115,6 +117,7 @@
         margin-top: 2px;
         margin-left: -12px;
         box-shadow: 0 1px 1px 1px #808080;
+        cursor: pointer;
 
         .count-value {
           text-align: center;
@@ -124,6 +127,7 @@
           color: white;
           margin-top: 2px;
           margin-left: -4px;
+          cursor: pointer;
         }
       }
     }
@@ -176,10 +180,28 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
+  .navbar-section {
+    .navbar-main {
+      .navbar-cart-popup {
+        #dropdown-menu {
+          width: 380px;
+        }
+      }
+    }
+  }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
+  .navbar-section {
+    .navbar-main {
+      .navbar-cart-popup {
+        #dropdown-menu {
+          width: 400px;
+        }
+      }
+    }
+  }
 }
 
 // Large devices (desktops, 992px and up)
