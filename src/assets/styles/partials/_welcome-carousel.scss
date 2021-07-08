@@ -5,28 +5,25 @@
   padding: 0;
 }
 
-.carousel-caption {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  text-align: left !important;
-  vertical-align: middle;
-}
-
 .absolute-div {
   position: absolute;
-  width: 200px;
+  width: 180px;
   height: 100px;
-  top: 59%;
+  top: 62%;
   right: 25%;
   bottom: 24%;
   display: grid;
 
   button {
-    margin: 21px 0 0 1px;
+    margin: 25px 20px 0 0;
     vertical-align: middle;
-    padding: 8px 27px;
+    font-size: 0.8em;
+    padding: 10px 32px;
   }
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  height: 50px;
+  width: 50px;
 }
 
 .item {
@@ -35,15 +32,21 @@
 
 @media only screen and (max-width: $max-width-phone) {
   .absolute-div {
-    width: 150px;
-    height: 50px;
-    top: 40%;
-    right: 10%;
+    width: 100px;
+    height: 30px;
+    top: 65%;
+    right: 17%;
+    bottom: 10%;
 
     button {
-      margin: 10px 0 0 1px;
-      padding: 4px 10px;
+      margin: 0 0 0 0;
+      font-size: 0.5em;
+      padding: 3px 10px;
     }
+  }
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    height: 10px;
+    width: 10px;
   }
 }
 
@@ -51,7 +54,7 @@
   .absolute-div {
     width: 200px;
     height: 100px;
-    top: 55%;
+    top: 60%;
     right: 15%;
 
     button {
