@@ -8,13 +8,18 @@
 .footer-section {
   background: $footer-background-color;
   color: $footer-text-color;
+  font-size: 14px;
 
   hr {
     color: rgba(0, 0, 0, .1);
   }
 
   img {
-    width: 180px;
+    width: 150px;
+  }
+
+  p {
+    font-size: 14px;
   }
 
   .footer-icon {
