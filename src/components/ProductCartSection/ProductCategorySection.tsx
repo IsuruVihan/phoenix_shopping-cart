@@ -8,13 +8,13 @@ const ProductCategorySection: React.FC = () => {
             <Row>
                 <Col className="our-products text-center "><h3>Our Products</h3></Col>
             </Row>
-            <Row>
-                <Col className="our-products-category-items py-4 px-4 mx-3">
-                    <CategoryItem/>
-                    <CategoryItem/>
-                    <CategoryItem/>
-                    <CategoryItem/>
-                    <CategoryItem/>
+            <Row id='products'>
+                <Col className="our-products-category-items py-4 px-4 mx-3" id='products'>
+                        <CategoryItem/>
+                        <CategoryItem/>
+                        <CategoryItem/>
+                        <CategoryItem/>
+                        <CategoryItem/>
                 </Col>
             </Row>
         </React.Fragment>
