@@ -5,7 +5,7 @@ import AccountSignIn from "./AccountSignIn";
 import ShippingForm from "./ShippingForm";
 import ChangeAddress from "./ChangeAddress/ChangeAddress";
 import DeliveryInstructions from "./DeliveryInstructions";
-import CheckoutPay from "./CheckoutPay";
+import CheckoutPay from "./CheckoutPay/CheckoutPay";
 
 const QuitCheckout: FC = () => {
   return (

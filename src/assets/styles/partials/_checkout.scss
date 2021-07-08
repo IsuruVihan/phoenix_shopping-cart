@@ -238,6 +238,7 @@
 
       .options {
         .option-card {
+          cursor: pointer;
           border: 1px solid lightblue;
           border-radius: 5px;
 
@@ -257,6 +258,7 @@
           background: $order-btn-background-color;
           border-radius: 3.6px;
           width: 8em;
+          border: none;
         }
       }
     }
