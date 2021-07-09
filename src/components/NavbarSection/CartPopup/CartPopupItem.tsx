@@ -4,6 +4,7 @@ import item1 from "../../../assets/images/items/product-chicken-burger.webp"
 import {FiTrash} from "react-icons/all";
 
 const CartPopupItem: React.FC = () => {
+
     return (
         <>
             <Row className="item">
