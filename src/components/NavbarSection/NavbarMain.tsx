@@ -13,7 +13,7 @@ const NavbarMain: React.FC = () => {
                     </Navbar>
                 </Col>
                 <Col xs={6} sm={6} md={5} lg={3} className="m-0 p-0 text-end px-0 px-sm-3 px-lg-2">
-                    <CartPopupButton value={0}/>
+                    <CartPopupButton value={4}/>
                     <Button variant="outline-light" className="d-none d-sm-inline mt-2">
                         <Link to="/checkout">Checkout</Link>
                     </Button>
