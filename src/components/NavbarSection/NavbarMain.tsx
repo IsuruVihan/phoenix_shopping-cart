@@ -1,25 +1,25 @@
 import React from 'react';
-import {Button, Col, Navbar, Row} from "react-bootstrap";
+import {Button, Col, Container, Navbar, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import CartPopupButton from "./CartPopup/CartPopupButton";
 
 const NavbarMain: React.FC = () => {
-  return (
-        <>
-            <Row className="navbar-main justify-content-between text-center pt-2 pb-1">
-                <Col xs={6} sm={6} md={8} lg={8}>
+    return (
+        <Container fluid className="navbar-section navbar-shadow bg-white sticky-top">
+            <Row className="navbar-main text-center pt-2 pb-1 justify-content-center">
+                <Col xs={6} sm={6} md={5} lg={7} className="text-start px-3 px-md-2 px-lg-2">
                     <Navbar>
-                        <Navbar.Brand href="#" className="p-0">Logo</Navbar.Brand>
+                        <Navbar.Brand href="#" className="p-0"><Link to="/">Logo</Link></Navbar.Brand>
                     </Navbar>
                 </Col>
-                <Col xs={6} sm={6} md={4} lg={4} className="m-0 p-0 text-end">
+                <Col xs={6} sm={6} md={5} lg={3} className="m-0 p-0 text-end px-0 px-sm-3 px-lg-2">
                     <CartPopupButton value={4}/>
                     <Button variant="outline-light" className="d-none d-sm-inline mt-2">
                         <Link to="/checkout">Checkout</Link>
                     </Button>
                 </Col>
             </Row>
-        </>
+        </Container>
     );
 };
 
