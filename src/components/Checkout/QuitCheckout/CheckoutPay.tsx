@@ -32,7 +32,7 @@ const CheckoutPay: FC = () => {
           </Col>
         </Row>
       </Col>
-      <Col className="order px-0 text-center" xs={12}>
+      <Col className="order px-0 text-center mt-3 mb-5" xs={12}>
         <Button className="order-btn btn btn-primary" size="sm">
           Order
         </Button>
