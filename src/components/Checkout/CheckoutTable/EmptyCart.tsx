@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Container, Row, Col, Image} from "react-bootstrap";
+import {Col, Container, Image, Row} from "react-bootstrap";
 import EmptyCartPic from "../../../assets/images/empty_cart.png";
 
 const EmptyCart: FC = () => {
