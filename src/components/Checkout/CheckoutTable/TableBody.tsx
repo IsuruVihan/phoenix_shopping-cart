@@ -1,28 +1,54 @@
 import React, {FC} from 'react';
 import {Col, Table} from 'react-bootstrap';
-import EmptyCart from './EmptyCart';
-import AscendingOrder from '../SortArrows/AscendingOrder';
+import TableItemRow from "./TableItemRow";
+import TableHeaderRow from "./TableHeaderRow";
+import EmptyCart from "./EmptyCart";
+import {IOrderItem} from "../../../Types/CartTypes";
 
 const TableBody: FC = () => {
+  const itemData: IOrderItem[] = [
+    {image: 'chicken-burger.webp', name: 'Burger', qty: 1, unitPrice: 385},
+    {image: 'ham-and-cheese-submarine.webp', name: 'Submarine', qty: 2, unitPrice: 390},
+    {image: 'steak-with-mushrooms.webp', name: 'Mushrooms', qty: 2, unitPrice: 250},
+    {image: 'creamy_cheese_sausage_pizza.webp', name: 'Pizza', qty: 1, unitPrice: 750},
+  ]
+
+  const handleOnItemRemoveClick = (orderItemIndex: number) => {
+    alert("Remove clicked - Item " + orderItemIndex);
+  }
+
+  const handleOnItemQtyIncrementClick = (orderItemIndex: number) => {
+    alert("Increment qty clicked - Item " + orderItemIndex);
+  }
+
+  const handleOnItemQtyDecrementClick = (orderItemIndex: number) => {
+    alert("Decrement qty clicked - Item " + orderItemIndex);
+  }
+
+  const renderOrderItems = () => {
+    if (itemData.length === 0) {
+      return <EmptyCart/>
+    }
+    return itemData.map((orderItem: IOrderItem, index: number) => {
+      return <TableItemRow key={index} orderItemIndex={index} orderItem={orderItem}
+                           onItemRemoveClick={handleOnItemRemoveClick}
+                           onItemQtyIncrementClick={handleOnItemQtyIncrementClick}
+                           onItemQtyDecrementClick={handleOnItemQtyDecrementClick}/>
+    })
+  }
+
   return (
     <Col className="px-0 table-col" xs={12}>
       <Table className="table mb-1" responsive borderless={true}>
+
         <thead className="headings-container">
-          <tr className="headings">
-            <th>#</th>
-            <th>Item</th>
-            <th>
-              Name
-              <AscendingOrder/>
-            </th>
-            <th>Qty</th>
-            <th>Unit Price</th>
-            <th>Amount</th>
-          </tr>
+        <TableHeaderRow/>
         </thead>
-        <tbody>
-        <EmptyCart/>
+
+        <tbody className="data-container">
+        {renderOrderItems()}
         </tbody>
+
       </Table>
     </Col>
   );
