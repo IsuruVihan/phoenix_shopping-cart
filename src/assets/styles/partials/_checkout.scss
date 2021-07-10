@@ -33,6 +33,11 @@
     border: 1px solid lightgrey;
     border-radius: 5px;
 
+    td {
+      padding: 0.3em;
+      color: $table_font_color;
+    }
+
     .table-title {
       font-size: 0.9em;
       font-weight: 500;
@@ -42,10 +47,10 @@
       margin-bottom: 1em;
 
       .table {
+
         .headings-container {
           .headings {
             font-size: 0.8em;
-            color: $heading_font_color;
 
             .id-column {
               width: 24px;
@@ -78,6 +83,10 @@
 
             .item-name {
               font-weight: 500;
+            }
+
+            .cents {
+              font-size: 0.8em;
             }
 
             .item-delete-btn {
