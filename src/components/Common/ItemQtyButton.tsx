@@ -13,7 +13,7 @@ const ItemQtyButton: React.FC<ItemQtyButtonProps> = (props) => {
   return (
     <div className="item-qty-btn">
       <FiMinusCircle onClick={() => onItemQtyDecrementClick(orderItemIndex)} className="control-btn"/>
-      <label className="px-2 mx-1 qty-value">{qtyValue}</label>
+      <label className="mx-1 qty-value">{qtyValue}</label>
       <FiPlusCircle onClick={() => onItemQtyIncrementClick(orderItemIndex)} className="control-btn"/>
     </div>
   );

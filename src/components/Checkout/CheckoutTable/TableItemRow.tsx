@@ -17,7 +17,7 @@ const TableItemRow: React.FC<TableItemRowProps> = (props) => {
 
   return (
     <tr className="item-row">
-      <td>
+      <td className="text-center">
         <label className="item-id">{orderItemIndex + 1}</label>
       </td>
       <td className="text-center">
@@ -32,10 +32,12 @@ const TableItemRow: React.FC<TableItemRowProps> = (props) => {
                        onItemQtyDecrementClick={onItemQtyDecrementClick}/>
       </td>
       <td className="text-center">
-        <label>Rs. {orderItem.unitPrice}</label>
+        <label className="item-unit-price">Rs. {orderItem.unitPrice}.<span
+          className="cents">00</span></label>
       </td>
       <td className="text-center">
-        <label>Rs. {orderItem.unitPrice * orderItem.qty}</label>
+        <label className="item-amount">Rs. {orderItem.unitPrice * orderItem.qty}.<span
+          className="cents">00</span></label>
       </td>
       <td>
         <label className="item-delete-btn"><FiTrash onClick={
