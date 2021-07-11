@@ -1,0 +1,17 @@
+@import "../variables";
+
+.item-qty-btn {
+  vertical-align: middle;
+
+  .qty-value {
+    font-size: 1.2em;
+    min-width: 1.5em;
+    vertical-align: middle;
+  }
+
+  .control-btn {
+    cursor: pointer;
+    color: $item-qty-btn-colour;
+    font-size: 1.4em;
+  }
+}

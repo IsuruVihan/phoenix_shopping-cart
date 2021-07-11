@@ -33,20 +33,28 @@
     border: 1px solid lightgrey;
     border-radius: 5px;
 
+    td {
+      padding: 0.3em;
+      color: $table_font_color;
+    }
+
     .table-title {
       font-size: 0.9em;
       font-weight: 500;
     }
 
     .table-col {
-      border-bottom: 1px solid lightgray;
       margin-bottom: 1em;
 
       .table {
+
         .headings-container {
           .headings {
             font-size: 0.8em;
-            color: $heading_font_color;
+
+            .id-column {
+              width: 24px;
+            }
 
             .black-arrow {
               font-weight: 600;
@@ -59,6 +67,31 @@
 
             .last-arrow {
               margin-left: -5px;
+            }
+          }
+        }
+
+        .data-container {
+          .item-row {
+            font-size: 0.82em;
+            vertical-align: middle;
+            border-bottom: 1px solid $order_item_table_border_color;
+
+            .item-id {
+              font-weight: 700;
+            }
+
+            .item-name {
+              font-weight: 500;
+            }
+
+            .cents {
+              font-size: 0.8em;
+            }
+
+            .item-delete-btn {
+              font-size: 1.2em;
+              cursor: pointer;
             }
           }
         }
@@ -77,6 +110,7 @@
     .results-text {
       font-size: 0.95em;
       color: $show_results_grey_color;
+      vertical-align: middle;
     }
 
     .pagination-btn {
@@ -326,7 +360,7 @@
   .checkout-table {
     .table-col {
       .headings-container {
-        border-bottom: 1.5px solid lightgrey;
+        border-bottom: 1px solid $order_item_table_border_color;
       }
     }
   }
