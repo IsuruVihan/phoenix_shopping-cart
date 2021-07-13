@@ -5,21 +5,31 @@
   padding: 0;
 }
 
+.signup-img {
+  width: 50%;
+  //align-content: center;
+  margin: 50px 20px;
+}
+
 .login-section {
-  width: 380px;
-  align-items: center;
-  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  width: 30%;
   box-shadow: $box-shadow;
+  border-radius: 10px;
 
   .input-section {
     justify-content: center;
-    margin-top: 10px;
-    padding: 10px 0 5px 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0 0 5px 10px;
     align-items: center;
   }
   .login-button {
     background-color: $primary-colour;
     width: 350px;
+    border: 0px;
+    font-weight: bold;
     padding: 10px 0 10px 0;
   }
 }
