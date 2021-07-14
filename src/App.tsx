@@ -10,6 +10,7 @@ import LogIn from "./views/LogIn";
 import NavbarMain from "./components/NavbarSection/NavbarMain";
 import NavbarTop from "./components/NavbarSection/NavbarTop";
 import NavbarLinks from "./components/NavbarSection/NavbarLinks";
+import Admin from "./components/Admin/Admin";
 
 const App: FC = () => {
   return (
@@ -43,6 +44,9 @@ const App: FC = () => {
               </Route>
               <Route path="/Register">
                 <Registration/>
+              </Route>
+              <Route path="/Admin">
+                <Admin/>
               </Route>
             </Switch>
           </Container>
