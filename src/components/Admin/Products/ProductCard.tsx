@@ -30,10 +30,10 @@ const ProductCard: FC = () => {
           <Row className="mx-0">
             <Col className="px-0">
               <Row className="mx-0 py-1">
-                <Col className="px-0 text-xl-start" xl={6} md={12} sm={6} xs={12}>
+                <Col className="px-0 text-xl-start" xl={6} xs={12}>
                   <Button className="card-btn edit-btn" variant="success" size="sm">Edit</Button>
                 </Col>
-                <Col className="px-0 text-xl-end pt-xl-0 pt-md-1 pt-sm-0 pt-1" xl={6} md={12} sm={6} xs={12}>
+                <Col className="px-0 text-xl-end pt-xl-0 pt-1" xl={6} xs={12}>
                   <Button className="card-btn" variant="secondary" size="sm">Delete</Button>
                 </Col>
               </Row>

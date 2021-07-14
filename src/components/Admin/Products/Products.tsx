@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
-import {Col, Container, Dropdown, NavDropdown, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import AdminProducts from "./AdminProducts";
+import CategoryDropdown from "./CategoryDropdown";
 
 const Products: FC = () => {
   return (
@@ -9,20 +10,8 @@ const Products: FC = () => {
         <Col className="title text-center" xs={12}>
           Your Products
         </Col>
-        <Col className="text-center my-2" xs={12}>
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" size="sm">
-              Category
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="text-center">
-              <Dropdown.Item>Category 1</Dropdown.Item>
-              <Dropdown.Item>Category 2</Dropdown.Item>
-              <Dropdown.Item>Category 3</Dropdown.Item>
-              <Dropdown.Item>Category 4</Dropdown.Item>
-              <Dropdown.Item>Category 5</Dropdown.Item>
-              <Dropdown.Item>Category 6</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+        <Col className="text-center my-4" xs={12}>
+          <CategoryDropdown />
         </Col>
         <Col xs={12}>
           <AdminProducts />
