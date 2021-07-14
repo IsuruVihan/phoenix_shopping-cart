@@ -2,6 +2,8 @@ import React, {FC} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import AdminProducts from "./AdminProducts";
 import CategoryDropdown from "./CategoryDropdown";
+import EditProductDetails from "./EditProductDetails";
+import AddProduct from "./AddProduct";
 
 const Products: FC = () => {
   return (
@@ -16,6 +18,10 @@ const Products: FC = () => {
         <Col xs={12}>
           <AdminProducts />
         </Col>
+      </Row>
+      <Row className="mx-0">
+        <EditProductDetails />
+        <AddProduct />
       </Row>
     </Container>
   );
