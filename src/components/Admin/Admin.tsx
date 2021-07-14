@@ -5,7 +5,7 @@ import Orders from "./Orders/Orders";
 
 const Admin: FC = () => {
   return (
-    <Container className="admin pt-sm-5">
+    <Container className="admin pt-sm-5 pb-5">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
         <Row>
           <Col sm={2}>
