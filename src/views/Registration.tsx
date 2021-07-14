@@ -1,24 +1,32 @@
 import React, {useState} from 'react';
 import {IUser} from '../Types/CartTypes';
-import {Col, Container, Row, Form, Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import {Col, Container, Row, Form, Button} from "react-bootstrap";
 import Grid from '@material-ui/core/Grid';
-import {AlternateEmail, Lock, Visibility, VisibilityOff, ErrorOutline, Phone} from '@material-ui/icons';
-import {FormHelperText, IconButton, Input, InputAdornment, InputLabel, makeStyles, TextField} from "@material-ui/core";
+import {AlternateEmail, Lock, Visibility, VisibilityOff, Phone} from '@material-ui/icons';
+import {FormHelperText, IconButton, Input, InputAdornment, InputLabel, makeStyles} from "@material-ui/core";
 import PersonIcon from '@material-ui/icons/Person';
 import {Link} from "react-router-dom";
 import GroceryBag from "../assets/images/grocery-bag-5.png";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '15ch',
+        border: 'solid 3px #0ff',
+
+        '& .MuiInput-root': {
+            '& fieldset': {
+                borderColor: 'pink',
+            },
+            '&:hover fieldset': {
+                borderColor: 'yellow', // - Set the Input border when parent has :hover
+            },
+            '&.Mui-focused fieldset': { // - Set the Input border when parent is focused
+                borderColor: 'green',
+            },
         },
     },
 }));
 
 const Registration: React.FC = () => {
-    const classes = useStyles();
     const userInfo: IUser[] = [];
     const [users, setUsers] = useState(userInfo);
 
@@ -91,27 +99,27 @@ const Registration: React.FC = () => {
 
     return (
         <Container fluid className="px-lg-1 px-sm-2 px-xl-1 mt-5 mb-5">
-            <Row>
-                <Col className="signup-img" xs={12}  md={12} lg={6}>
-                    <img className="w-100" src={GroceryBag} alt="Grocery bag"/>
+            <Row className="justify-content-center">
+                <Col className="w-100" xs={12} md={12} lg={6}>
+                    <img src={GroceryBag} alt="Grocery bag"/>
                 </Col>
-                <Col className="login-section mx-auto" xs={12}  md={12} lg={6}>
+                <Col className="login-section mx-lg-3 mx-md-3 mx-xs-2 py-3" xs={12} md={12} lg={6}>
                     <Row>
-                        <Col xs={12} className=" my-3">
+                        <Col xs={12} className="my-2">
                             <h5 className="text-center py-2">Sign Up and Start Shopping</h5>
                             <hr className="mx-3"/>
                         </Col>
-                        <Form className={classes.root} noValidate autoComplete="off" onSubmit={createNewUser}>
+                        <Form noValidate autoComplete="off" onSubmit={createNewUser}>
                             <Col xs={12} className="input-section">
-                                <Grid container spacing={2} alignItems="center">
+                                <Grid container spacing={2} alignItems="center" className="mb-1 mx-auto">
                                     <Grid item>
                                         <PersonIcon style={{fontSize: 30}}/>
                                     </Grid>
                                     <Grid item>
-                                        <InputLabel htmlFor="standard-adornment-required">First Name</InputLabel>
+                                        <InputLabel htmlFor="standard-adornment-required">Name</InputLabel>
                                         <Input
                                             id="input-with-icon-grid"
-                                            style={{width: 250, color: '#424242'}}
+                                            style={{width: '250'}}
                                             type='text'
                                             value={newUserName}
                                             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -125,7 +133,7 @@ const Registration: React.FC = () => {
                                 </Grid>
                             </Col>
                             <Col xs={12} className="input-section">
-                                <Grid container spacing={2} alignItems="center">
+                                <Grid container spacing={2} alignItems="center" className="mb-1 mx-auto">
                                     <Grid item>
                                         <AlternateEmail style={{fontSize: 30}}/>
                                     </Grid>
@@ -133,7 +141,7 @@ const Registration: React.FC = () => {
                                         <InputLabel htmlFor="standard-adornment-required">Email</InputLabel>
                                         <Input
                                             id="input-with-icon-grid"
-                                            style={{width: 250, color: '#424242'}}
+                                            style={{width: '250',}}
                                             type='email'
                                             value={userEmail}
                                             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -147,7 +155,7 @@ const Registration: React.FC = () => {
                                 </Grid>
                             </Col>
                             <Col xs={12} className="input-section">
-                                <Grid container spacing={2} alignItems="center">
+                                <Grid container spacing={2} alignItems="center" className="mb-1 mx-auto">
                                     <Grid item>
                                         <Phone style={{fontSize: 30}}/>
                                     </Grid>
@@ -155,7 +163,7 @@ const Registration: React.FC = () => {
                                         <InputLabel htmlFor="standard-adornment-required">Mobile No.</InputLabel>
                                         <Input
                                             id="input-with-icon-grid"
-                                            style={{width: 250, color: '#424242'}}
+                                            style={{width: '250',}}
                                             type='text'
                                             defaultValue='+94'
                                             inputProps={{maxLength: 10,}}
@@ -171,7 +179,7 @@ const Registration: React.FC = () => {
                                 </Grid>
                             </Col>
                             <Col xs={12} className="input-section">
-                                <Grid container spacing={2} alignItems="flex-end">
+                                <Grid container spacing={2} alignItems="flex-end" className="mb-1 mx-auto">
                                     <Grid item>
                                         <Lock style={{fontSize: 30}}/>
                                     </Grid>
@@ -179,7 +187,7 @@ const Registration: React.FC = () => {
                                         <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                                         <Input
                                             id="input-with-icon-grid"
-                                            style={{width: 250, color: '#424242'}}
+                                            style={{width: '250'}}
                                             type={showPassword ? 'text' : 'password'}
                                             value={userPwd}
                                             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -194,14 +202,15 @@ const Registration: React.FC = () => {
                                             </InputAdornment>}/>
                                         {invalidPassword ?
                                             <FormHelperText id="component-helper-text">
-                                                <label className="text-danger">Password should contain minimum 8
-                                                    characters</label>
+                                                <label className="text-danger">
+                                                    Enter minimum 8 characters
+                                                </label>
                                             </FormHelperText>
                                             : null}
                                     </Grid>
                                 </Grid>
                             </Col>
-                            <Col className="mt-3 mb-4 text-center">
+                            <Col className="my-3 text-center">
                                 <Button className="login-button rounded-pill" type="submit">
                                     Register
                                 </Button>

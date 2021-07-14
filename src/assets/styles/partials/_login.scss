@@ -5,37 +5,75 @@
   padding: 0;
 }
 
-.signup-img {
-  width: 50%;
-  //align-content: center;
-  margin: 50px 20px;
-}
-
 .login-section {
   margin-top: 10px;
   margin-bottom: 50px;
+  justify-content: center;
   width: 30%;
   box-shadow: $box-shadow;
   border-radius: 10px;
 
   .input-section {
-    justify-content: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 0 0 5px 10px;
+    margin: 0px auto;
+    padding: 0 0 0 0;
     align-items: center;
+
+    .MuiInput-root {
+      position: relative;
+      width: 230px;
+    }
+
+    .MuiGrid-spacing-xs-2 {
+      width: 350px;
+      margin: auto;
+      align-content: center !important;
+      justify-content: center;
+    }
   }
   .login-button {
     background-color: $primary-colour;
-    width: 350px;
+    width: auto;
     border: 0px;
     font-weight: bold;
-    padding: 10px 0 10px 0;
+    padding: 10px 25px;
   }
 }
 
 @media only screen and (max-width: $max-width-phone) {
+  .login-section {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    justify-content: center;
+    width: 30%;
+    box-shadow: $box-shadow;
+    border-radius: 10px;
 
+    .input-section {
+      margin: 0px auto;
+      padding: 0 0 0 0;
+      align-items: center;
+
+      .MuiInput-root {
+        position: relative;
+        width: 200px;
+      }
+
+      .MuiGrid-spacing-xs-2 {
+        width: 350px;
+        margin: auto;
+        align-content: center !important;
+        justify-content: center;
+      }
+    }
+
+    .login-button {
+      background-color: $primary-colour;
+      width: auto;
+      border: 0px;
+      font-weight: bold;
+      padding: 10px 25px;
+    }
+  }
 }
 
 @media only screen and (min-width: $min-width-tablet) and (max-width: $max-width-tablet) {
