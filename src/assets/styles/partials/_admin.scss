@@ -10,6 +10,34 @@
       font-size: 1.5em;
       color: $primary-colour;
     }
+
+    .admin-products {
+      .item-card{
+        border: 1px solid $border-color;
+        border-radius: 0.5em;
+
+        .crossed-val{
+          text-decoration: line-through;
+          color: $project-gray;
+          font-size: medium;
+        }
+
+        .item-val{
+          color: $project-green ;
+          font-size: medium;
+          font-weight: 600;
+
+          .cent-val {
+            font-size: 0.8em;
+          }
+        }
+
+        .card-btn {
+          border-radius: 10px;
+          width: 5em;
+        }
+      }
+    }
   }
 }
 
