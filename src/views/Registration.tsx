@@ -3,28 +3,10 @@ import {IUser} from '../Types/CartTypes';
 import {Col, Container, Row, Form, Button} from "react-bootstrap";
 import Grid from '@material-ui/core/Grid';
 import {AlternateEmail, Lock, Visibility, VisibilityOff, Phone} from '@material-ui/icons';
-import {FormHelperText, IconButton, Input, InputAdornment, InputLabel, makeStyles} from "@material-ui/core";
+import {FormHelperText, IconButton, Input, InputAdornment, InputLabel} from "@material-ui/core";
 import PersonIcon from '@material-ui/icons/Person';
 import {Link} from "react-router-dom";
 import GroceryBag from "../assets/images/grocery-bag-5.png";
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        border: 'solid 3px #0ff',
-
-        '& .MuiInput-root': {
-            '& fieldset': {
-                borderColor: 'pink',
-            },
-            '&:hover fieldset': {
-                borderColor: 'yellow', // - Set the Input border when parent has :hover
-            },
-            '&.Mui-focused fieldset': { // - Set the Input border when parent is focused
-                borderColor: 'green',
-            },
-        },
-    },
-}));
 
 const Registration: React.FC = () => {
     const userInfo: IUser[] = [];
@@ -100,10 +82,10 @@ const Registration: React.FC = () => {
     return (
         <Container fluid className="px-lg-1 px-sm-2 px-xl-1 mt-5 mb-5">
             <Row className="justify-content-center">
-                <Col className="w-100" xs={12} md={12} lg={6}>
-                    <img src={GroceryBag} alt="Grocery bag"/>
+                <Col xs={12} md={12} lg={6}>
+                    <img className="w-100" src={GroceryBag} alt="Grocery bag"/>
                 </Col>
-                <Col className="login-section mx-lg-3 mx-md-3 mx-xs-2 py-3" xs={12} md={12} lg={6}>
+                <Col className="login-section mx-lg-2 mx-md-1 mx-xs-1 py-3" xs={12} md={12} lg={6}>
                     <Row>
                         <Col xs={12} className="my-2">
                             <h5 className="text-center py-2">Sign Up and Start Shopping</h5>
@@ -212,7 +194,7 @@ const Registration: React.FC = () => {
                             </Col>
                             <Col className="my-3 text-center">
                                 <Button className="login-button rounded-pill" type="submit">
-                                    Register
+                                    Sign Up
                                 </Button>
                             </Col>
                             <Col xs={12} className="my-3">
