@@ -12,6 +12,8 @@
     }
 
     .admin-products {
+      border-bottom: 1px solid lightgray;
+
       .item-card{
         border: 1px solid $border-color;
         border-radius: 0.5em;

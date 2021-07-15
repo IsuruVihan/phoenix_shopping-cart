@@ -8,7 +8,7 @@ import AddProduct from "./AddProduct";
 const Products: FC = () => {
   return (
     <Container className="products p-2" fluid>
-      <Row className="mx-0">
+      <Row className="mx-0 products-row">
         <Col className="title text-center" xs={12}>
           Your Products
         </Col>
@@ -20,8 +20,8 @@ const Products: FC = () => {
         </Col>
       </Row>
       <Row className="mx-0">
-        <EditProductDetails />
-        <AddProduct />
+        {true && <AddProduct />}
+        {false && <EditProductDetails />}
       </Row>
     </Container>
   );
