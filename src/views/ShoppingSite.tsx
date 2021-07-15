@@ -11,7 +11,7 @@ const ShoppingSite: React.FC = () => {
             <WelcomeCarousel/>
           </Col>
           <Col xs={12} className="px-0">
-                <ProductCartSectionDOM/>
+            <ProductCartSectionDOM/>
           </Col>
         </Row>
     </Container>

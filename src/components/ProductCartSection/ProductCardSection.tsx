@@ -20,7 +20,6 @@ const ProductCardsSection: React.FC = () => {
                     <ProductCard/>
                     <ProductCard/>
                     <ProductCard/>
-
                 </Row>
             </Col>
         </Row>
