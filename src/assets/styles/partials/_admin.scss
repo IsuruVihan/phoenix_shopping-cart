@@ -40,6 +40,23 @@
         }
       }
     }
+
+    .add-product {
+      .form {
+        .form-title {
+          font-weight: 600;
+          font-size: 1.2em;
+          color: $primary-colour;
+        }
+
+        .form-body {
+          .input-field {
+            border-color: gray;
+            font-size: 0.88em;
+          }
+        }
+      }
+    }
   }
 }
 

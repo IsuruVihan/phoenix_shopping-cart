@@ -21,7 +21,7 @@ const Products: FC = () => {
 
   return (
     <Container className="products p-2" fluid>
-      <Row className="mx-0 products-row">
+      <Row className="mx-0">
         <Col className="title text-center" xs={12}>
           Your Products
         </Col>
@@ -32,8 +32,8 @@ const Products: FC = () => {
           <AdminProducts onClickEdit={handleOnClickEditProductBtn} />
         </Col>
       </Row>
-      <Row className="mx-0">
-        <Col className="px-0 py-4" xs={12} style={{border: '1px solid red'}}>
+      <Row className="mx-0 px-3">
+        <Col className="px-5 py-4 text-center" xs={12} style={{border: '1px solid red'}}>
           {(!addProductFormVisible && !editProductFormVisible) &&
             <Button variant="success" onClick={() => handleOnClickAddProductBtn()}>
                 Add Product
