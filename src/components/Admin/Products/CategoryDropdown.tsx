@@ -4,7 +4,7 @@ import {Dropdown} from "react-bootstrap";
 const CategoryDropdown: FC = () => {
   return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic" size="sm">
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
         Category
       </Dropdown.Toggle>
       <Dropdown.Menu className="text-center">

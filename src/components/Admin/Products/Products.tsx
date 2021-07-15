@@ -1,11 +1,24 @@
-import React, {FC} from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import React, {FC, useState} from 'react';
+import {Button, Col, Container, Row} from "react-bootstrap";
 import AdminProducts from "./AdminProducts";
 import CategoryDropdown from "./CategoryDropdown";
-import EditProductDetails from "./EditProductDetails";
+import EditProduct from "./EditProduct";
 import AddProduct from "./AddProduct";
 
 const Products: FC = () => {
+  const [addProductFormVisible, setAddProductFormVisible] = useState<boolean>(false);
+  const [editProductFormVisible, setEditProductFormVisible] = useState<boolean>(false);
+
+  const handleOnClickAddProductBtn = () => {
+    setEditProductFormVisible(false);
+    setAddProductFormVisible(true);
+  }
+
+  const handleOnClickEditProductBtn = () => {
+    setAddProductFormVisible(false);
+    setEditProductFormVisible(true);
+  }
+
   return (
     <Container className="products p-2" fluid>
       <Row className="mx-0 products-row">
@@ -16,12 +29,19 @@ const Products: FC = () => {
           <CategoryDropdown />
         </Col>
         <Col xs={12}>
-          <AdminProducts />
+          <AdminProducts onClickEdit={handleOnClickEditProductBtn} />
         </Col>
       </Row>
       <Row className="mx-0">
-        {true && <AddProduct />}
-        {false && <EditProductDetails />}
+        <Col className="px-0 py-4" xs={12} style={{border: '1px solid red'}}>
+          {(!addProductFormVisible && !editProductFormVisible) &&
+            <Button variant="success" onClick={() => handleOnClickAddProductBtn()}>
+                Add Product
+            </Button>
+          }
+          {addProductFormVisible && <AddProduct />}
+          {editProductFormVisible && <EditProduct />}
+        </Col>
       </Row>
     </Container>
   );

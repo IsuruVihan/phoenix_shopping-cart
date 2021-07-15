@@ -2,7 +2,13 @@ import {Button, Card, Col, Image, Row} from "react-bootstrap";
 import coconutImg from "../../../assets/images/product_coconut.webp";
 import React, {FC} from "react";
 
-const ProductCard: FC = () => {
+type ProductCardProps = {
+  onClickEdit: () => void
+};
+
+const ProductCard: FC<ProductCardProps> = (props) => {
+  const {onClickEdit} = props;
+
   return (
     <Col lg={3} md={4} sm={6} xs={6}  className="px-0 mx-0">
       <Card className="item-card text-center m-2 px-0">
@@ -31,7 +37,9 @@ const ProductCard: FC = () => {
             <Col className="px-0">
               <Row className="mx-0 py-1">
                 <Col className="px-0 text-xl-start" xl={6} xs={12}>
-                  <Button className="card-btn edit-btn" variant="success" size="sm">Edit</Button>
+                  <Button className="card-btn edit-btn" variant="success" size="sm" onClick={() => onClickEdit()}>
+                    Edit
+                  </Button>
                 </Col>
                 <Col className="px-0 text-xl-end pt-xl-0 pt-1" xl={6} xs={12}>
                   <Button className="card-btn" variant="secondary" size="sm">Delete</Button>
