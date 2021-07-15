@@ -19,6 +19,11 @@ const Products: FC = () => {
     setEditProductFormVisible(true);
   }
 
+  const handleOnClickCancelBtn = () => {
+    setAddProductFormVisible(false);
+    setEditProductFormVisible(false);
+  }
+
   return (
     <Container className="products p-2" fluid>
       <Row className="mx-0">
@@ -33,13 +38,13 @@ const Products: FC = () => {
         </Col>
       </Row>
       <Row className="mx-0 px-3">
-        <Col className="px-5 py-4 text-center" xs={12} style={{border: '1px solid red'}}>
+        <Col className="px-5 py-4 text-center" xs={12}>
           {(!addProductFormVisible && !editProductFormVisible) &&
             <Button variant="success" onClick={() => handleOnClickAddProductBtn()}>
                 Add Product
             </Button>
           }
-          {addProductFormVisible && <AddProduct />}
+          {addProductFormVisible && <AddProduct cancel={handleOnClickCancelBtn} />}
           {editProductFormVisible && <EditProduct />}
         </Col>
       </Row>

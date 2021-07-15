@@ -37,12 +37,12 @@ const ProductCard: FC<ProductCardProps> = (props) => {
             <Col className="px-0">
               <Row className="mx-0 py-1">
                 <Col className="px-0 text-xl-start" xl={6} xs={12}>
-                  <Button className="card-btn edit-btn" variant="success" size="sm" onClick={() => onClickEdit()}>
+                  <Button className="card-btn edit-btn" variant="outline-success" size="sm" onClick={() => onClickEdit()}>
                     Edit
                   </Button>
                 </Col>
                 <Col className="px-0 text-xl-end pt-xl-0 pt-1" xl={6} xs={12}>
-                  <Button className="card-btn" variant="secondary" size="sm">Delete</Button>
+                  <Button className="card-btn" variant="outline-danger" size="sm">Delete</Button>
                 </Col>
               </Row>
             </Col>
