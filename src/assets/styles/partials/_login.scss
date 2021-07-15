@@ -20,13 +20,12 @@
 
     .MuiInput-root {
       position: relative;
-      width: 230px;
+      width: 250px;
     }
 
     .MuiGrid-spacing-xs-2 {
       width: 350px;
       margin: auto;
-      //align-content: center !important;
       justify-content: center;
     }
   }
@@ -45,11 +44,11 @@
 
     .input-section {
       .MuiInput-root {
-        width: 200px;
+        width: 250px;
       }
 
       .MuiGrid-spacing-xs-2 {
-        width: 300px;
+        width: 320px;
       }
     }
   }
@@ -73,7 +72,7 @@
 
 @media only screen and (max-width: 767px){
   .login-section {
-    width: 500px;
+    width: 55%;
 
     .input-section {
       .MuiInput-root {
@@ -111,7 +110,7 @@
 
     .input-section {
       .MuiInput-root {
-        width: 150px;
+        width: 200px;
       }
 
       .MuiGrid-spacing-xs-2 {

@@ -147,8 +147,8 @@ const Registration: React.FC = () => {
                                             id="input-with-icon-grid"
                                             style={{width: '250',}}
                                             type='text'
-                                            defaultValue='+94'
-                                            inputProps={{maxLength: 10,}}
+                                            inputProps={{maxLength: 9,}}
+                                            startAdornment={<InputAdornment position="start">+94</InputAdornment>}
                                             value={userMobile}
                                             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                                                 handleMobileInput(event.target.value)}/>
