@@ -40,9 +40,12 @@ const Products: FC = () => {
       <Row className="mx-0 px-3">
         <Col className="px-5 py-4 text-center" xs={12}>
           {(!addProductFormVisible && !editProductFormVisible) &&
-            <Button variant="success" onClick={() => handleOnClickAddProductBtn()}>
-                Add Product
-            </Button>
+            <>
+              <label>Add a new Product</label>
+              <Button variant="success" className="mx-3" onClick={() => handleOnClickAddProductBtn()}>
+                  Create
+              </Button>
+            </>
           }
           {addProductFormVisible && <AddProduct cancel={handleOnClickCancelBtn} />}
           {editProductFormVisible && <EditProduct />}
