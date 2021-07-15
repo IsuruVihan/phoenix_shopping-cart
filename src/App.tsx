@@ -54,7 +54,6 @@ const App: FC = () => {
             <Footer/>
           </Container>
         </Router>
-
       </>
   );
 }

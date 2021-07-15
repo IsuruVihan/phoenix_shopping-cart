@@ -3,6 +3,7 @@ import {Button, Col, Form, Row} from "react-bootstrap";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
 import Preview from "./Preview";
+import vegiPic from "../../../assets/images/vegi.webp";
 
 type AddProductProps = {
   cancel: () => void
@@ -11,18 +12,26 @@ type AddProductProps = {
 const AddProduct: FC<AddProductProps> = (props) => {
   const {cancel} = props;
 
-  const [categoryList, setCategoryList] = useState([
+  const categoryList = [
     {value: 'Grocery', label: 'Grocery'},
     {value: 'Pharmacy', label: 'Pharmacy'},
     {value: 'Food', label: 'Food'},
     {value: 'Electronic', label: 'Electronic'}
-  ]);
+  ];
+
+  const [name, setName] = useState<string>("");
+  const [imgSrc, setImgSrc] = useState<string>(vegiPic);
+  const [crossPrice, setCrossPrice] = useState<string>("");
+  const [sellPrice, setSellPrice] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
 
   const [previewVisible, setPreviewVisible] = useState<boolean>(false);
 
   const handleOnClickPreview = () => {
     setPreviewVisible(!previewVisible);
   }
+
+  const handleOnChangeName = (event: any) => setName(event.target.value);
 
   return (
     <Col className="add-product px-0" xs={12}>
@@ -40,7 +49,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                   </Form.Label>
                   <label className="label-small">Name</label>
                   <Col lg={10} sm={12} xs={12}>
-                    <Form.Control className="input-field" size="sm" type="text" />
+                    <Form.Control className="input-field" size="sm" type="text" value={name} onChange={handleOnChangeName} />
                   </Col>
                 </Form.Group>
                 <Form.Group as={Row} className="mb-3">
