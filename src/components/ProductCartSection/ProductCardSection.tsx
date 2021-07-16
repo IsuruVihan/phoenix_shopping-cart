@@ -45,12 +45,24 @@ function ProductCardsSection (props:productCardTypes){
                 {  props.categoryName == 'Pharmacy' ?
                     <React.Fragment>
                         <Row className="text-center py-4">
+                            <Col className="text-center mx-5">
+                                <Row className="upload-receipt-div mx-4 py-4">
+                                <div className="upload-btn-wrapper py-1">
+                                            <label className="btn-medi"
+                                                   style={{cursor:"pointer"}}>
+                                                Drag 'N' Drop Order / Prescription Here, Or Click To Select Files
+                                            </label>
+                                            <input type="file"
+                                                   value={fileInputState}
+                                                   onChange={handleReceiptUpload}
+
+                                                   name="image"/>
+                                </div>
+                                </Row>
+                            </Col>
+                        </Row>
+                        <Row>
                             <Col className="text-center">
-                                <form>
-                                    <input type="file" name="image"
-                                           value={fileInputState}
-                                           onChange={handleReceiptUpload}/>
-                                </form>
                                 {(previewSource) ? (
                                     <img
                                         className="py-4 "
@@ -59,6 +71,12 @@ function ProductCardsSection (props:productCardTypes){
                                         style={{height: '300px'}}
                                     />
                                 ) : null}
+                            </Col>
+                        </Row>
+
+                        <Row className="ms-4">
+                            <Col className="ms-2 ps-2">
+                                <label className="cat-title-medi">Add to your order</label>
                             </Col>
                         </Row>
                     </React.Fragment> : null
@@ -73,7 +91,6 @@ function ProductCardsSection (props:productCardTypes){
                     <ProductCard/>
                     <ProductCard/>
                     <ProductCard/>
-
                 </Row>
             </Col>
         </Row>

@@ -2,6 +2,9 @@ $project-green : #4caf50;
 $project-gray : #757575;
 $border-color : #BDBDBD;
 $border-color-add-btn-active: #17A2B8;
+$receipt-upload-border :#0288D1;
+$receipt-upload-background :#FAFAFA;
+$receipt-upload-text :#BDBDBD;
 .product-cart-cont{
   overflow-x: hidden;
   padding-bottom: 4em;
@@ -10,7 +13,6 @@ $border-color-add-btn-active: #17A2B8;
 
   .search-bar-section{
     .search-bar{
-     // width: 40%;
       border-color: $project-green;
       border-radius: 1em ;
 
@@ -86,13 +88,6 @@ $border-color-add-btn-active: #17A2B8;
     font-size: 0.9em;
   }
 
-  //
-  //.product-cards-selection{
-  //  display: flex;
-  //  flex-wrap: wrap;
-  //  justify-content: center;
-  //}
-
   .product-cards-selection{
     padding: 0 10em;
   }
@@ -105,6 +100,10 @@ $border-color-add-btn-active: #17A2B8;
 
 .cat-title{
   font-weight: 500;
+}
+.cat-title-medi{
+  font-weight: 500;
+  font-size: 0.9em;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -167,5 +166,36 @@ $border-color-add-btn-active: #17A2B8;
     .cent-val {
       font-size: 0.7em;
     }
+  }
+}
+.upload-receipt-div {
+  border-style: dashed;
+  border-color: $receipt-upload-border;
+  border-width: 0.14em;
+  background-color: $receipt-upload-background;
+
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .btn-medi {
+    color: $receipt-upload-text;
+    background-color: transparent;
+    padding: 8px 20px;
+    font-size: 1.15em;
+    font-weight: bold;
+    width: 100%;
+
+  }
+
+  .upload-btn-wrapper input[type=file] {
+    font-size: 60px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
   }
 }
