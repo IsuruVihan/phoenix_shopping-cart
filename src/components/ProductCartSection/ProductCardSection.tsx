@@ -4,6 +4,7 @@ import ProductCard from "./ProductCard";
 import {useDispatch, useSelector} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProductActionCreator, State} from "../../state";
+import NoProductsAvailable from "../Admin/Products/NoProductsAvailable";
 
 const ProductCardsSection: FC = () => {
   let productId: number = 0;
@@ -21,7 +22,7 @@ const ProductCardsSection: FC = () => {
           </Col>
         </Row>
         <Row className="mx-xl-4 mx-lg-4 mx-0">
-          {Products.map((p) => {
+          {(Products.length > 0) ? Products.map((p) => {
             return (
               <ProductCard
                 key={productId}
@@ -33,7 +34,7 @@ const ProductCardsSection: FC = () => {
                 category={p.category}
               />
             );
-          })}
+          }) : <NoProductsAvailable />}
         </Row>
       </Col>
     </Row>

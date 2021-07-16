@@ -5,6 +5,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import {useDispatch, useSelector} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProductActionCreator, State} from "../../../state";
+import NoProductsAvailable from './NoProductsAvailable';
 
 type AdminProductsProps = {
   onClickEdit: () => void
@@ -20,7 +21,7 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
       <Col xs={12} className="px-0">
         <Scrollbars style={{ width: '100%', height: '31em' }}>
           <Row className="mx-lg-4 mx-0 px-4">
-            {Products.map((p) => {
+            {(Products.length > 0) ? Products.map((p) => {
               return (
                 <ProductCard
                   onClickEdit={onClickEdit}
@@ -29,7 +30,7 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
                   sellPrice={p.price}
                 />
               );
-            })}
+            }) : <NoProductsAvailable />}
           </Row>
         </Scrollbars>
       </Col>

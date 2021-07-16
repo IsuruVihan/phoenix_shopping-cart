@@ -37,8 +37,6 @@ const AddProduct: FC<AddProductProps> = (props) => {
       name: name,
       crossedPrice: crossPrice,
       price: sellPrice,
-      centPrice: "00",
-      unitPrice: sellPrice,
       category: category
     });
   }
