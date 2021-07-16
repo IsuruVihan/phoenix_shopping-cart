@@ -22,16 +22,18 @@ const ProductCardsSection: FC = () => {
         </Row>
         <Row className="mx-xl-4 mx-lg-4 mx-0">
           {Products.map((p) => {
-            <ProductCard
-              key={productId}
-              id={productId++}
-              imgSrc={p.picSrc}
-              name={p.name}
-              price={p.price}
-              centPrice={p.centPrice}
-              crossedPrice={p.crossedPrice}
-              category={p.category}
-            />
+            return (
+              <ProductCard
+                key={productId}
+                id={productId++}
+                imgSrc={p.picSrc}
+                name={p.name}
+                price={p.price}
+                centPrice={p.centPrice}
+                crossedPrice={p.crossedPrice}
+                category={p.category}
+              />
+            );
           })}
         </Row>
       </Col>

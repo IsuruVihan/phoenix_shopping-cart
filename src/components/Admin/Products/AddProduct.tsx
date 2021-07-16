@@ -4,6 +4,9 @@ import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
 import Preview from "./Preview";
 import vegiPic from "../../../assets/images/vegi.webp";
+import {useDispatch, useSelector} from "react-redux";
+import {bindActionCreators} from "redux";
+import {ProductActionCreator, State} from "../../../state";
 
 type AddProductProps = {
   cancel: () => void
@@ -11,6 +14,9 @@ type AddProductProps = {
 
 const AddProduct: FC<AddProductProps> = (props) => {
   const {cancel} = props;
+
+  const dispatch = useDispatch();
+  const {AddItem} = bindActionCreators(ProductActionCreator, dispatch);
 
   const categoryList = [
     {value: 'Grocery', label: 'Grocery'},
@@ -25,13 +31,28 @@ const AddProduct: FC<AddProductProps> = (props) => {
   const [sellPrice, setSellPrice] = useState<string>("");
   const [category, setCategory] = useState<string>("");
 
-  const [previewVisible, setPreviewVisible] = useState<boolean>(false);
+  const handleOnClickCreateBtn = () => {
+    AddItem({
+      picSrc: imgSrc,
+      name: name,
+      crossedPrice: crossPrice,
+      price: sellPrice,
+      centPrice: "00",
+      unitPrice: sellPrice,
+      category: category
+    });
+  }
 
+  const [previewVisible, setPreviewVisible] = useState<boolean>(false);
   const handleOnClickPreview = () => {
     setPreviewVisible(!previewVisible);
   }
 
-  const handleOnChangeName = (event: any) => setName(event.target.value);
+  const handleOnChangeName = (event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value);
+  const handleOnChangeImgSrc = (event: React.ChangeEvent<HTMLInputElement>) => setImgSrc(event.target.value);
+  const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(event.target.value);
+  const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(event.target.value);
+  const handleOnChangeCategory = (event: React.ChangeEvent<HTMLInputElement>) => setCategory(event.target.value);
 
   return (
     <Col className="add-product px-0" xs={12}>
@@ -58,7 +79,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                   </Form.Label>
                   <label className="label-small">Cross Price</label>
                   <Col lg={10} sm={12} xs={12}>
-                    <Form.Control className="input-field" size="sm" type="text" />
+                    <Form.Control className="input-field" size="sm" type="text" onChange={handleOnChangeCrossPrice} />
                   </Col>
                 </Form.Group>
                 <Form.Group as={Row} className="mb-3">
@@ -67,7 +88,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                   </Form.Label>
                   <label className="label-small">Sell Price</label>
                   <Col lg={10} sm={12} xs={12}>
-                    <Form.Control className="input-field" size="sm" type="text" />
+                    <Form.Control className="input-field" size="sm" type="text" onChange={handleOnChangeSellPrice} />
                   </Col>
                 </Form.Group>
                 <Form.Group as={Row} className="mb-3">
@@ -83,6 +104,8 @@ const AddProduct: FC<AddProductProps> = (props) => {
                       name="category"
                       styles={customStyles}
                       options={categoryList}
+                      onSelect={(event: React.ChangeEvent<HTMLInputElement>) =>
+                        handleOnChangeCategory(event)}
                     />
                   </Col>
                 </Form.Group>
@@ -92,7 +115,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                   </Form.Label>
                   <label className="label-small">Image</label>
                   <Col lg={10} sm={12} xs={12}>
-                    <Form.Control size="sm" type="file" name="file" className="input-field"/>
+                    <Form.Control size="sm" type="file" name="file" className="input-field" onChange={handleOnChangeImgSrc} />
                   </Col>
                 </Form.Group>
                 <Form.Group as={Row} className="mb-3">
@@ -108,12 +131,12 @@ const AddProduct: FC<AddProductProps> = (props) => {
                 {previewVisible &&
                   <Form.Group as={Row} className="preview-small mb-3">
                       <Col className="px-0" lg={{offset: 2}}>
-                          <Preview />
+                          <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
                       </Col>
                   </Form.Group>}
                 <Form.Group as={Row} className="mb-3">
                   <Col lg={{offset: 2}}>
-                    <Button variant="success" size="sm">Confirm</Button>
+                    <Button variant="success" size="sm" onClick={() => handleOnClickCreateBtn()}>Create</Button>
                     <Button variant="secondary" className="ms-2" size="sm" onClick={() => cancel()}>Cancel</Button>
                   </Col>
                 </Form.Group>
@@ -123,7 +146,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
         </Col>
         {previewVisible &&
           <Col className="preview px-0 ps-xl-5 ps-lg-4 mt-3 pt-4">
-              <Preview />
+              <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
           </Col>
         }
       </Row>
