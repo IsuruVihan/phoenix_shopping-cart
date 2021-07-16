@@ -29,7 +29,6 @@ const ProductCardsSection: FC = () => {
                 imgSrc={p.picSrc}
                 name={p.name}
                 price={p.price}
-                centPrice={p.centPrice}
                 crossedPrice={p.crossedPrice}
                 category={p.category}
               />

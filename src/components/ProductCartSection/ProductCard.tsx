@@ -6,14 +6,13 @@ type ProductCardProps = {
   imgSrc: string,
   name: string,
   price: string,
-  centPrice: string,
   crossedPrice: string,
   category: string
   // addToCart: (id: number) => void
 };
 
 const ProductCard: FC<ProductCardProps> = (props) => {
-  const {id, imgSrc, name, price, centPrice, crossedPrice, category} = props;
+  const {id, imgSrc, name, price, crossedPrice, category} = props;
 
   const [isFocused,setIsFocused] = useState(false);
   const [cardQty,setCardQty] = useState(1);
@@ -45,7 +44,8 @@ const ProductCard: FC<ProductCardProps> = (props) => {
                   <h5 className="crossed-val">Rs.{crossedPrice}</h5>
                 </Col>
                 <Col>
-                  <h5 className="item-val"> Rs.{price}.<span className="cent-val">{centPrice}</span></h5>
+                  <h5 className="item-val"> Rs.{price}</h5>
+                  {/*<h5 className="item-val"> Rs.{price}.<span className="cent-val">{centPrice}</span></h5>*/}
                 </Col>
               </Row>
             </Col>

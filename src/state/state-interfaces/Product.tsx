@@ -3,7 +3,5 @@ export interface Product {
   name: string,
   crossedPrice: string,
   price: string,
-  centPrice: string,
-  unitPrice: string,
   category: string
 }

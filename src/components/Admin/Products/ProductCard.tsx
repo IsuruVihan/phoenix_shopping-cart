@@ -31,7 +31,8 @@ const ProductCard: FC<ProductCardProps> = (props) => {
                   <h5 className="crossed-val">Rs.{crossedPrice}</h5>
                 </Col>
                 <Col>
-                  <h5 className="item-val"> Rs.{sellPrice}.<span className="cent-val">00</span></h5>
+                  <h5 className="item-val"> Rs.{sellPrice}</h5>
+                  {/*<h5 className="item-val"> Rs.{sellPrice}.<span className="cent-val">00</span></h5>*/}
                 </Col>
               </Row>
             </Col>
@@ -40,7 +41,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
             <Col className="px-0">
               <Row className="mx-0 py-1">
                 <Col className="px-0 text-xl-start" xl={6} xs={12}>
-                  <Button className="card-btn edit-btn" variant="outline-success" size="sm" onClick={() => onClickEdit()}>
+                  <Button className="card-btn edit-btn" variant="outline-secondary" size="sm" onClick={() => onClickEdit()}>
                     Edit
                   </Button>
                 </Col>

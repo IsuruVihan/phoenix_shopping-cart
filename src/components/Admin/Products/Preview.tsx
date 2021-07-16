@@ -30,7 +30,8 @@ const Preview: FC<PreviewProps> = (props) => {
                   <h5 className="crossed-val">Rs.{crossPrice}</h5>
                 </Col>
                 <Col>
-                  <h5 className="item-val"> Rs.{sellPrice}.<span className="cent-val">00</span></h5>
+                  <h5 className="item-val"> Rs.{sellPrice}</h5>
+                  {/*<h5 className="item-val"> Rs.{sellPrice}.<span className="cent-val">00</span></h5>*/}
                 </Col>
               </Row>
             </Col>
