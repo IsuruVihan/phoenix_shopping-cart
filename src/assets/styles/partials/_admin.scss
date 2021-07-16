@@ -88,6 +88,15 @@
       }
     }
   }
+
+  .no-products-available {
+    color: $no-products-available-color !important;
+
+    .text {
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+  }
 }
 
 @media screen and (max-width: 576px) {
