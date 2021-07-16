@@ -3,6 +3,7 @@ import {Container} from "react-bootstrap";
 import CheckoutTable from '../components/Checkout/CheckoutTable/CheckoutTable';
 import Header from "../components/Checkout/Header";
 import QuitCheckout from '../components/Checkout/QuitCheckout/QuitCheckout';
+import CheckoutFooter from "../components/Checkout/CheckoutFooter";
 
 const Checkout: FC = () => {
   return (
@@ -10,6 +11,7 @@ const Checkout: FC = () => {
       <Header/>
       <CheckoutTable/>
       <QuitCheckout />
+      <CheckoutFooter />
     </Container>
   );
 }
