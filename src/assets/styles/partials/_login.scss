@@ -6,28 +6,116 @@
 }
 
 .login-section {
-  width: 380px;
-  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 50px;
   justify-content: center;
+  width: 30%;
   box-shadow: $box-shadow;
+  border-radius: 10px;
 
   .input-section {
-    justify-content: center;
-    margin-top: 10px;
-    padding: 10px 0 5px 10px;
+    margin: 0 auto;
+    padding: 0 0 0 0;
     align-items: center;
+
+    .MuiInput-root {
+      position: relative;
+      width: 250px;
+    }
+
+    .MuiGrid-spacing-xs-2 {
+      width: 350px;
+      margin: auto;
+      justify-content: center;
+    }
   }
   .login-button {
     background-color: $primary-colour;
-    width: 350px;
-    padding: 10px 0 10px 0;
+    width: auto;
+    border: 0;
+    font-weight: bold;
+    padding: 10px 25px;
   }
 }
 
-@media only screen and (max-width: $max-width-phone) {
+@media only screen and (max-width: 1200px) {
+  .login-section {
+    width: 40%;
 
+    .input-section {
+      .MuiInput-root {
+        width: 250px;
+      }
+
+      .MuiGrid-spacing-xs-2 {
+        width: 320px;
+      }
+    }
+  }
 }
 
-@media only screen and (min-width: $min-width-tablet) and (max-width: $max-width-tablet) {
+@media only screen and (max-width: 992px) {
+  .login-section {
+    width: 40%;
 
+    .input-section {
+      .MuiInput-root {
+        width: 200px;
+      }
+
+      .MuiGrid-spacing-xs-2 {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px){
+  .login-section {
+    width: 55%;
+
+    .input-section {
+      .MuiInput-root {
+        width: 200px;
+      }
+
+      .MuiGrid-spacing-xs-2 {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 505px){
+  .login-section {
+    width: 360px;
+
+    .input-section {
+      .MuiInput-root {
+        width: 200px;
+      }
+
+      .MuiGrid-spacing-xs-2 {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 367px){
+  .login-section {
+    width: 360px;
+    font-size: small;
+    box-shadow: unset;
+
+    .input-section {
+      .MuiInput-root {
+        width: 250px;
+      }
+
+      .MuiGrid-spacing-xs-2 {
+        width: 320px;
+      }
+    }
+  }
 }
