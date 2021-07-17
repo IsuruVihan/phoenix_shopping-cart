@@ -1,0 +1,122 @@
+@import "../variables";
+
+.admin {
+  .products {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+
+    .title {
+      font-weight: 600;
+      font-size: 1.5em;
+      color: $primary-colour;
+    }
+
+    .admin-products {
+      border-bottom: 1px solid lightgray;
+
+      .item-card{
+        border: 1px solid $border-color;
+        border-radius: 0.5em;
+
+        .crossed-val{
+          text-decoration: line-through;
+          color: $project-gray;
+          font-size: medium;
+        }
+
+        .item-val{
+          color: $project-green ;
+          font-size: medium;
+          font-weight: 600;
+
+          .cent-val {
+            font-size: 0.8em;
+          }
+        }
+
+        .card-btn {
+          border-radius: 10px;
+          width: 5em;
+        }
+      }
+    }
+
+    .add-product {
+      .form {
+        .form-title {
+          font-weight: 600;
+          font-size: 1.2em;
+          color: $primary-colour;
+        }
+
+        .form-body {
+          .input-field {
+            border-color: gray;
+            font-size: 0.88em;
+          }
+
+          .label-small {
+            font-size: 0.88em;
+          }
+        }
+      }
+
+      .preview-card {
+        border: 1px solid $border-color;
+        border-radius: 0.5em;
+
+        .crossed-val {
+          text-decoration: line-through;
+          color: $project-gray;
+          font-size: medium;
+        }
+
+        .item-val {
+          color: $project-green ;
+          font-size: medium;
+          font-weight: 600;
+
+          .cent-val {
+            font-size: 0.8em;
+          }
+        }
+
+        .card-btn {
+          border-radius: 10px;
+          width: 5em;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+
+}
+
+@media screen and (min-width: 576px) {
+
+}
+
+@media screen and (min-width: 768px) {
+
+}
+
+@media screen and (max-width: 991px) {
+  .label, .preview {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .preview-small, .label-small {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .admin {
+    margin-left: 7.8em !important;
+    margin-right: 7.8em !important;
+  }
+}

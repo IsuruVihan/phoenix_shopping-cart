@@ -1,9 +1,17 @@
 const customStyles = {
   control: (provided: any) => ({
     ...provided,
-    borderColor: '#9e9e9e',
-    minHeight: '2.5em',
-    height: '2.5em'
+    borderColor: 'gray',
+    minHeight: '1.5em',
+    height: '2em',
+  }),
+  singleValue: (provided: any) => ({
+    ...provided,
+    fontSize: '0.8em',
+  }),
+  menu: (provided: any) => ({
+    ...provided,
+    fontSize: '0.8em',
   })
 };
 
