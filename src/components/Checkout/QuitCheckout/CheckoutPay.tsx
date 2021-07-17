@@ -18,10 +18,10 @@ const CheckoutPay: FC = () => {
             <h1 className="mb-lg-1">Order placed</h1>
             <div className="order-confirm-icon my-4 py-3">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-                <circle className="path circle" fill="none" stroke="#73AF55" stroke-width="7" stroke-miterlimit="10"
+                <circle className="path circle" fill="none" stroke="#73AF55" strokeWidth="7" strokeMiterlimit="10"
                         cx="65.1" cy="65.1" r="62.1"/>
-                <polyline className="path check" fill="none" stroke="#73AF55" stroke-width="8" stroke-linecap="round"
-                          stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+                <polyline className="path check" fill="none" stroke="#73AF55" strokeWidth="8" strokeLinecap="round"
+                          strokeMiterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
               </svg>
             </div>
 

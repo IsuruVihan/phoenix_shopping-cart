@@ -15,18 +15,18 @@ const ProductCartSectionDOM: React.FC = () => {
         <Container className="product-cart-cont  px-xl-4 px-lg-4 px-0 ">
             <SearchBarSection/>
             <ProductCategorySection clickedCategory={clickedCategory} />
-            {(categoryName == 'All') ?
+            {(categoryName === 'All') ?
                 <React.Fragment>
                 <ProductCardsSection categoryName={"Grocery"}/>
                 <ProductCardsSection categoryName={"Pharmacy"}/>
                 <ProductCardsSection categoryName={"Food"}/>
                 <ProductCardsSection categoryName={"Electronic"}/>
                 </React.Fragment>
-             : (categoryName == 'Grocery') ?
+             : (categoryName === 'Grocery') ?
                     <ProductCardsSection categoryName={"Grocery"}/>
-             : (categoryName == 'Pharmacy') ?
+             : (categoryName === 'Pharmacy') ?
                     <ProductCardsSection categoryName={"Pharmacy"}/>
-             : (categoryName == 'Food') ?
+             : (categoryName === 'Food') ?
                     <ProductCardsSection categoryName={"Food"}/>
              :      <ProductCardsSection categoryName={"Electronic"}/>
             }
