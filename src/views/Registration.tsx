@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {IUser} from '../Types/CartTypes';
 import {Col, Container, Row, Form, Button} from "react-bootstrap";
 import Grid from '@material-ui/core/Grid';
 import AlternateEmail from '@material-ui/icons/AlternateEmail';
@@ -23,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Registration: React.FC = () => {
     const classes = useStyles();
-    const userInfo: IUser[] = [];
-    const [users, setUsers] = useState(userInfo);
 
     const [newUserName, setNewUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -76,10 +73,7 @@ const Registration: React.FC = () => {
     };
 
     const createNewUser = () => {
-        const newUser : IUser = {name: newUserName, email: userEmail, password: userPwd};
-        const listOfUsers : IUser[] = users.slice();
-        listOfUsers.push(newUser);
-        setUsers(listOfUsers);
+        return;
     }
 
     return (

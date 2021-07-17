@@ -311,6 +311,32 @@
       }
     }
   }
+
+  .checkout-footer {
+    background-color: $checkout-footer-background-color;
+    color: white;
+    margin-left: -50px;
+    margin-right: -50px;
+
+    .discount-coupon-text {
+      font-size: 0.9em;
+      font-weight: 500;
+      text-align: center;
+      padding: 0.6em 0;
+      margin-bottom: 0;
+    }
+
+    .click-here-btn {
+      background-color: #f5cd79;
+      border: 0px;
+      margin: 5px auto;
+      font-weight: 700;
+      padding: 0.2em 1.5em;
+    }
+    .click-here-btn:hover {
+      color: #227093;
+    }
+  }
 }
 
 .order-confirm-alert {
@@ -490,5 +516,9 @@
   .header-row, .checkout-table, .quit-checkout {
     margin-left: 8.8em !important;
     margin-right: 8.8em !important;
+  }
+
+  .checkout-footer {
+    margin: auto 0;
   }
 }
