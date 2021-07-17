@@ -11,7 +11,7 @@ const ProductCardsSection: React.FC = () => {
                         <label className="cat-title">Vegetables</label>
                     </Col>
                 </Row>
-                <Row className="mx-4">
+                <Row className="mx-xl-4 mx-lg-4 mx-0">
                     <ProductCard/>
                     <ProductCard/>
                     <ProductCard/>
@@ -20,7 +20,6 @@ const ProductCardsSection: React.FC = () => {
                     <ProductCard/>
                     <ProductCard/>
                     <ProductCard/>
-
                 </Row>
             </Col>
         </Row>

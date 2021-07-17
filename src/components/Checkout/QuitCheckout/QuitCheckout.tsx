@@ -5,6 +5,7 @@ import AccountSignIn from "./AccountSignIn";
 import ShippingForm from "./ShippingForm";
 import ChangeAddress from "./ChangeAddress/ChangeAddress";
 import DeliveryInstructions from "./DeliveryInstructions";
+import CheckoutPay from "./CheckoutPay";
 
 const QuitCheckout: FC = () => {
   return (
@@ -15,17 +16,7 @@ const QuitCheckout: FC = () => {
         <ShippingForm/>
         <ChangeAddress />
         <DeliveryInstructions />
-        <Row className="checkout-pay mx-0">
-          <Col className="title px-0" xs={12}>
-
-          </Col>
-          <Col className="options px-0" xs={12}>
-
-          </Col>
-          <Col className="order px-0" xs={12}>
-
-          </Col>
-        </Row>
+        <CheckoutPay />
       </Col>
     </Row>
   );

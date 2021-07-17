@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {IUser} from '../Types/CartTypes';
 import {Col, Container, Row, Form, Button} from "react-bootstrap";
 import Grid from '@material-ui/core/Grid';
 import {AlternateEmail, Lock, Visibility, VisibilityOff, Phone} from '@material-ui/icons';

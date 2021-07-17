@@ -45,15 +45,16 @@ const ChangeAddressForm: FC = () => {
             <Col className="px-0 pt-1 ps-md-2" md={4} xs={12}>
               <Form.Group>
                 <Form.Label className="label">Country<sup>*</sup></Form.Label>
-                <Select
-                  className="input-field"
-                  classNamePrefix="select"
-                  defaultValue={countryList[0]}
-                  isSearchable={true}
-                  name="color"
-                  styles={customStyles}
-                  options={countryList}
-                />
+                <Form.Row bsPrefix="no-border">
+                  <Select
+                    classNamePrefix="select no-border"
+                    defaultValue={countryList[0]}
+                    isSearchable={true}
+                    name="color"
+                    styles={customStyles}
+                    options={countryList}
+                  />
+                </Form.Row>
               </Form.Group>
             </Col>
             <Col className="px-0 pt-1" xs={12}>

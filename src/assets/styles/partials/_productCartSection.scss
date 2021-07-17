@@ -3,15 +3,16 @@ $project-gray : #757575;
 $border-color : #BDBDBD;
 $border-color-add-btn-active: #17A2B8;
 .product-cart-cont{
-  width: 100%;
+  overflow-x: hidden;
   padding-bottom: 4em;
+
+
 
   .search-bar-section{
     .search-bar{
-      width: 40%;
+     // width: 40%;
       border-color: $project-green;
       border-radius: 1em ;
-      padding-right: 5em;
 
       :hover{
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19);
@@ -19,11 +20,9 @@ $border-color-add-btn-active: #17A2B8;
     }
 
     .search-icon{
-      margin-left: -4em;
-      //margin-bottom: -1em;
-      margin-top: 0.5em;
-      width: 3em;
-      height: 3em;
+      margin-bottom: -6.5em;
+      margin-left: 1.2em;
+      font-size:0.7em;
 
       :hover{
         cursor: pointer;
@@ -86,13 +85,6 @@ $border-color-add-btn-active: #17A2B8;
     font-size: 0.9em;
   }
 
-  //
-  //.product-cards-selection{
-  //  display: flex;
-  //  flex-wrap: wrap;
-  //  justify-content: center;
-  //}
-
   .product-cards-selection{
     padding: 0 10em;
   }
@@ -107,13 +99,65 @@ $border-color-add-btn-active: #17A2B8;
   font-weight: 500;
 }
 
-//
-//@media only screen and (max-width: 1200px) {
-//  .category-cont{
-//    width: 4.5em;
-//    background-color: #4caf50;
-//  }
-//  .cat-img{
-//    width: 2em;
-//  }
-//}
+@media only screen and (max-width: 1200px) {
+  .item-card{
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+
+  .add-btn-text{
+    font-size: 0.8em;
+  }
+  .item-input{
+    font-size: 0.8em;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .item-input{
+    font-size: 0.7em;
+  }
+  .add-btn-text{
+    font-size: 0.7em;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  .category-name{
+    font-size: 0.7em;
+  }
+  .search-bar{
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 505px){
+  .category-name{
+    font-size: 0.5em;
+  }
+  .card-title{
+    font-size: 1em;
+  }
+
+}
+
+@media only screen and (max-width: 367px){
+  .category-name{
+    font-size: 0.5em;
+  }
+  .card-title{
+    font-size: 0.9em;
+  }
+
+  .crossed-val{
+    font-size: 0.7em;
+  }
+
+  .item-val {
+    font-size: 0.7em;
+
+    .cent-val {
+      font-size: 0.7em;
+    }
+  }
+}

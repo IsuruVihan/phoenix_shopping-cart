@@ -22,7 +22,7 @@ const PaginationRow: FC = () => {
                 <Dropdown.Item key="5" className="dropdown-option">100</Dropdown.Item>
               </DropdownButton>
             </Col>
-            <Col className="px-xl-5 px-lg-4 results-text text-left">
+            <Col className="px-xl-3 px-lg-2 results-text text-left m-auto">
               Showing 0 to 0 of 0 Results
             </Col>
           </Row>

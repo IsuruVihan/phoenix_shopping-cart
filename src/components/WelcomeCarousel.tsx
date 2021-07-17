@@ -1,37 +1,43 @@
 import React from 'react';
-import Banner1 from '../assets/images/Banner-1.webp';
+import Banner1 from '../assets/images/CartBanner.webp';
 import Carousel from 'react-bootstrap/Carousel';
 import {Button, Col, Row} from "react-bootstrap";
+import {Link} from 'react-scroll';
 
 const WelcomeCarousel: React.FC = () => {
   return (
     <Row className="mx-0">
       <Col className="px-0">
-        <Carousel controls={false}>
-          <Carousel.Item className="item">
+        <Carousel nextLabel={null} prevLabel={null} touch={true} interval={null}>
+          <Carousel.Item>
             <img className="d-block w-100" src={Banner1} alt="First Banner"/>
             <Row className="absolute-div">
               <Col className="shop-now">
-                <Button variant="light" className="rounded-pill" href="">Shop now</Button>
+                <Link  to="products" spy={true} smooth={true}>
+                  <Button variant="light" className="rounded-pill">Shop now</Button>
+                </Link>
               </Col>
             </Row>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={Banner1} alt="Second Banner"/>
+            <img className="d-block w-100" src={Banner1} alt="First Banner"/>
             <Row className="absolute-div">
               <Col className="shop-now">
-                <Button variant="light" className="rounded-pill" href="">Shop now</Button>
+                <Link  to="products" spy={true} smooth={true}>
+                  <Button variant="light" className="rounded-pill">Shop now</Button>
+                </Link>
               </Col>
             </Row>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={Banner1} alt="Third Banner"/>
+            <img className="d-block w-100" src={Banner1} alt="First Banner"/>
             <Row className="absolute-div">
               <Col className="shop-now">
-                <Button variant="light" className="rounded-pill" href="">Shop now</Button>
+                <Link  to="products" spy={true} smooth={true}>
+                  <Button variant="light" className="rounded-pill">Shop now</Button>
+                </Link>
               </Col>
             </Row>
-            <span aria-hidden="false" className="carousel-control-prev-icon"/>
           </Carousel.Item>
         </Carousel>
       </Col>
