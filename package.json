@@ -25,6 +25,7 @@
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-custom-scrollbars": "^4.2.1",
+    "react-confirm-alert": "^2.7.0",
     "react-dom": "^17.0.2",
     "react-feather": "^2.0.9",
     "react-icons": "^4.2.0",

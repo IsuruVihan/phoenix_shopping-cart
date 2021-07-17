@@ -311,6 +311,123 @@
       }
     }
   }
+
+  .checkout-footer {
+    background-color: $checkout-footer-background-color;
+    color: white;
+    margin-left: -50px;
+    margin-right: -50px;
+
+    .discount-coupon-text {
+      font-size: 0.9em;
+      font-weight: 500;
+      text-align: center;
+      padding: 0.6em 0;
+      margin-bottom: 0;
+    }
+
+    .click-here-btn {
+      background-color: #f5cd79;
+      border: 0px;
+      margin: 5px auto;
+      font-weight: 700;
+      padding: 0.2em 1.5em;
+    }
+    .click-here-btn:hover {
+      color: #227093;
+    }
+  }
+}
+
+.order-confirm-alert {
+  text-align: center;
+  width: 500px;
+  padding: 40px;
+  background: white;
+  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.12);
+  color: black;
+  border-radius: 10px;
+
+  .order-confirm-text {
+    p {
+      line-height: 1em;
+      font-size: 1.12em;
+    }
+  }
+
+  .go-back-btn {
+    background: $primary-colour;
+    border: 2px solid $primary-colour;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  .order-confirm-icon {
+    svg {
+      width: 90px;
+      display: block;
+      margin: auto;
+    }
+
+    .path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 0;
+
+      &.circle {
+        -webkit-animation: dash 1.2s ease-in-out;
+        animation: dash 1.2s ease-in-out;
+      }
+
+      &.line {
+        stroke-dashoffset: 1000;
+        -webkit-animation: dash 2s 1s ease-in-out forwards;
+        animation: dash 2s 1s ease-in-out forwards;
+      }
+
+      &.check {
+        stroke-dashoffset: -100;
+        -webkit-animation: dash-check 1.2s 0.7s ease-in-out forwards;
+        animation: dash-check 1.2s 0.7s ease-in-out forwards;
+      }
+    }
+
+
+    @-webkit-keyframes dash {
+      0% {
+        stroke-dashoffset: 1000;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes dash {
+      0% {
+        stroke-dashoffset: 1000;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @-webkit-keyframes dash-check {
+      0% {
+        stroke-dashoffset: -100;
+      }
+      100% {
+        stroke-dashoffset: 900;
+      }
+    }
+
+    @keyframes dash-check {
+      0% {
+        stroke-dashoffset: -100;
+      }
+      100% {
+        stroke-dashoffset: 900;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -399,5 +516,9 @@
   .header-row, .checkout-table, .quit-checkout {
     margin-left: 8.8em !important;
     margin-right: 8.8em !important;
+  }
+
+  .checkout-footer {
+    margin: auto 0;
   }
 }
