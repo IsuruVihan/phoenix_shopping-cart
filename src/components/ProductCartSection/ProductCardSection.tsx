@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Col, Row} from "react-bootstrap";
 import ProductCard from "./ProductCard";
 import {useDispatch, useSelector} from "react-redux";
@@ -14,12 +14,25 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
   const {categoryName} = props;
   let productId: number = 0;
 
+  const [groceryEmpty, setGroceryEmpty] = useState<boolean>(true);
+  const [pharmacyEmpty, setPharmacyEmpty] = useState<boolean>(true);
+  const [foodEmpty, setFoodEmpty] = useState<boolean>(true);
+  const [electronicEmpty, setElectronicEmpty] = useState<boolean>(true);
+
   const [previewSource, setPreviewSource] = useState<string | null>();
   const [fileInputState, setFileInputState] = useState('');
 
   const dispatch = useDispatch();
-  // const {AddItem, RemoveItem, UpdateItem} = bindActionCreators(ProductActionCreator, dispatch);
   const Products = useSelector((state: State) => state.Products);
+
+  useEffect(() => {
+    Products.map((p) => {
+      (p.category === "Grocery") ? setGroceryEmpty(false) :
+        (p.category === "Food") ? setFoodEmpty(false) :
+          (p.category === "Pharmacy") ? setPharmacyEmpty(false) :
+            setElectronicEmpty(false);
+    })
+  }, []);
 
   const handleReceiptUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -83,18 +96,29 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
         }
         <Row className={(Products.length > 0) ? "mx-xl-4 mx-lg-4 mx-0" : "mx-xl-4 mx-lg-4 mx-0 px-3"}>
           {(Products.length > 0) ? Products.map((p) => {
-            return (
-              <ProductCard
-                key={productId}
-                id={productId++}
-                imgSrc={p.picSrc}
-                name={p.name}
-                price={p.price}
-                crossedPrice={p.crossedPrice}
-                category={p.category}
-              />
-            );
-          }) : <NoProductsAvailable/>}
+            if (p.category === categoryName) {
+              return (
+                <ProductCard
+                  key={productId}
+                  id={productId++}
+                  imgSrc={p.picSrc}
+                  name={p.name}
+                  price={p.price}
+                  crossedPrice={p.crossedPrice}
+                  category={p.category}
+                />
+              );
+            }
+          }) : <NoProductsAvailable />}
+        {/*{if (p.category === "Grocery" && groceryEmpty) {*/}
+        {/*  <NoProductsAvailable />*/}
+        {/*} else if (p.category === "Food" && foodEmpty) {*/}
+        {/*  <NoProductsAvailable />*/}
+        {/*} else if (p.category === "Pharmacy" && pharmacyEmpty) {*/}
+        {/*  <NoProductsAvailable />*/}
+        {/*} else if (p.category === "Electronic" && electronicEmpty) {*/}
+        {/*  <NoProductsAvailable />*/}
+        {/*}}*/}
         </Row>
       </Col>
     </Row>
