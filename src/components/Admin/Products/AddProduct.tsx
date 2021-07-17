@@ -31,7 +31,14 @@ const AddProduct: FC<AddProductProps> = (props) => {
   const [sellPrice, setSellPrice] = useState<string>("");
   const [category, setCategory] = useState<string>("");
 
-  const handleOnClickCreateBtn = () => {
+  const handleOnClickCreateBtn = (event: React.FormEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setValidated(true);
+
+    if ((name == "") || (crossPrice == "") || (sellPrice == ""))
+      return;
+
     AddItem({
       picSrc: imgSrc,
       name: name,
@@ -39,6 +46,8 @@ const AddProduct: FC<AddProductProps> = (props) => {
       price: sellPrice,
       category: category
     });
+
+    cancel();
   }
 
   const [previewVisible, setPreviewVisible] = useState<boolean>(false);
@@ -52,6 +61,8 @@ const AddProduct: FC<AddProductProps> = (props) => {
   const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(event.target.value);
   const handleOnChangeCategory = (event: React.ChangeEvent<HTMLInputElement>) => setCategory(event.target.value);
 
+  const [validated, setValidated] = useState<boolean>(false);
+
   return (
     <Col className="add-product px-0" xs={12}>
       <Row className="mx-0">
@@ -61,84 +72,145 @@ const AddProduct: FC<AddProductProps> = (props) => {
               Add Product
             </Col>
             <Col className="px-0 form-body text-start" xs={12}>
-              <Form>
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
-                    Name
-                  </Form.Label>
-                  <label className="label-small">Name</label>
-                  <Col lg={10} sm={12} xs={12}>
-                    <Form.Control className="input-field" size="sm" type="text" value={name} onChange={handleOnChangeName} />
-                  </Col>
-                </Form.Group>
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
-                    Cross Price
-                  </Form.Label>
-                  <label className="label-small">Cross Price</label>
-                  <Col lg={10} sm={12} xs={12}>
-                    <Form.Control className="input-field" size="sm" type="text" onChange={handleOnChangeCrossPrice} />
-                  </Col>
-                </Form.Group>
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
-                    Sell Price
-                  </Form.Label>
-                  <label className="label-small">Sell Price</label>
-                  <Col lg={10} sm={12} xs={12}>
-                    <Form.Control className="input-field" size="sm" type="text" onChange={handleOnChangeSellPrice} />
-                  </Col>
-                </Form.Group>
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
-                    Category
-                  </Form.Label>
-                  <label className="label-small">Category</label>
-                  <Col lg={10} sm={12} xs={12}>
-                    <Select
-                      classNamePrefix="select no-border"
-                      defaultValue={categoryList[0]}
-                      isSearchable={true}
-                      name="category"
-                      styles={customStyles}
-                      options={categoryList}
-                      onSelect={(event: React.ChangeEvent<HTMLInputElement>) =>
-                        handleOnChangeCategory(event)}
-                    />
-                  </Col>
-                </Form.Group>
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
-                    Image
-                  </Form.Label>
-                  <label className="label-small">Image</label>
-                  <Col lg={10} sm={12} xs={12}>
-                    <Form.Control size="sm" type="file" name="file" className="input-field" onChange={handleOnChangeImgSrc} />
-                  </Col>
-                </Form.Group>
-                <Form.Group as={Row} className="mb-3">
-                  <Col lg={{offset: 2}}>
-                    <Form.Check
-                      className="input-field"
-                      name="terms"
-                      label="Preview the item"
-                      onChange={() => handleOnClickPreview()}
-                    />
-                  </Col>
-                </Form.Group>
-                {previewVisible &&
-                  <Form.Group as={Row} className="preview-small mb-3">
-                      <Col className="px-0" lg={{offset: 2}}>
-                          <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
-                      </Col>
-                  </Form.Group>}
-                <Form.Group as={Row} className="mb-3">
-                  <Col lg={{offset: 2}}>
-                    <Button variant="success" size="sm" onClick={() => handleOnClickCreateBtn()}>Create</Button>
-                    <Button variant="secondary" className="ms-2" size="sm" onClick={() => cancel()}>Cancel</Button>
-                  </Col>
-                </Form.Group>
-              </Form>
+                <Form
+                  noValidate
+                  validated={validated}
+                  onSubmit={(event: React.FormEvent) => handleOnClickCreateBtn(event)}
+                >
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
+                      Name
+                    </Form.Label>
+                    <label className="label-small">Name</label>
+                    <Col lg={10} sm={12} xs={12}>
+                      <Form.Control
+                        required
+                        className="input-field"
+                        size="sm"
+                        type="text"
+                        value={name}
+                        onChange={handleOnChangeName}
+                      />
+                      <Form.Control.Feedback>
+                        Looks good!
+                      </Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">
+                        Please provide a Name.
+                      </Form.Control.Feedback>
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
+                      Cross Price
+                    </Form.Label>
+                    <label className="label-small">Cross Price</label>
+                    <Col lg={10} sm={12} xs={12}>
+                      <Form.Control
+                        required
+                        className="input-field"
+                        size="sm"
+                        type="text"
+                        onChange={handleOnChangeCrossPrice}
+                      />
+                      <Form.Control.Feedback>
+                        Looks good!
+                      </Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">
+                        Please provide a crossed price.
+                      </Form.Control.Feedback>
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
+                      Sell Price
+                    </Form.Label>
+                    <label className="label-small">Sell Price</label>
+                    <Col lg={10} sm={12} xs={12}>
+                      <Form.Control
+                        required
+                        className="input-field"
+                        size="sm"
+                        type="text"
+                        onChange={handleOnChangeSellPrice}
+                      />
+                      <Form.Control.Feedback>
+                        Looks good!
+                      </Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">
+                        Please provide a Price.
+                      </Form.Control.Feedback>
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
+                      Category
+                    </Form.Label>
+                    <label className="label-small">Category</label>
+                    <Col lg={10} sm={12} xs={12}>
+                      <Select
+                        classNamePrefix="select no-border"
+                        defaultValue={categoryList[0]}
+                        isSearchable={true}
+                        name="category"
+                        styles={customStyles}
+                        options={categoryList}
+                        onSelect={(event: React.ChangeEvent<HTMLInputElement>) =>
+                          handleOnChangeCategory(event)}
+                      />
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
+                      Image
+                    </Form.Label>
+                    <label className="label-small">Image</label>
+                    <Col lg={10} sm={12} xs={12}>
+                      <Form.Control
+                        size="sm"
+                        type="file"
+                        name="file"
+                        className="input-field"
+                        onChange={handleOnChangeImgSrc}
+                      />
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} className="mb-3">
+                    <Col lg={{offset: 2}}>
+                      <Form.Check
+                        className="input-field"
+                        name="terms"
+                        label="Preview the item"
+                        onChange={() => handleOnClickPreview()}
+                      />
+                    </Col>
+                  </Form.Group>
+                  {previewVisible &&
+                    <Form.Group as={Row} className="preview-small mb-3">
+                        <Col className="px-0" lg={{offset: 2}}>
+                            <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
+                        </Col>
+                    </Form.Group>}
+                  <Form.Group as={Row} className="mb-3">
+                    <Col lg={{offset: 2}}>
+                      <Button
+                        variant="success"
+                        size="sm"
+                        type="submit"
+                        // onClick={() => handleOnClickCreateBtn()}
+                      >
+                        Create
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        className="ms-2"
+                        size="sm"
+                        onClick={() => cancel()}
+                      >
+                        Cancel
+                      </Button>
+                    </Col>
+                  </Form.Group>
+                </Form>
             </Col>
           </Row>
         </Col>
