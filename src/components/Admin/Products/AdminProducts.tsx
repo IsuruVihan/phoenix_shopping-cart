@@ -28,6 +28,7 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
                   name={p.name}
                   crossedPrice={p.crossedPrice}
                   sellPrice={p.price}
+                  category={p.category}
                 />
               );
             }) : <NoProductsAvailable />}

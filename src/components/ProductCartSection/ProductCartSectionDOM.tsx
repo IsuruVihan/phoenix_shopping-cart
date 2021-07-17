@@ -5,10 +5,10 @@ import ProductCategorySection from "./ProductCategorySection";
 import ProductCardsSection from "./ProductCardSection";
 
 const ProductCartSectionDOM: React.FC = () => {
-    const [categoryName,setCategorryName] = useState<string>('All');
+    const [categoryName,setCategoryName] = useState<string>('All');
 
     const clickedCategory = (catClicked:string) => {
-        setCategorryName(catClicked);
+        setCategoryName(catClicked);
     }
 
     return (
@@ -17,10 +17,10 @@ const ProductCartSectionDOM: React.FC = () => {
             <ProductCategorySection clickedCategory={clickedCategory} />
             {(categoryName === 'All') ?
                 <React.Fragment>
-                <ProductCardsSection categoryName={"Grocery"}/>
-                <ProductCardsSection categoryName={"Pharmacy"}/>
-                <ProductCardsSection categoryName={"Food"}/>
-                <ProductCardsSection categoryName={"Electronic"}/>
+                  <ProductCardsSection categoryName={"Grocery"}/>
+                  <ProductCardsSection categoryName={"Pharmacy"}/>
+                  <ProductCardsSection categoryName={"Food"}/>
+                  <ProductCardsSection categoryName={"Electronic"}/>
                 </React.Fragment>
              : (categoryName === 'Grocery') ?
                     <ProductCardsSection categoryName={"Grocery"}/>
@@ -30,7 +30,6 @@ const ProductCartSectionDOM: React.FC = () => {
                     <ProductCardsSection categoryName={"Food"}/>
              :      <ProductCardsSection categoryName={"Electronic"}/>
             }
-
         </Container>
     )
 }

@@ -6,11 +6,12 @@ type ProductCardProps = {
   onClickEdit: () => void,
   name: string,
   crossedPrice: string,
-  sellPrice: string
+  sellPrice: string,
+  category: string
 };
 
 const ProductCard: FC<ProductCardProps> = (props) => {
-  const {onClickEdit, name, crossedPrice, sellPrice} = props;
+  const {onClickEdit, name, crossedPrice, sellPrice, category} = props;
 
   return (
     <Col lg={3} md={4} sm={6} xs={6}  className="px-0 mx-0">
@@ -32,7 +33,6 @@ const ProductCard: FC<ProductCardProps> = (props) => {
                 </Col>
                 <Col>
                   <h5 className="item-val"> Rs.{sellPrice}</h5>
-                  {/*<h5 className="item-val"> Rs.{sellPrice}.<span className="cent-val">00</span></h5>*/}
                 </Col>
               </Row>
             </Col>

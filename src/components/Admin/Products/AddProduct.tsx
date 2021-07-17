@@ -59,7 +59,9 @@ const AddProduct: FC<AddProductProps> = (props) => {
   const handleOnChangeImgSrc = (event: React.ChangeEvent<HTMLInputElement>) => setImgSrc(event.target.value);
   const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(event.target.value);
   const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(event.target.value);
-  const handleOnChangeCategory = (event: React.ChangeEvent<HTMLInputElement>) => setCategory(event.target.value);
+  const handleOnChangeCategory = (item: any) => {
+    setCategory(item.value);
+  }
 
   const [validated, setValidated] = useState<boolean>(false);
 
@@ -148,14 +150,12 @@ const AddProduct: FC<AddProductProps> = (props) => {
                     <label className="label-small">Category</label>
                     <Col lg={10} sm={12} xs={12}>
                       <Select
-                        classNamePrefix="select no-border"
                         defaultValue={categoryList[0]}
                         isSearchable={true}
                         name="category"
                         styles={customStyles}
                         options={categoryList}
-                        onSelect={(event: React.ChangeEvent<HTMLInputElement>) =>
-                          handleOnChangeCategory(event)}
+                        onChange={handleOnChangeCategory}
                       />
                     </Col>
                   </Form.Group>
