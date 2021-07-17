@@ -41,7 +41,6 @@ function ProductCardsSection (props:productCardTypes){
                     </Col>
                 </Row>
 
-
                 {  props.categoryName == 'Pharmacy' ?
                     <React.Fragment>
                         <Row className="text-center py-4">
