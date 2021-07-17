@@ -3,11 +3,14 @@ import coconutImg from "../../../assets/images/product_coconut.webp";
 import React, {FC} from "react";
 
 type ProductCardProps = {
-  onClickEdit: () => void
+  onClickEdit: () => void,
+  name: string,
+  crossedPrice: string,
+  sellPrice: string
 };
 
 const ProductCard: FC<ProductCardProps> = (props) => {
-  const {onClickEdit} = props;
+  const {onClickEdit, name, crossedPrice, sellPrice} = props;
 
   return (
     <Col lg={3} md={4} sm={6} xs={6}  className="px-0 mx-0">
@@ -19,16 +22,17 @@ const ProductCard: FC<ProductCardProps> = (props) => {
         </Row>
         <Card.Body className="pt-0 pb-1">
           <Col className="card-title">
-            <Card.Title className="px-3">Coconut</Card.Title>
+            <Card.Title className="px-3">{name}</Card.Title>
           </Col>
           <Row>
             <Col className="card-price px-0 pt-1 pb-0">
               <Row>
                 <Col>
-                  <h5 className="crossed-val">Rs.35.00</h5>
+                  <h5 className="crossed-val">Rs.{crossedPrice}</h5>
                 </Col>
                 <Col>
-                  <h5 className="item-val"> Rs.35.<span className="cent-val">00</span></h5>
+                  <h5 className="item-val"> Rs.{sellPrice}</h5>
+                  {/*<h5 className="item-val"> Rs.{sellPrice}.<span className="cent-val">00</span></h5>*/}
                 </Col>
               </Row>
             </Col>
@@ -37,7 +41,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
             <Col className="px-0">
               <Row className="mx-0 py-1">
                 <Col className="px-0 text-xl-start" xl={6} xs={12}>
-                  <Button className="card-btn edit-btn" variant="outline-success" size="sm" onClick={() => onClickEdit()}>
+                  <Button className="card-btn edit-btn" variant="outline-secondary" size="sm" onClick={() => onClickEdit()}>
                     Edit
                   </Button>
                 </Col>

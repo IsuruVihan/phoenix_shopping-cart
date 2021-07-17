@@ -16,7 +16,7 @@ $receipt-upload-text :#BDBDBD;
       border-color: $project-green;
       border-radius: 1em ;
 
-      :hover{
+      &:hover{
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19);
       }
     }
@@ -90,6 +90,17 @@ $receipt-upload-text :#BDBDBD;
 
   .product-cards-selection{
     padding: 0 10em;
+
+    .no-products-available {
+      color: $no-products-available-color !important;
+      border: 2px solid $no-products-available-color;
+      padding: 1.5em 0 1.5em 0;
+
+      .text {
+        font-size: 1.2em;
+        font-weight: 600;
+      }
+    }
   }
 }
 

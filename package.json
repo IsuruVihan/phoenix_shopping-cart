@@ -20,6 +20,7 @@
     "bootstrap": "^5.0.1",
     "chokidar": "^3.5.2",
     "feather-icons": "^4.28.0",
+    "formik": "^2.2.9",
     "node-sass": "^5.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
@@ -39,7 +40,8 @@
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
     "typescript": "^4.3.2",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",

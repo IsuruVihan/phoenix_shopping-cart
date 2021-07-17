@@ -1,6 +1,10 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {Col, Row} from "react-bootstrap";
 import ProductCard from "./ProductCard";
+import {useDispatch, useSelector} from "react-redux";
+import {bindActionCreators} from "redux";
+import {ProductActionCreator, State} from "../../state";
+import NoProductsAvailable from "../Admin/Products/NoProductsAvailable";
 
 type productCardTypes = {
     categoryName : string
@@ -93,7 +97,9 @@ function ProductCardsSection (props:productCardTypes){
                 </Row>
             </Col>
         </Row>
-    )
+      </Col>
+    </Row>
+  )
 }
 
 export default ProductCardsSection;

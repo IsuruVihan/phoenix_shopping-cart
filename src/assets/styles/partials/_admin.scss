@@ -88,6 +88,17 @@
       }
     }
   }
+
+  .no-products-available {
+    color: $no-products-available-color !important;
+    border: 2px solid $no-products-available-color;
+    padding: 1.5em 0 1.5em 0;
+
+    .text {
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+  }
 }
 
 @media screen and (max-width: 576px) {
