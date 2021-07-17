@@ -8,9 +8,6 @@ import {Link} from "react-router-dom";
 import GroceryBag from "../assets/images/grocery-bag-5.png";
 
 const Registration: React.FC = () => {
-  const userInfo: IUser[] = [];
-  const [users, setUsers] = useState(userInfo);
-
   const [newUserName, setNewUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userMobile, setUserMobile] = useState('');
@@ -72,10 +69,7 @@ const Registration: React.FC = () => {
   };
 
   const createNewUser = () => {
-    const newUser: IUser = {name: newUserName, email: userEmail, password: userPwd};
-    const listOfUsers: IUser[] = users.slice();
-    listOfUsers.push(newUser);
-    setUsers(listOfUsers);
+    return;
   }
 
   return (
