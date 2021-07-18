@@ -34,6 +34,12 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
     })
   }, []);
 
+  const renderEmptyNanner = () => {
+    if ((categoryName === "Grocery" && groceryEmpty) || (categoryName === "Food" && foodEmpty) ||
+        (categoryName === "Pharmacy" && pharmacyEmpty) || (categoryName === "Electronic" && electronicEmpty) ) {
+      return(<NoProductsAvailable />)}
+  }
+
   const handleReceiptUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     if (event.target.files) {
@@ -109,16 +115,10 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
                 />
               );
             }
-          }) : <NoProductsAvailable />}
-        {/*{if (p.category === "Grocery" && groceryEmpty) {*/}
-        {/*  <NoProductsAvailable />*/}
-        {/*} else if (p.category === "Food" && foodEmpty) {*/}
-        {/*  <NoProductsAvailable />*/}
-        {/*} else if (p.category === "Pharmacy" && pharmacyEmpty) {*/}
-        {/*  <NoProductsAvailable />*/}
-        {/*} else if (p.category === "Electronic" && electronicEmpty) {*/}
-        {/*  <NoProductsAvailable />*/}
-        {/*}}*/}
+          }) : null}
+          <React.Fragment>
+            {renderEmptyNanner()}
+          </React.Fragment>
         </Row>
       </Col>
     </Row>

@@ -92,8 +92,8 @@ $receipt-upload-text :#BDBDBD;
     padding: 0 10em;
 
     .no-products-available {
-      color: $no-products-available-color !important;
-      border: 2px solid $no-products-available-color;
+      color: $receipt-upload-text !important;
+      border: 2px solid $receipt-upload-text;
       padding: 1.5em 0 1.5em 0;
 
       .text {
