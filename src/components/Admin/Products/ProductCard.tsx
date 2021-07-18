@@ -1,6 +1,9 @@
 import {Button, Card, Col, Image, Row} from "react-bootstrap";
 import coconutImg from "../../../assets/images/product_coconut.webp";
 import React, {FC} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {ProductActionCreator, State} from "../../../state";
+import {bindActionCreators} from "redux";
 
 type ProductCardProps = {
   onClickEdit: (id: number) => void,
@@ -13,6 +16,13 @@ type ProductCardProps = {
 
 const ProductCard: FC<ProductCardProps> = (props) => {
   const {onClickEdit, id, name, crossedPrice, sellPrice, category} = props;
+
+  const Products = useSelector((state: State) => state.Products);
+
+  const dispatch = useDispatch();
+  const {RemoveItem} = bindActionCreators(ProductActionCreator, dispatch);
+
+  const handleOnClickDelete = () => RemoveItem(id);
 
   return (
     <Col lg={3} md={4} sm={6} xs={6}  className="px-0 mx-0">
@@ -52,7 +62,14 @@ const ProductCard: FC<ProductCardProps> = (props) => {
                   </Button>
                 </Col>
                 <Col className="px-0 text-xl-end pt-xl-0 pt-1" xl={6} xs={12}>
-                  <Button className="card-btn" variant="outline-danger" size="sm">Delete</Button>
+                  <Button
+                    className="card-btn"
+                    variant="outline-danger"
+                    size="sm"
+                    onClick={() => handleOnClickDelete()}
+                  >
+                    Delete
+                  </Button>
                 </Col>
               </Row>
             </Col>
