@@ -8,13 +8,15 @@ import AddProduct from "./AddProduct";
 const Products: FC = () => {
   const [addProductFormVisible, setAddProductFormVisible] = useState<boolean>(false);
   const [editProductFormVisible, setEditProductFormVisible] = useState<boolean>(false);
+  const [productToBeEdit, setProductToBeEdit] = useState<number>(0);
 
   const handleOnClickAddProductBtn = () => {
     setEditProductFormVisible(false);
     setAddProductFormVisible(true);
   }
 
-  const handleOnClickEditProductBtn = () => {
+  const handleOnClickEditProductBtn = (id: number) => {
+    setProductToBeEdit(id);
     setAddProductFormVisible(false);
     setEditProductFormVisible(true);
   }
@@ -48,7 +50,7 @@ const Products: FC = () => {
             </>
           }
           {addProductFormVisible && <AddProduct cancel={handleOnClickCancelBtn} />}
-          {editProductFormVisible && <EditProduct />}
+          {editProductFormVisible && <EditProduct editProductId={productToBeEdit} cancel={handleOnClickCancelBtn} />}
         </Col>
       </Row>
     </Container>

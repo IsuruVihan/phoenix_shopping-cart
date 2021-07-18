@@ -8,11 +8,12 @@ import {ProductActionCreator, State} from "../../../state";
 import NoProductsAvailable from './NoProductsAvailable';
 
 type AdminProductsProps = {
-  onClickEdit: () => void
+  onClickEdit: (id: number) => void
 };
 
 const AdminProducts: FC<AdminProductsProps> = (props) => {
   const {onClickEdit} = props;
+  let count: number = 0;
 
   const Products = useSelector((state: State) => state.Products);
 
@@ -24,6 +25,8 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
             {(Products.length > 0) ? Products.map((p) => {
               return (
                 <ProductCard
+                  key={count}
+                  id={count++}
                   onClickEdit={onClickEdit}
                   name={p.name}
                   crossedPrice={p.crossedPrice}
