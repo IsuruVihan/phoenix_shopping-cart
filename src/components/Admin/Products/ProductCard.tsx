@@ -3,7 +3,8 @@ import coconutImg from "../../../assets/images/product_coconut.webp";
 import React, {FC} from "react";
 
 type ProductCardProps = {
-  onClickEdit: () => void,
+  onClickEdit: (id: number) => void,
+  id: number,
   name: string,
   crossedPrice: string,
   sellPrice: string,
@@ -11,7 +12,7 @@ type ProductCardProps = {
 };
 
 const ProductCard: FC<ProductCardProps> = (props) => {
-  const {onClickEdit, name, crossedPrice, sellPrice, category} = props;
+  const {onClickEdit, id, name, crossedPrice, sellPrice, category} = props;
 
   return (
     <Col lg={3} md={4} sm={6} xs={6}  className="px-0 mx-0">
@@ -41,7 +42,12 @@ const ProductCard: FC<ProductCardProps> = (props) => {
             <Col className="px-0">
               <Row className="mx-0 py-1">
                 <Col className="px-0 text-xl-start" xl={6} xs={12}>
-                  <Button className="card-btn edit-btn" variant="outline-secondary" size="sm" onClick={() => onClickEdit()}>
+                  <Button
+                    className="card-btn edit-btn"
+                    variant="outline-secondary"
+                    size="sm"
+                    onClick={() => onClickEdit(id)}
+                  >
                     Edit
                   </Button>
                 </Col>
