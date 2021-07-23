@@ -6,8 +6,15 @@ import {FormHelperText, IconButton, Input, InputAdornment, InputLabel} from "@ma
 import PersonIcon from '@material-ui/icons/Person';
 import {Link} from "react-router-dom";
 import GroceryBag from "../assets/images/grocery-bag-5.png";
+import {useDispatch} from "react-redux";
+import {bindActionCreators} from "redux";
+import {UserActionCreator} from "../state";
+import {NavLink} from "react-router-dom";
 
 const Registration: React.FC = () => {
+  const dispatch = useDispatch();
+  const {CreateUser} = bindActionCreators(UserActionCreator, dispatch);
+
   const [newUserName, setNewUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userMobile, setUserMobile] = useState('');
@@ -69,7 +76,16 @@ const Registration: React.FC = () => {
   };
 
   const createNewUser = () => {
+    if((newUserName == "") || (userEmail == "") || (userPwd == "") || (userMobile.length < 9))
     return;
+
+    CreateUser({
+      name: newUserName,
+      email: userEmail,
+      mobile: userMobile,
+      password: userPwd,
+      address: null
+    });
   }
 
   return (
@@ -187,9 +203,11 @@ const Registration: React.FC = () => {
                 </Grid>
               </Col>
               <Col className="my-3 text-center">
-                <Button className="login-button rounded-pill" type="submit">
-                  Sign Up
-                </Button>
+                <NavLink to="/Login">
+                  <Button className="login-button rounded-pill" type="submit">
+                    Sign Up
+                  </Button>
+                </NavLink>
               </Col>
               <Col xs={12} className="my-3">
                 <p className="text-center">Already have an account? <Link to="/Login">Sign In</Link></p>
