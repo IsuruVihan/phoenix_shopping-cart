@@ -24,15 +24,22 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
           <Row className="mx-lg-4 mx-0 px-4">
             {(Products.length > 0) ? Products.map((p) => {
               return (
-                <ProductCard
-                  key={count}
-                  id={count++}
-                  onClickEdit={onClickEdit}
-                  name={p.name}
-                  crossedPrice={p.crossedPrice}
-                  sellPrice={p.price}
-                  category={p.category}
-                />
+                <React.Fragment>
+                  {
+                    (p.category === "grocery")?
+                      <ProductCard
+                        key={count}
+                        id={count++}
+                        onClickEdit={onClickEdit}
+                        name={p.name}
+                        crossedPrice={p.crossedPrice}
+                        sellPrice={p.price}
+                        category={p.category}
+                      />  : null
+                  }
+                </React.Fragment>
+
+
               );
             }) : <NoProductsAvailable />}
           </Row>
