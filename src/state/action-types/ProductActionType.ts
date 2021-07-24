@@ -1,5 +1,5 @@
 export enum ProductActionType {
-  ADD = "add",
-  REMOVE = "remove",
-  UPDATE = "update"
+  ADD = "add-product",
+  REMOVE = "remove-product",
+  UPDATE = "update-product"
 }

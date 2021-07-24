@@ -1,5 +1,5 @@
 export enum UserActionType {
-    CREATE = "add",
-    DELETE = "delete",
-    UPDATE = "update"
+    CREATE = "add-user",
+    DELETE = "delete-user",
+    UPDATE = "update-user"
 }
