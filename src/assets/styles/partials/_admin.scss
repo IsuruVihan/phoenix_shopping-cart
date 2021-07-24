@@ -1,6 +1,16 @@
 @import "../variables";
 
 .admin {
+  .nav-pills .nav-link {
+    color: #157347;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: white;
+    border: 2px solid #157347;
+    font-weight: 500;
+  }
+
   .products {
     border: 1px solid lightgray;
     border-radius: 5px;
