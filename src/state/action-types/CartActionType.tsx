@@ -1,5 +1,5 @@
 export enum CartActionType {
-  ADD = "add",
-  REMOVE = "remove",
-  UPDATE = "update"
+  ADD = "add-cart-item",
+  REMOVE = "remove-cart-item",
+  UPDATE = "update-cart-item"
 }
