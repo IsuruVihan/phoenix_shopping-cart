@@ -24,6 +24,7 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
 
   const dispatch = useDispatch();
   const Products = useSelector((state: State) => state.Products);
+  const CartItems = useSelector((state: State) => state.Cart);
 
   useEffect(() => {
     Products.map((p) => {
@@ -103,6 +104,8 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
         <Row className={(Products.length > 0) ? "mx-xl-4 mx-lg-4 mx-0" : "mx-xl-4 mx-lg-4 mx-0 px-3"}>
           {(Products.length > 0) ? Products.map((p) => {
             if (p.category === categoryName) {
+              const inCartItem: any = CartItems.find(item => item.name==p.name);
+              const inCartQty: number = inCartItem === undefined ? 0 : inCartItem.qty;
               return (
                 <ProductCard
                   key={productId}
@@ -112,6 +115,7 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
                   price={p.price}
                   crossedPrice={p.crossedPrice}
                   category={p.category}
+                  inCartQty={inCartQty}
                 />
               );
             }
