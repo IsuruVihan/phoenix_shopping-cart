@@ -5,7 +5,7 @@ import TableHeaderRow from "./TableHeaderRow";
 import EmptyCart from "./EmptyCart";
 import {IOrderItem} from "../../../Types/CartTypes";
 import {useDispatch, useSelector} from "react-redux";
-import {ProductActionCreator, State} from "../../../state";
+import {CartActionCreator, State} from "../../../state";
 import {CartItem} from "../../../state/state-interfaces/CartItem";
 import {bindActionCreators} from "redux";
 
@@ -19,17 +19,21 @@ const TableBody: FC = () => {
 
   const cartData = useSelector((state: State) => state.Cart);
   const dispatch = useDispatch();
+  const {RemoveItem} = bindActionCreators(CartActionCreator, dispatch);
+  const {IncrementQty} = bindActionCreators(CartActionCreator, dispatch);
+  const {DecrementQty} = bindActionCreators(CartActionCreator, dispatch);
 
   const handleOnItemRemoveClick = (orderItemIndex: number) => {
-    alert("Remove clicked - Item " + orderItemIndex);
+    RemoveItem(orderItemIndex);
+    alert(`Item ${orderItemIndex} removed`);
   }
 
   const handleOnItemQtyIncrementClick = (orderItemIndex: number) => {
-    alert("Increment qty clicked - Item " + orderItemIndex);
+    IncrementQty(orderItemIndex);
   }
 
   const handleOnItemQtyDecrementClick = (orderItemIndex: number) => {
-    alert("Decrement qty clicked - Item " + orderItemIndex);
+    DecrementQty(orderItemIndex);
   }
 
   const renderOrderItems = () => {

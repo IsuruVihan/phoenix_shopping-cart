@@ -19,4 +19,14 @@ interface UpdateQtyAction {
   }
 }
 
-export type CartAction = AddAction | RemoveAction | UpdateQtyAction;
+interface incrementQtyAction {
+  type: CartActionType.INCREMENT,
+  payload: number
+}
+
+interface decrementQtyAction {
+  type: CartActionType.DECREMENT,
+  payload: number
+}
+
+export type CartAction = AddAction | RemoveAction | UpdateQtyAction | incrementQtyAction | decrementQtyAction;

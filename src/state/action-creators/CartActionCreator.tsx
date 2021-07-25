@@ -29,3 +29,21 @@ export const UpdateItem = (itemIndex: number, updatedQty: number) => {
     });
   }
 }
+
+export const IncrementQty = (cartItemIndex: number) => {
+  return(dispatch: Dispatch<CartAction>) => {
+    dispatch({
+      type: CartActionType.INCREMENT,
+      payload: cartItemIndex
+    })
+  }
+}
+
+export const DecrementQty = (cartItemIndex: number) => {
+  return(dispatch: Dispatch<CartAction>) => {
+    dispatch({
+      type: CartActionType.DECREMENT,
+      payload: cartItemIndex
+    })
+  }
+}
