@@ -15,8 +15,18 @@ interface UpdateQtyAction {
   type: CartActionType.UPDATE,
   payload: {
     itemIndex: number,
-    updateQtyBy: number
+    updatedQty: number
   }
 }
 
-export type CartAction = AddAction | RemoveAction | UpdateQtyAction;
+interface incrementQtyAction {
+  type: CartActionType.INCREMENT,
+  payload: number
+}
+
+interface decrementQtyAction {
+  type: CartActionType.DECREMENT,
+  payload: number
+}
+
+export type CartAction = AddAction | RemoveAction | UpdateQtyAction | incrementQtyAction | decrementQtyAction;

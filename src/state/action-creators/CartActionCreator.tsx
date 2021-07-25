@@ -21,11 +21,29 @@ export const RemoveItem = (itemIndex: number) => {
   }
 }
 
-export const UpdateItem = (itemIndex: number, updateQtyBy: number) => {
+export const UpdateItem = (itemIndex: number, updatedQty: number) => {
   return (dispatch: Dispatch<CartAction>) => {
     dispatch({
       type: CartActionType.UPDATE,
-      payload: {itemIndex, updateQtyBy}
+      payload: {itemIndex, updatedQty}
     });
+  }
+}
+
+export const IncrementQty = (cartItemIndex: number) => {
+  return(dispatch: Dispatch<CartAction>) => {
+    dispatch({
+      type: CartActionType.INCREMENT,
+      payload: cartItemIndex
+    })
+  }
+}
+
+export const DecrementQty = (cartItemIndex: number) => {
+  return(dispatch: Dispatch<CartAction>) => {
+    dispatch({
+      type: CartActionType.DECREMENT,
+      payload: cartItemIndex
+    })
   }
 }
