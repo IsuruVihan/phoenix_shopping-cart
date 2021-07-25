@@ -1,5 +1,8 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Button, Card, Col, Form, Image, Row} from "react-bootstrap";
+import {useDispatch} from "react-redux";
+import {bindActionCreators} from "redux";
+import { CartActionCreator } from '../../state';
 
 type ProductCardProps = {
   id: number,
@@ -7,18 +10,45 @@ type ProductCardProps = {
   name: string,
   price: string,
   crossedPrice: string,
-  category: string
+  category: string,
+  inCartQty: number
   // addToCart: (id: number) => void
 };
 
 const ProductCard: FC<ProductCardProps> = (props) => {
-  const {id, imgSrc, name, price, crossedPrice, category} = props;
+  const {id, imgSrc, name, price, crossedPrice, category, inCartQty} = props;
+
+  const dispatch = useDispatch();
+  const {AddItem} = bindActionCreators(CartActionCreator, dispatch);
+  const {UpdateItem} = bindActionCreators(CartActionCreator, dispatch);
 
   const [isFocused,setIsFocused] = useState(false);
   const [cardQty,setCardQty] = useState(1);
 
+  useEffect(()=>{
+    if(inCartQty > 0){
+      setCardQty(inCartQty);
+      setIsFocused(true);
+    }
+  }, [])
+
   const handleAddToCartClick = () => {
     setIsFocused(true);
+
+    AddItem({
+      picSrc: imgSrc,
+      name: name,
+      qty: cardQty,
+      unitPrice: price,
+      amount: (parseFloat(price)*cardQty).toString()
+    });
+
+  }
+
+  const handleUpdateClick = () => {
+    alert(cardQty);
+    UpdateItem(id, cardQty);
+
   }
 
   const handleQtyChange = (value:string) => {
@@ -62,7 +92,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
             </Col>
             <Col className="col-7 px-0" lg={7} md={7} sm={12} xs={12}>
               <Button
-                onClick={handleAddToCartClick}
+                onClick={isFocused ? handleUpdateClick : handleAddToCartClick}
                 className= {isFocused ?
                   "add-btn-update my-1 py-1 px-3 my-sm-2":"add-btn my-1 py-1 px-3 my-sm-2 "
                 }
