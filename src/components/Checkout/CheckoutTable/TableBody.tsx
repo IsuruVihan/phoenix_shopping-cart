@@ -4,6 +4,10 @@ import TableItemRow from "./TableItemRow";
 import TableHeaderRow from "./TableHeaderRow";
 import EmptyCart from "./EmptyCart";
 import {IOrderItem} from "../../../Types/CartTypes";
+import {useDispatch, useSelector} from "react-redux";
+import {ProductActionCreator, State} from "../../../state";
+import {CartItem} from "../../../state/state-interfaces/CartItem";
+import {bindActionCreators} from "redux";
 
 const TableBody: FC = () => {
   const itemData: IOrderItem[] = [
@@ -12,6 +16,9 @@ const TableBody: FC = () => {
     {image: 'steak-with-mushrooms.webp', name: 'Mushrooms', qty: 2, unitPrice: 250},
     {image: 'creamy_cheese_sausage_pizza.webp', name: 'Pizza', qty: 1, unitPrice: 750},
   ]
+
+  const cartData = useSelector((state: State) => state.Cart);
+  const dispatch = useDispatch();
 
   const handleOnItemRemoveClick = (orderItemIndex: number) => {
     alert("Remove clicked - Item " + orderItemIndex);
@@ -29,8 +36,8 @@ const TableBody: FC = () => {
     if (itemData.length === 0) {
       return <EmptyCart/>
     }
-    return itemData.map((orderItem: IOrderItem, index: number) => {
-      return <TableItemRow key={index} orderItemIndex={index} orderItem={orderItem}
+    return cartData.map((cartItem: CartItem, index: number) => {
+      return <TableItemRow key={index} cartItemIndex={index} cartItem={cartItem}
                            onItemRemoveClick={handleOnItemRemoveClick}
                            onItemQtyIncrementClick={handleOnItemQtyIncrementClick}
                            onItemQtyDecrementClick={handleOnItemQtyDecrementClick}/>
