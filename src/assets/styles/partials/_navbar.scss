@@ -172,6 +172,11 @@
         font-size: 0.7em;
       }
 
+      a.dropdown-item:active, .dropdown-item.active, .dropdown-item:active {
+        background: $primary-colour;
+        color: white;
+      }
+
       .btn a {
         color: inherit;
       }
@@ -179,6 +184,10 @@
       .btn:hover a {
         color: white;
       }
+    }
+
+    .navbar-nav .dropdown .dropdown-menu {
+      margin-left: -5px;
     }
 
 
