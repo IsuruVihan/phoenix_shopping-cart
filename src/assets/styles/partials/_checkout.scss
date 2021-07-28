@@ -315,8 +315,7 @@
   .checkout-footer {
     background-color: $checkout-footer-background-color;
     color: white;
-    margin-left: -50px;
-    margin-right: -50px;
+    width: 100%;
 
     .discount-coupon-text {
       font-size: 0.9em;
@@ -516,9 +515,5 @@
   .header-row, .checkout-table, .quit-checkout {
     margin-left: 8.8em !important;
     margin-right: 8.8em !important;
-  }
-
-  .checkout-footer {
-    margin: auto 0;
   }
 }

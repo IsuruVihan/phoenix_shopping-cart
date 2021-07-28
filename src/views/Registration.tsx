@@ -76,7 +76,7 @@ const Registration: React.FC = () => {
   };
 
   const createNewUser = () => {
-    if((newUserName == "") || (userEmail == "") || (userPwd == "") || (userMobile.length < 9))
+    if((newUserName === "") || (userEmail === "") || (userPwd === "") || (userMobile.length < 9))
     return;
 
     CreateUser({
