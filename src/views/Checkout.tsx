@@ -10,7 +10,7 @@ const Checkout: FC = () => {
     window.scrollTo(0, 0)
   }, [])
   return (
-    <Container fluid className="checkout px-xl-5 pt-5">
+    <Container fluid className="checkout mx-0 px-0">
       <Header/>
       <CheckoutTable/>
       <QuitCheckout />
