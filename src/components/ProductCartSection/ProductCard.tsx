@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Button, Card, Col, Form, Image, Row} from "react-bootstrap";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {bindActionCreators} from "redux";
-import { CartActionCreator } from '../../state';
+import {CartActionCreator, State} from '../../state';
 
 type ProductCardProps = {
   id: number,
@@ -18,19 +18,20 @@ type ProductCardProps = {
 const ProductCard: FC<ProductCardProps> = (props) => {
   const {id, imgSrc, name, price, crossedPrice, category, inCartQty} = props;
 
+  const cartData = useSelector((state: State) => state.Cart);
   const dispatch = useDispatch();
   const {AddItem} = bindActionCreators(CartActionCreator, dispatch);
   const {UpdateItem} = bindActionCreators(CartActionCreator, dispatch);
 
-  const [isFocused,setIsFocused] = useState(false);
-  const [cardQty,setCardQty] = useState(1);
+  const [isFocused, setIsFocused] = useState(false);
+  const [cardQty, setCardQty] = useState(1);
 
-  useEffect(()=>{
-    if(inCartQty > 0){
+  useEffect(() => {
+    if (inCartQty > 0) {
       setCardQty(inCartQty);
       setIsFocused(true);
     }
-  }, [])
+  },[])
 
   const handleAddToCartClick = () => {
     setIsFocused(true);
@@ -40,7 +41,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
       name: name,
       qty: cardQty,
       unitPrice: price,
-      amount: (parseFloat(price)*cardQty).toString()
+      amount: (parseFloat(price) * cardQty).toString()
     });
 
   }
@@ -51,12 +52,12 @@ const ProductCard: FC<ProductCardProps> = (props) => {
 
   }
 
-  const handleQtyChange = (value:string) => {
+  const handleQtyChange = (value: string) => {
     setCardQty(parseInt(value));
   }
 
   return (
-    <Col lg={3} md={4} sm={6} xs={6}  className="px-0 mx-0">
+    <Col lg={3} md={4} sm={6} xs={6} className="px-0 mx-0">
       <Card className="item-card text-center my-2 mx-3 px-0">
         <Row className="text-center py-0">
           <Col className="p-0">
@@ -80,25 +81,25 @@ const ProductCard: FC<ProductCardProps> = (props) => {
               </Row>
             </Col>
           </Row>
-          <Row className="py-1" >
+          <Row className="py-1">
             <Col className="col-5 " lg={5} md={5} sm={12} xs={12}>
               <Form.Control
                 className="item-input py-2 px-2"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleQtyChange(event.target.value)}
                 type="number"
-                min = "1"
+                min="1"
                 value={cardQty}
               />
             </Col>
             <Col className="col-7 px-0" lg={7} md={7} sm={12} xs={12}>
               <Button
                 onClick={isFocused ? handleUpdateClick : handleAddToCartClick}
-                className= {isFocused ?
-                  "add-btn-update my-1 py-1 px-3 my-sm-2":"add-btn my-1 py-1 px-3 my-sm-2 "
+                className={isFocused ?
+                  "add-btn-update my-1 py-1 px-3 my-sm-2" : "add-btn my-1 py-1 px-3 my-sm-2 "
                 }
               >
                 <label className="add-btn-text">
-                  {isFocused ? "Update": "Add to Cart"}
+                  {isFocused ? "Update" : "Add to Cart"}
                 </label>
               </Button>
             </Col>

@@ -1,9 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Col, Row} from "react-bootstrap";
 import ProductCard from "./ProductCard";
-import {useDispatch, useSelector} from "react-redux";
-import {bindActionCreators} from "redux";
-import {ProductActionCreator, State} from "../../state";
+import {useSelector} from "react-redux";
+import {State} from "../../state";
 import NoProductsAvailable from "../Admin/Products/NoProductsAvailable";
 
 type productCardTypes = {
@@ -22,7 +21,6 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
   const [previewSource, setPreviewSource] = useState<string | null>();
   const [fileInputState, setFileInputState] = useState('');
 
-  const dispatch = useDispatch();
   const Products = useSelector((state: State) => state.Products);
   const CartItems = useSelector((state: State) => state.Cart);
 
@@ -37,8 +35,9 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
 
   const renderEmptyNanner = () => {
     if ((categoryName === "Grocery" && groceryEmpty) || (categoryName === "Food" && foodEmpty) ||
-        (categoryName === "Pharmacy" && pharmacyEmpty) || (categoryName === "Electronic" && electronicEmpty) ) {
-      return(<NoProductsAvailable />)}
+      (categoryName === "Pharmacy" && pharmacyEmpty) || (categoryName === "Electronic" && electronicEmpty)) {
+      return (<NoProductsAvailable/>)
+    }
   }
 
   const handleReceiptUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -104,7 +103,7 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
         <Row className={(Products.length > 0) ? "mx-xl-4 mx-lg-4 mx-0" : "mx-xl-4 mx-lg-4 mx-0 px-3"}>
           {(Products.length > 0) ? Products.map((p) => {
             if (p.category === categoryName) {
-              const inCartItem: any = CartItems.find(item => item.name==p.name);
+              const inCartItem: any = CartItems.find(item => item.name === p.name);
               const inCartQty: number = inCartItem === undefined ? 0 : inCartItem.qty;
               return (
                 <ProductCard

@@ -40,6 +40,10 @@
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
 
         .item-list {
+          max-height: 40vh;
+          overflow-x: hidden;
+          overflow-y: auto;
+
           .item {
             .info {
               font-size: 0.7em;
@@ -49,6 +53,9 @@
               }
 
               .item-price {
+                .cents {
+                  font-size: 0.8em;
+                }
                 color: $primary-colour;
               }
 
@@ -140,12 +147,13 @@
 
         .count-value {
           text-align: center;
+          width: 100%;
           position: absolute;
           font-weight: bold;
           font-size: 0.72rem;
           color: white;
           margin-top: 2px;
-          margin-left: -4px;
+          margin-left: -9px;
           cursor: pointer;
         }
       }
