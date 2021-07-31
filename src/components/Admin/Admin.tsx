@@ -8,7 +8,7 @@ const Admin: FC = () => {
     <Container className="admin pt-sm-5 pb-5">
       <Tab.Container id="left-tabs-example" defaultActiveKey="products">
         <Row>
-          <Col sm={2}>
+          <Col md={2} sm={12} xs={12}>
             <Nav variant="pills" className="flex-column">
               <Nav.Item className="text-center nav-item">
                 <Nav.Link eventKey="products">Products</Nav.Link>
@@ -18,7 +18,7 @@ const Admin: FC = () => {
               </Nav.Item>
             </Nav>
           </Col>
-          <Col sm={10}>
+          <Col md={10} sm={12} xs={12}>
             <Tab.Content>
               <Tab.Pane eventKey="products">
                 <Products />
