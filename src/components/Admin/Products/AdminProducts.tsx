@@ -26,7 +26,7 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
               return (
                 <React.Fragment>
                   {
-                    (p.category === "grocery")?
+                    // (p.category === "grocery")?
                       <ProductCard
                         key={count}
                         id={count++}
@@ -35,7 +35,8 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
                         crossedPrice={p.crossedPrice}
                         sellPrice={p.price}
                         category={p.category}
-                      />  : null
+                      />
+                    // : null
                   }
                 </React.Fragment>
 
