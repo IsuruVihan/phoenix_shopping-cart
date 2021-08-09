@@ -19,7 +19,7 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
   const [electronicEmpty, setElectronicEmpty] = useState<boolean>(true);
 
   const [previewSource, setPreviewSource] = useState<string | null>();
-  const [fileInputState, setFileInputState] = useState('');
+  const [fileInputState] = useState('');
 
   const Products = useSelector((state: State) => state.Products);
   const CartItems = useSelector((state: State) => state.Cart);
@@ -59,6 +59,16 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
     }
   }
 
+  const allowDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
+
+  const dropHandler = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    previewFile(file);
+  };
+
   return (
     <Row className="mx-0 pt-4">
       <Col xl={12} sm={12} xs={12} className="product-cards-selection  px-0">
@@ -76,7 +86,10 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
                     <label className="btn-medi" style={{cursor: "pointer"}}>
                       Drag 'N' Drop Order / Prescription Here, Or Click To Select Files
                     </label>
-                    <input type="file" value={fileInputState} onChange={handleReceiptUpload} name="image"/>
+                    <input type="file" value={fileInputState}
+                           onDragOver={allowDrop}
+                           onDrop={dropHandler}
+                           onChange={handleReceiptUpload} name="image"/>
                   </div>
                 </Row>
               </Col>
