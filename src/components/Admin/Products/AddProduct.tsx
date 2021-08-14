@@ -4,9 +4,9 @@ import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
 import Preview from "./Preview";
 import vegiPic from "../../../assets/images/vegi.webp";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
-import {ProductActionCreator, State} from "../../../state";
+import {ProductActionCreator} from "../../../state";
 
 type AddProductProps = {
   cancel: () => void
@@ -29,7 +29,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
   const [imgSrc, setImgSrc] = useState<string>(vegiPic);
   const [crossPrice, setCrossPrice] = useState<string>("");
   const [sellPrice, setSellPrice] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
+  const [category, setCategory] = useState<{value: string, label: string}>(categoryList[0]);
 
   const handleOnClickCreateBtn = (event: React.FormEvent) => {
     event.preventDefault();
@@ -44,7 +44,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
       name: name,
       crossedPrice: crossPrice,
       price: sellPrice,
-      category: category
+      category: category.value
     });
 
     cancel();
@@ -60,7 +60,21 @@ const AddProduct: FC<AddProductProps> = (props) => {
   const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(event.target.value);
   const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(event.target.value);
   const handleOnChangeCategory = (item: any) => {
-    setCategory(item.value);
+    let productCategory: { label: string; value: string };
+    switch (item.value) {
+      case "Pharmacy":
+        productCategory = {value: "Pharmacy", label: "Pharmacy"};
+        break;
+      case "Food":
+        productCategory = {value: "Food", label: "Food"};
+        break;
+      case "Electronic":
+        productCategory = {value: "Electronic", label: "Electronic"};
+        break;
+      default:
+        productCategory = {value: "Grocery", label: "Grocery"};
+    }
+    setCategory(productCategory);
   }
 
   const [validated, setValidated] = useState<boolean>(false);
