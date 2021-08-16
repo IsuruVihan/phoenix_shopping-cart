@@ -28,7 +28,7 @@ const Products: FC = () => {
   return (
     <Container className="products p-2" fluid>
       <Row className="mx-0">
-        <Col className="title text-center" xs={12}>
+        <Col className="title text-center" id="admin-products" xs={12}>
           Your Products
         </Col>
         <Col xs={12}>

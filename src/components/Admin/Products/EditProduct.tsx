@@ -7,6 +7,7 @@ import vegiPic from "../../../assets/images/vegi.webp";
 import {useDispatch, useSelector} from "react-redux";
 import {ProductActionCreator, State} from "../../../state";
 import {bindActionCreators} from "redux";
+import Scroll from "react-scroll";
 
 type EditProductTypes = {
   editProductId: number,
@@ -79,7 +80,15 @@ const EditProduct: FC<EditProductTypes> = (props) => {
         category: category.value
       });
 
+    handleOnClickCancel();
+  }
+
+  const handleOnClickCancel = () => {
     cancel();
+    Scroll.scroller.scrollTo("admin-products", {
+      smooth: false,
+      offset: -140,
+    });
   }
 
   const [previewVisible, setPreviewVisible] = useState<boolean>(false);
@@ -116,7 +125,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
       <Row className="mx-0">
         <Col className="form px-0" lg={previewVisible ? 8 : 12} md={12}>
           <Row className="mx-0">
-            <Col className="px-0 pb-4 form-title" xs={12}>
+            <Col className="px-0 pb-4 form-title" id="edit-form" xs={12}>
               Edit Product
             </Col>
             <Col className="px-0 form-body text-start" xs={12}>
@@ -251,7 +260,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
                       variant="secondary"
                       className="ms-2"
                       size="sm"
-                      onClick={() => cancel()}
+                      onClick={() => handleOnClickCancel()}
                     >
                       Cancel
                     </Button>
