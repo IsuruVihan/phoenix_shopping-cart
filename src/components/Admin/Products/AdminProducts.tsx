@@ -4,6 +4,7 @@ import ProductCard from "./ProductCard";
 import {Scrollbars} from 'react-custom-scrollbars';
 import {useSelector} from "react-redux";
 import {State} from "../../../state";
+import {Product} from "../../../state/state-interfaces/Product";
 import NoProductsAvailable from './NoProductsAvailable';
 import CategoryDropdown from "./CategoryDropdown";
 
@@ -15,29 +16,18 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
   const {onClickEdit} = props;
 
   const Products = useSelector((state: State) => state.Products);
-  const [visibleProducts, setVisibleProducts] = useState<JSX.Element[]>([]);
+  const [visibleProducts, setVisibleProducts] = useState<Product[]>([]);
+  let count: number = 0;
 
   const handleOnSelectCategory = (category: string) => {
-    let count: number = 0;
-    let products: JSX.Element[] = [];
-    let product: JSX.Element;
+    let selectedProducts: Product[] = [];
 
-    Products.map((p) => {
-      if (category === "All" || p.category === category) {
-        product = <ProductCard
-          key={count}
-          id={count++}
-          onClickEdit={onClickEdit}
-          name={p.name}
-          crossedPrice={p.crossedPrice}
-          sellPrice={p.price}
-          category={p.category}
-        />;
-        products.push(product);
-      }
-      setVisibleProducts(products);
+    Products.map((product) => {
+      if (product.category == category || category == "All")
+        selectedProducts.push(product);
     });
-    console.log("Hello");
+
+    setVisibleProducts(selectedProducts);
   }
 
   return (
@@ -49,8 +39,16 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
         <Scrollbars style={(Products.length > 0) ? {width: '100%', height: '31em'} : {width: '100%', height: '12em'}}>
           <Row className="mx-lg-4 mx-0 px-4">
             {
-              (visibleProducts.length) > 0 ? visibleProducts.map((p) => {
-                return p;
+              (visibleProducts.length > 0) ? visibleProducts.map((p) => {
+                return <ProductCard
+                  key={count}
+                  id={count++}
+                  onClickEdit={onClickEdit}
+                  name={p.name}
+                  crossedPrice={p.crossedPrice}
+                  sellPrice={p.price}
+                  category={p.category}
+                />;
               }) : <NoProductsAvailable />
             }
           </Row>

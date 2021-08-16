@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import customStyles2 from "../../../assets/styles/partials/customStyles2";
 import Select from "react-select";
 
@@ -16,8 +16,6 @@ const CategoryDropdown: FC<CategoryDropdownProps> = (props) => {
     {value: 'Food', label: 'Food'},
     {value: 'Electronic', label: 'Electronic'}
   ];
-
-  const [category, setCategory] = useState<string>(categoryList[0].value);
 
   const handleOnChangeCategory = (item: any) => {
     let productCategory: string;
@@ -37,8 +35,7 @@ const CategoryDropdown: FC<CategoryDropdownProps> = (props) => {
       default:
         productCategory = "All";
     }
-    setCategory(productCategory);
-    selectedCategory(category);
+    selectedCategory(productCategory);
   }
 
   return (
