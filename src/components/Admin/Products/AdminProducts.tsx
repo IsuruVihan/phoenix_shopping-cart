@@ -39,8 +39,6 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
                     // : null
                   }
                 </React.Fragment>
-
-
               );
             }) : <NoProductsAvailable />}
           </Row>
