@@ -2,9 +2,8 @@ import React, {FC} from 'react';
 import {Col, Image, Row} from 'react-bootstrap';
 import EmptyCart from "./EmptyCart";
 import {ICheckoutTableRow} from "../../../Types/CartTypes";
-import {useDispatch, useSelector} from "react-redux";
-import {CartActionCreator, State} from "../../../state";
-import {bindActionCreators} from "redux";
+import {useSelector} from "react-redux";
+import {State} from "../../../state";
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import ItemQtyButton from "../../Common/ItemQtyButton";
@@ -23,13 +22,6 @@ const TableBody: FC = () => {
   // ]
 
   const cartData = useSelector((state: State) => state.Cart);
-  const dispatch = useDispatch();
-  const {RemoveItem} = bindActionCreators(CartActionCreator, dispatch);
-
-  const handleOnItemRemoveClick = (orderItemIndex: number) => {
-    RemoveItem(orderItemIndex);
-    alert(`Item ${orderItemIndex} removed`);
-  }
 
   const renderOrdersTable = () => {
     return (
@@ -63,7 +55,7 @@ const TableBody: FC = () => {
           prefix={'Rs. '}
           renderText={FormattedPriceValue}
         />,
-        deleteBtn: <ItemDeleteButton orderItemIndex={index} onItemRemoveClick={handleOnItemRemoveClick}/>
+        deleteBtn: <ItemDeleteButton orderItemIndex={index}/>
       };
       return itemRow;
     });
