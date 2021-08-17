@@ -25,25 +25,14 @@ const TableBody: FC = () => {
   const cartData = useSelector((state: State) => state.Cart);
   const dispatch = useDispatch();
   const {RemoveItem} = bindActionCreators(CartActionCreator, dispatch);
-  const {IncrementQty} = bindActionCreators(CartActionCreator, dispatch);
-  const {DecrementQty} = bindActionCreators(CartActionCreator, dispatch);
 
   const handleOnItemRemoveClick = (orderItemIndex: number) => {
     RemoveItem(orderItemIndex);
     alert(`Item ${orderItemIndex} removed`);
   }
 
-  const handleOnItemQtyIncrementClick = (orderItemIndex: number) => {
-    IncrementQty(orderItemIndex);
-  }
-
-  const handleOnItemQtyDecrementClick = (orderItemIndex: number) => {
-    DecrementQty(orderItemIndex);
-  }
-
   const renderOrdersTable = () => {
     return (
-
       <BootstrapTable keyField='key' data={tableRows} columns={tableColumns}
                       pagination={paginationFactory(options)}
                       bordered={false} wrapperClasses="react-bootstrap-table table-responsive"
@@ -59,9 +48,7 @@ const TableBody: FC = () => {
         key: index + 1,
         image: <Image src={cartItem.picSrc} rounded width="36%"/>,
         name: cartItem.name,
-        qty: <ItemQtyButton orderItemIndex={index} qtyValue={cartItem.qty}
-                            onItemQtyIncrementClick={handleOnItemQtyIncrementClick}
-                            onItemQtyDecrementClick={handleOnItemQtyDecrementClick}/>,
+        qty: <ItemQtyButton orderItemIndex={index} qtyValue={cartItem.qty}/>,
         unitPrice: <NumberFormat
           value={cartItem.unitPrice}
           displayType={'text'}
