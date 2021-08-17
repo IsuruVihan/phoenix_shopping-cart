@@ -9,8 +9,9 @@ const Checkout: FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
   return (
-    <Container fluid className="checkout mx-0 px-0">
+    <Container className="checkout">
       <Header/>
       <CheckoutTable/>
       <QuitCheckout />
