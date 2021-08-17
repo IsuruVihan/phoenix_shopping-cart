@@ -1,11 +1,15 @@
 import React, {FC} from 'react';
-import {Col} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 
 const TableHeading: FC = () => {
   return (
-    <Col className="table-title px-0 pb-3" xs={12}>
-      Shopping Cart
-    </Col>
+    <Row className="m-0 p-0">
+      <Col className="table-title p-0 m-3 mb-2" xs={12}>
+        <h5>
+          Shopping Cart
+        </h5>
+      </Col>
+    </Row>
   );
 }
 
