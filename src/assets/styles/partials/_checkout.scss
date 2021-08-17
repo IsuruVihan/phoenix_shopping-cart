@@ -12,12 +12,12 @@
 
       .back-btn-col {
         .back-btn {
-          font-size: 12px;
-          height: 30px;
+          font-size: 0.8rem;
+          width: 100%;
           border-radius: 50px;
 
           .back-icon {
-            width: 10px;
+            width: 14px;
           }
 
           &:hover {
@@ -29,106 +29,100 @@
     }
   }
 
-  .checkout-table {
+  .empty-cart {
+    font-size: 1.3em;
+    font-weight: lighter;
+  }
+
+  .order-items-card {
     border: 1px solid lightgrey;
     border-radius: 5px;
 
-    td {
-      padding: 0.3em;
-      color: $table_font_color;
+    .react-bootstrap-table .table-responsive {
+      table-layout: auto;
     }
 
-    .table-title {
-      font-size: 0.9em;
-      font-weight: 500;
-    }
+    .item-table {
+      font-size: 0.8rem;
 
-    .table-col {
-      margin-bottom: 1em;
+      tr {
+        border-bottom: 1px solid #dee2e6;
+      }
 
-      .table {
+      thead th {
+        font-size: 0.9em;
+        text-align: center;
+        border-style: none;
+      }
 
-        .headings-container {
-          .headings {
-            font-size: 0.8em;
-
-            .id-column {
-              width: 24px;
-            }
-
-            .black-arrow {
-              font-weight: 600;
-              color: $sort_arrow_black_color;
-            }
-
-            .grey-arrow {
-              color: $sort_arrow_grey_color;
-            }
-
-            .last-arrow {
-              margin-left: -5px;
-            }
-          }
+      thead tr > {
+        :first-child {
+          width: 2em;
         }
 
-        .data-container {
-          .item-row {
-            font-size: 0.82em;
-            vertical-align: middle;
-            border-bottom: 1px solid $order_item_table_border_color;
+        :last-child {
+          width: 3em;
+        }
 
-            .item-id {
-              font-weight: 700;
-            }
+        :nth-child(2) {
+          width: 19em;
+        }
 
-            .item-name {
-              font-weight: 500;
-            }
+        :nth-child(3) {
+          width: 21em;
+          text-align: left;
+        }
 
-            .cents {
-              font-size: 0.8em;
-            }
+        :nth-child(4) {
+          width: 12em;
+        }
 
-            .item-delete-btn {
-              font-size: 1.2em;
-              cursor: pointer;
-            }
-          }
+        :nth-child(5) {
+          width: 16em;
+        }
+
+        :nth-child(6) {
+          width: 16em;
         }
       }
-    }
 
-    .dropdown {
-      .dropdown-btn {
-        .dropdown-option {
-          font-weight: 600;
-          font-size: 12px;
+      tbody td {
+        text-align: center;
+        font-size: 1em;
+        font-weight: 500;
+        vertical-align: middle;
+        padding: 0.3em;
+        color: $table_font_color;
+      }
+
+      tbody tr > {
+        :first-child {
+          font-weight: bold;
+        }
+
+        :nth-child(3) {
+          text-align: left;
         }
       }
     }
 
-    .results-text {
-      font-size: 0.95em;
-      color: $show_results_grey_color;
-      vertical-align: middle;
-    }
-
-    .pagination-btn {
-      background: none;
-      color: $pagination_btn_font_color;
-      border-color: $pagination_btn_border_color;
-
-      .pagination-btn-txt {
-        border-bottom: 1px solid white;
+    .react-bootstrap-table-pagination {
+      .react-bootstrap-table-pagination-total {
+        margin-left: 1em;
       }
 
-      &:hover {
-        background: $pagination_btn_hover_color;
-      }
+      .pagination {
+        justify-content: flex-end;
 
-      &:focus {
-        background: $selected_pagination_btn_bgcolor;
-        color: white;
+        .page-item .page-link {
+          color: $pagination_btn_font_color;
+        }
+
+        .page-item.active .page-link {
+          color: $pagination_btn_hover_color;
+          background-color: $selected_pagination_btn_bgcolor;
+          border-color: $selected_pagination_btn_bgcolor;
+        }
       }
     }
 
@@ -327,11 +321,12 @@
 
     .click-here-btn {
       background-color: #f5cd79;
-      border: 0px;
+      border: 0;
       margin: 5px auto;
       font-weight: 700;
       padding: 0.2em 1.5em;
     }
+
     .click-here-btn:hover {
       color: #227093;
     }
@@ -390,7 +385,6 @@
       }
     }
 
-
     @-webkit-keyframes dash {
       0% {
         stroke-dashoffset: 1000;
@@ -430,7 +424,7 @@
 }
 
 @media screen and (max-width: 576px) {
-  .checkout-table, .quit-checkout {
+  .order-items-card, .quit-checkout {
     margin-left: 0.5em !important;
     margin-right: 0.5em !important;
   }
@@ -489,7 +483,7 @@
     }
   }
 
-  .checkout-table {
+  .order-items-card {
     .table-col {
       .headings-container {
         border-bottom: 1px solid $order_item_table_border_color;
@@ -512,8 +506,6 @@
 }
 
 @media screen and (min-width: 1200px) {
-  .header-row, .checkout-table, .quit-checkout {
-    margin-left: 8.8em !important;
-    margin-right: 8.8em !important;
+  .header-row, .order-items-card, .quit-checkout {
   }
 }
