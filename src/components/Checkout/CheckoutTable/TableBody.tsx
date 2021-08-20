@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Col, Image, Row} from 'react-bootstrap';
 import EmptyCart from "./EmptyCart";
-import {ICheckoutTableRow} from "../../../Types/CartTypes";
+import {ICheckoutTableRow} from "../../../types/CartTypes";
 import {useSelector} from "react-redux";
 import {State} from "../../../state";
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -14,12 +14,6 @@ import FormattedPriceValue from "../../Common/FormattedPriceValue";
 import TableSortArrows from "../../Common/TableSortArrows";
 
 const TableBody: FC = () => {
-  // const itemData: IOrderItem[] = [
-  //   {image: 'chicken-burger.webp', name: 'Burger', qty: 1, unitPrice: 385},
-  //   {image: 'ham-and-cheese-submarine.webp', name: 'Submarine', qty: 2, unitPrice: 390},
-  //   {image: 'steak-with-mushrooms.webp', name: 'Mushrooms', qty: 2, unitPrice: 250},
-  //   {image: 'creamy_cheese_sausage_pizza.webp', name: 'Pizza', qty: 1, unitPrice: 750},
-  // ]
 
   const cartData = useSelector((state: State) => state.Cart);
 
@@ -63,7 +57,6 @@ const TableBody: FC = () => {
 
   const tableRows = getTableRows();
 
-
   const tableColumns = [
     {
       dataField: 'key',
@@ -77,8 +70,6 @@ const TableBody: FC = () => {
       text: 'Name',
       sort: true,
       sortCaret: TableSortArrows
-
-
     }, {
       dataField: 'qty',
       text: 'Qty'
