@@ -4,6 +4,8 @@ import ProductCard from "./ProductCard";
 import {useSelector} from "react-redux";
 import {State} from "../../state";
 import NoProductsAvailable from "../Admin/Products/NoProductsAvailable";
+import {useQuery} from "@apollo/client";
+import {GET_ALL_PRODUCTS} from "../../data/queries";
 
 type productCardTypes = {
   categoryName: string
@@ -20,6 +22,18 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
 
   const [previewSource, setPreviewSource] = useState<string | null>();
   const [fileInputState] = useState('');
+
+  const { loading, data, error } = useQuery(
+      GET_ALL_PRODUCTS
+  );
+
+  if (loading) console.log('Loading...');
+  if (error) console.log(error);
+  if (!data) console.log('No data!');
+
+  console.log(data);
+
+
 
   const Products = useSelector((state: State) => state.Products);
   const CartItems = useSelector((state: State) => state.Cart);

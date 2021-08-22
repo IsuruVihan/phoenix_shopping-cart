@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useRef, useState} from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
@@ -7,16 +7,21 @@ import vegiPic from "../../../assets/images/vegi.webp";
 import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProductActionCreator} from "../../../state";
+import axios from 'axios';
+import {SubmitHandler, useForm} from "react-hook-form";
 
 type AddProductProps = {
   cancel: () => void
 };
 
-const AddProduct: FC<AddProductProps> = (props) => {
+const AddProduct: FC<AddProductProps> = (props): any => {
   const {cancel} = props;
-
   const dispatch = useDispatch();
   const {AddItem} = bindActionCreators(ProductActionCreator, dispatch);
+
+  type Inputs = {
+    image: File;
+  }
 
   const categoryList = [
     {value: 'Grocery', label: 'Grocery'},
@@ -26,21 +31,63 @@ const AddProduct: FC<AddProductProps> = (props) => {
   ];
 
   const [name, setName] = useState<string>("");
-  const [imgSrc, setImgSrc] = useState<string>(vegiPic);
+  const [imgName, setImgName] = useState<string>("");
+  const [imgFile, setImgFile] = useState<File>();
   const [crossPrice, setCrossPrice] = useState<string>("");
   const [sellPrice, setSellPrice] = useState<string>("");
   const [category, setCategory] = useState<{value: string, label: string}>(categoryList[0]);
 
-  const handleOnClickCreateBtn = (event: React.FormEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setValidated(true);
+  const { register, handleSubmit, formState: { errors} } = useForm<Inputs>();
+
+  const handleFileChange = (event: HTMLInputElement) => {
+    // setImgFile(data.image[0]);
+  }
+
+  const onSubmit: SubmitHandler<Inputs> = (data: any) => {
+    // setValidated(true);
+
+    // If file selected
+    if ( imgFile ) {
+      console.log(imgFile);
+      data.append('profileImage', imgFile, imgFile.name);
+
+      axios.post( '/api/products/product-img-upload', data, {
+        headers: {
+          'accept': 'application/json',
+          'Accept-Language': 'en-US,en;q=0.8',
+          'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+        }
+      })
+          .then( ( response ) => {
+            if ( 200 === response.status ) {
+              // If file size is larger than expected.
+              if( response.data.error ) {
+                if ( 'LIMIT_FILE_SIZE' === response.data.error.code ) {
+                  console.log('Max size: 2MB')
+                } else {
+                  // If not the given file type
+                  console.log( response.data.error );
+                }
+              } else {
+                // Success
+                let fileName = response.data;
+                console.log( 'File Uploaded', fileName );
+              }
+            }
+          }).catch( ( error ) => {
+        // If another error
+        console.log( error );
+      });
+    } else {
+      // if file not selected throw error
+      console.log( 'Please upload file' );
+    }
 
     if ((name == "") || (crossPrice == "") || (sellPrice == ""))
       return;
 
     AddItem({
-      picSrc: imgSrc,
+      picSrc: imgName,
       name: name,
       crossedPrice: crossPrice,
       price: sellPrice,
@@ -50,13 +97,26 @@ const AddProduct: FC<AddProductProps> = (props) => {
     cancel();
   }
 
+  // const ocShowAlert = ( message: string, background = '#3089cf' ) => {
+  //   let alertContainer = document.querySelector( '#oc-alert-container' ),
+  //       alertEl = document.createElement( 'div' ),
+  //       textNode = document.createTextNode( message );
+  //   alertEl.setAttribute( 'class', 'oc-alert-pop-up' );
+  //   $( alertEl ).css( 'background', background );
+  //   alertEl.appendChild( textNode );
+  //   alertContainer.appendChild( alertEl );
+  //   setTimeout( function () {
+  //     $( alertEl ).fadeOut( 'slow' );
+  //     $( alertEl ).remove();
+  //   }, 3000 );
+  // };
+
   const [previewVisible, setPreviewVisible] = useState<boolean>(false);
   const handleOnClickPreview = () => {
     setPreviewVisible(!previewVisible);
   }
 
   const handleOnChangeName = (event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value);
-  const handleOnChangeImgSrc = (event: React.ChangeEvent<HTMLInputElement>) => setImgSrc(event.target.value);
   const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(event.target.value);
   const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(event.target.value);
   const handleOnChangeCategory = (item: any) => {
@@ -91,7 +151,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                 <Form
                   noValidate
                   validated={validated}
-                  onSubmit={(event: React.FormEvent) => handleOnClickCreateBtn(event)}
+                  onSubmit={handleSubmit(onSubmit)}
                 >
                   <Form.Group as={Row} className="mb-3">
                     <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
@@ -103,6 +163,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                         required
                         className="input-field"
                         size="sm"
+                        name="name"
                         type="text"
                         value={name}
                         onChange={handleOnChangeName}
@@ -124,6 +185,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                       <Form.Control
                         required
                         className="input-field"
+                        name="cross-price"
                         size="sm"
                         type="text"
                         onChange={handleOnChangeCrossPrice}
@@ -145,6 +207,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                       <Form.Control
                         required
                         className="input-field"
+                        name="sell-price"
                         size="sm"
                         type="text"
                         onChange={handleOnChangeSellPrice}
@@ -177,14 +240,14 @@ const AddProduct: FC<AddProductProps> = (props) => {
                     <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
                       Image
                     </Form.Label>
-                    <label className="label-small">Image</label>
+                    <label className="label-small">Image (Max size: 2MB)</label>
                     <Col lg={10} sm={12} xs={12}>
                       <Form.Control
+                          {...register("image")}
                         size="sm"
                         type="file"
-                        name="file"
                         className="input-field"
-                        onChange={handleOnChangeImgSrc}
+                          // onChange={ (event) =>  }
                       />
                     </Col>
                   </Form.Group>
@@ -210,7 +273,6 @@ const AddProduct: FC<AddProductProps> = (props) => {
                         variant="success"
                         size="sm"
                         type="submit"
-                        // onClick={() => handleOnClickCreateBtn()}
                       >
                         Create
                       </Button>

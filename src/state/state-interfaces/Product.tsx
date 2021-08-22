@@ -5,3 +5,7 @@ export interface Product {
   price: string,
   category: string
 }
+
+export interface ProductData {
+  products: Product[]
+}
