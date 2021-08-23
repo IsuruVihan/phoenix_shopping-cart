@@ -7,11 +7,59 @@
     font-size: 1.2em;
     min-width: 1.5em;
     vertical-align: middle;
+    user-select: none;
   }
 
   .control-btn {
     cursor: pointer;
     color: $item-qty-btn-colour;
     font-size: 1.4em;
+  }
+}
+
+.arrows {
+  font-size: 1em;
+  color: $sort_arrow_grey_color;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-right: 2px;
+  display: inline-block;
+
+  > :last-child {
+    margin-left: -4px;
+  }
+}
+
+.asc > {
+  :first-child {
+    color: $sort_arrow_black_color;
+  }
+
+  :last-child {
+    color: $sort_arrow_grey_color;
+  }
+}
+
+.desc > {
+  :first-child {
+    color: $sort_arrow_grey_color;
+  }
+
+  :last-child {
+    color: $sort_arrow_black_color;
+
+  }
+}
+
+.item-delete-btn {
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.order-status-icon {
+  button {
+    padding: 2px 4px 2px 4px;
+    margin: 0;
+    font-size: 1.5em;
   }
 }

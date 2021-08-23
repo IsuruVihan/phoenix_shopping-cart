@@ -26,15 +26,20 @@ const Products: FC = () => {
   }
 
   return (
-    <Container className="products p-2" fluid>
+    <Container className="products p-3" fluid>
+
       <Row className="mx-0">
         <Col className="title text-center" id="admin-products" xs={12}>
           Your Products
         </Col>
+        <Col className="text-center my-4" xs={12}>
+          <CategoryDropdown/>
+        </Col>
         <Col xs={12}>
-          <AdminProducts onClickEdit={handleOnClickEditProductBtn} />
+          <AdminProducts onClickEdit={handleOnClickEditProductBtn}/>
         </Col>
       </Row>
+
       <Row className="mx-0 px-3">
         <Col className="px-5 py-4 text-center" xs={12}>
           {(!addProductFormVisible && !editProductFormVisible) &&
@@ -49,6 +54,7 @@ const Products: FC = () => {
           {editProductFormVisible && <EditProduct editProductId={productToBeEdit} cancel={handleOnClickCancelBtn} />}
         </Col>
       </Row>
+
     </Container>
   );
 }
