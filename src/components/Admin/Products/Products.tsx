@@ -1,7 +1,6 @@
 import React, {FC, useState} from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
 import AdminProducts from "./AdminProducts";
-import CategoryDropdown from "./CategoryDropdown";
 import EditProduct from "./EditProduct";
 import AddProduct from "./AddProduct";
 
@@ -30,7 +29,7 @@ const Products: FC = () => {
     <Container className="products p-3" fluid>
 
       <Row className="mx-0">
-        <Col className="title text-center" xs={12}>
+        <Col className="title text-center" id="admin-products" xs={12}>
           Your Products
         </Col>
         <Col className="text-center my-4" xs={12}>
