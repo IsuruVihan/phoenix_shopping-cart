@@ -9,7 +9,6 @@ const CartReducer = (state: CartItem[] = initState, action: CartAction) => {
     case CartActionType.ADD: {
       const stateDuplicate = state.slice();
       stateDuplicate.push(action.payload);
-      alert("Cart item Added");
       return stateDuplicate;
     }
     case CartActionType.REMOVE: {

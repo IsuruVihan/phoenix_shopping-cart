@@ -4,6 +4,7 @@ import {FiTrash} from "react-icons/all";
 import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {CartActionCreator} from '../../../state';
+import {toast} from "react-hot-toast";
 
 type CartPopupItemProps = {
   itemId: number,
@@ -17,9 +18,12 @@ const CartPopupItem: React.FC<CartPopupItemProps> = (props) => {
   const {itemId, itemImage, itemName, itemQty, itemPrice} = props;
   const dispatch = useDispatch();
   const {RemoveItem} = bindActionCreators(CartActionCreator, dispatch);
+
   const handleOnItemRemoveClick = (orderItemIndex: number) => {
     RemoveItem(orderItemIndex);
-    alert(`Item ${orderItemIndex} removed`);
+    toast.success((t) => (
+      <span><b>{itemName}</b> removed from cart</span>
+    ));
   }
 
   return (

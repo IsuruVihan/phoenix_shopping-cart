@@ -7,6 +7,7 @@ import vegiPic from "../../../assets/images/vegi.webp";
 import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProductActionCreator} from "../../../state";
+import {toast} from "react-hot-toast";
 
 type AddProductProps = {
   cancel: () => void
@@ -46,6 +47,10 @@ const AddProduct: FC<AddProductProps> = (props) => {
       price: sellPrice,
       category: category.value
     });
+
+    toast.success((t) => (
+      <span>Product added</span>
+    ));
 
     cancel();
   }

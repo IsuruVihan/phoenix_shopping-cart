@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {ProductActionCreator, State} from "../../../state";
 import {bindActionCreators} from "redux";
 import Scroll from "react-scroll";
+import {toast} from "react-hot-toast";
 
 type ProductCardProps = {
   onClickEdit: (id: number) => void,
@@ -23,7 +24,13 @@ const ProductCard: FC<ProductCardProps> = (props) => {
   const dispatch = useDispatch();
   const {RemoveItem} = bindActionCreators(ProductActionCreator, dispatch);
 
-  const handleOnClickDelete = () => RemoveItem(id);
+  const handleOnClickDelete = () => {
+    RemoveItem(id);
+    toast.success((t) => (
+      <span>Product deleted</span>
+    ));
+  }
+
   const handleOnClickEdit = (id: number) => {
     onClickEdit(id);
     Scroll.scroller.scrollTo("edit-form", {
