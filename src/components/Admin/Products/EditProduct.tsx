@@ -7,6 +7,7 @@ import vegiPic from "../../../assets/images/vegi.webp";
 import {useDispatch, useSelector} from "react-redux";
 import {ProductActionCreator, State} from "../../../state";
 import {bindActionCreators} from "redux";
+import Scroll from "react-scroll";
 
 type EditProductTypes = {
   editProductId: number,
@@ -32,13 +33,33 @@ const EditProduct: FC<EditProductTypes> = (props) => {
   const [imgSrc, setImgSrc] = useState<string>(vegiPic);
   const [crossPrice, setCrossPrice] = useState<string>("");
   const [sellPrice, setSellPrice] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
+  const [category, setCategory] = useState<{value: string, label: string}>(
+    {value: Products[editProductId].category, label: Products[editProductId].category}
+  );
 
   useEffect(() => {
     setName(Products[editProductId].name);
     setCrossPrice(Products[editProductId].crossedPrice);
     setSellPrice(Products[editProductId].price);
-    setCategory(Products[editProductId].category);
+    let productId: number;
+    switch (Products[editProductId].category) {
+      case "Pharmacy":
+        productId = 1;
+        console.log("Pharmacy");
+        break;
+      case "Food":
+        productId = 2;
+        console.log("Food");
+        break;
+      case "Electronic":
+        productId = 3;
+        console.log("Electronic");
+        break;
+      default:
+        productId = 0;
+        console.log("Grocery");
+    }
+    setCategory(categoryList[productId]);
   }, [editProductId]);
 
   const handleOnClickEditBtn = (event: React.FormEvent) => {
@@ -56,10 +77,18 @@ const EditProduct: FC<EditProductTypes> = (props) => {
         name: name,
         crossedPrice: crossPrice,
         price: sellPrice,
-        category: category
+        category: category.value
       });
 
+    handleOnClickCancel();
+  }
+
+  const handleOnClickCancel = () => {
     cancel();
+    Scroll.scroller.scrollTo("admin-products", {
+      smooth: false,
+      offset: -140,
+    });
   }
 
   const [previewVisible, setPreviewVisible] = useState<boolean>(false);
@@ -72,7 +101,21 @@ const EditProduct: FC<EditProductTypes> = (props) => {
   const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(event.target.value);
   const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(event.target.value);
   const handleOnChangeCategory = (item: any) => {
-    setCategory(item.value);
+    let productId: number;
+    switch (item.value) {
+      case "Pharmacy":
+        productId = 1;
+        break;
+      case "Food":
+        productId = 2;
+        break;
+      case "Electronic":
+        productId = 3;
+        break;
+      default:
+        productId = 0;
+    }
+    setCategory(categoryList[productId]);
   }
 
   const [validated, setValidated] = useState<boolean>(false);
@@ -82,7 +125,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
       <Row className="mx-0">
         <Col className="form px-0" lg={previewVisible ? 8 : 12} md={12}>
           <Row className="mx-0">
-            <Col className="px-0 pb-4 form-title" xs={12}>
+            <Col className="px-0 pb-4 form-title" id="edit-form" xs={12}>
               Edit Product
             </Col>
             <Col className="px-0 form-body text-start" xs={12}>
@@ -164,7 +207,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
                   <label className="label-small">Category</label>
                   <Col lg={10} sm={12} xs={12}>
                     <Select
-                      defaultValue={categoryList[0]}
+                      defaultValue={category}
                       isSearchable={true}
                       name="category"
                       styles={customStyles}
@@ -217,7 +260,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
                       variant="secondary"
                       className="ms-2"
                       size="sm"
-                      onClick={() => cancel()}
+                      onClick={() => handleOnClickCancel()}
                     >
                       Cancel
                     </Button>

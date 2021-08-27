@@ -4,6 +4,7 @@ import React, {FC} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {ProductActionCreator, State} from "../../../state";
 import {bindActionCreators} from "redux";
+import Scroll from "react-scroll";
 
 type ProductCardProps = {
   onClickEdit: (id: number) => void,
@@ -23,6 +24,13 @@ const ProductCard: FC<ProductCardProps> = (props) => {
   const {RemoveItem} = bindActionCreators(ProductActionCreator, dispatch);
 
   const handleOnClickDelete = () => RemoveItem(id);
+  const handleOnClickEdit = (id: number) => {
+    onClickEdit(id);
+    Scroll.scroller.scrollTo("edit-form", {
+      smooth: false,
+      offset: -150,
+    });
+  }
 
   return (
     <Col lg={3} md={4} sm={6} xs={6}  className="px-0 mx-0">
@@ -56,7 +64,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
                     className="card-btn edit-btn"
                     variant="outline-secondary"
                     size="sm"
-                    onClick={() => onClickEdit(id)}
+                    onClick={() => handleOnClickEdit(id)}
                   >
                     Edit
                   </Button>

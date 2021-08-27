@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import './App.scss';
 import {BrowserRouter as Router, Route, Switch,} from "react-router-dom";
 import ShoppingSite from "./views/ShoppingSite";
-import {Container} from "react-bootstrap";
 import Checkout from "./views/Checkout";
 import Footer from "./components/Footer";
 import Registration from "./views/Registration";
@@ -19,8 +18,8 @@ const App: FC = () => {
           <NavbarTop/>
           <NavbarMain/>
           <NavbarLinks/>
-          <Container fluid className="px-0">
-            <Switch>
+
+          <Switch>
               <Route exact path="/">
                 <ShoppingSite/>
               </Route>
@@ -49,10 +48,8 @@ const App: FC = () => {
                 <Admin/>
               </Route>
             </Switch>
-          </Container>
-          <Container fluid className="px-0">
-            <Footer/>
-          </Container>
+
+          <Footer/>
         </Router>
       </>
   );
