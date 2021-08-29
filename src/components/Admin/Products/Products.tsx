@@ -33,7 +33,7 @@ const Products: FC = () => {
           Your Products
         </Col>
         <Col className="text-center my-4" xs={12}>
-          <CategoryDropdown/>
+          {/*<CategoryDropdown/>*/}
         </Col>
         <Col xs={12}>
           <AdminProducts onClickEdit={handleOnClickEditProductBtn}/>

@@ -49,7 +49,7 @@ const TableBody: FC = () => {
           prefix={'Rs. '}
           renderText={FormattedPriceValue}
         />,
-        deleteBtn: <ItemDeleteButton orderItemIndex={index}/>
+        deleteBtn: <ItemDeleteButton orderItemIndex={index} orderItemName={cartItem.name}/>
       };
       return itemRow;
     });

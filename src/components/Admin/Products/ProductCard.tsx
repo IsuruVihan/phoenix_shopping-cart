@@ -1,10 +1,13 @@
 import {Button, Card, Col, Image, Row} from "react-bootstrap";
 import coconutImg from "../../../assets/images/product_coconut.webp";
 import React, {FC} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {ProductActionCreator, State} from "../../../state";
+import {useDispatch} from "react-redux";
+import {ProductActionCreator} from "../../../state";
 import {bindActionCreators} from "redux";
 import Scroll from "react-scroll";
+import {toast} from "react-hot-toast";
+import {confirmAlert} from "react-confirm-alert";
+import {IoCheckmark, IoClose} from "react-icons/all";
 
 type ProductCardProps = {
   onClickEdit: (id: number) => void,
@@ -18,12 +21,42 @@ type ProductCardProps = {
 const ProductCard: FC<ProductCardProps> = (props) => {
   const {onClickEdit, id, name, crossedPrice, sellPrice, category} = props;
 
-  const Products = useSelector((state: State) => state.Products);
-
   const dispatch = useDispatch();
   const {RemoveItem} = bindActionCreators(ProductActionCreator, dispatch);
 
-  const handleOnClickDelete = () => RemoveItem(id);
+  const handleOnClickDelete = () => {
+    confirmAlert({
+      customUI: ({onClose}) => {
+        return (
+          <div className="delete-confirm-alert">
+            <h2 className="mt-1 mb-2">Confirm action</h2>
+            <hr/>
+
+            <div className="delete-confirm-text my-4 pt-1">
+              <span>Delete product <b>{name}</b> ?</span>
+            </div>
+
+            <Button className="m-2 btn-outline-danger" onClick={() => {
+              RemoveItem(id);
+              onClose();
+              toast.success((t) => (
+                <span>Product <b>{name}</b> deleted</span>
+              ));
+            }}>
+              <IoCheckmark/> Okay
+            </Button>
+
+            <Button className="m-2 btn-outline-success" onClick={() => {
+              onClose();
+            }}>
+              <IoClose/> Cancel
+            </Button>
+          </div>
+        );
+      }
+    });
+  }
+
   const handleOnClickEdit = (id: number) => {
     onClickEdit(id);
     Scroll.scroller.scrollTo("edit-form", {

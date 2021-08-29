@@ -3,6 +3,7 @@ import {Button, Card, Col, Form, Image, Row} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {bindActionCreators} from "redux";
 import {CartActionCreator, State} from '../../state';
+import {toast} from "react-hot-toast";
 
 type ProductCardProps = {
   id: number,
@@ -44,11 +45,18 @@ const ProductCard: FC<ProductCardProps> = (props) => {
       amount: (parseFloat(price) * cardQty).toString()
     });
 
+    toast.success((t) => (
+      <span><b>{name}</b> added to cart</span>
+    ));
+
   }
 
   const handleUpdateClick = () => {
-    alert(cardQty);
+
     UpdateItem(id, cardQty);
+    toast.success((t) => (
+      <span>Cart updated</span>
+    ));
 
   }
 
