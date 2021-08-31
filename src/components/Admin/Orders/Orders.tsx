@@ -10,7 +10,7 @@ import NoOrdersAvailable from "./NoOrdersAvailable";
 import OrderItemsImageSet from "./OrderItemsImageSet";
 import adminOrderData from "../../../dummyData/adminOrderData";
 import TableSortArrows from "../../Common/TableSortArrows";
-import OrderStatusIcon from "../../Common/OrderStatusIcon";
+import OrderStatusBtn from "../../Common/OrderStatusBtn";
 
 const Orders: FC = () => {
 
@@ -29,7 +29,7 @@ const Orders: FC = () => {
           prefix={'Rs. '}
           renderText={FormattedPriceValue}
         />,
-        status: <OrderStatusIcon status={order.status}/>,
+        status: <OrderStatusBtn status={order.status}/>,
         viewBtn: <Button>View</Button> //TODO: Implement Order details modal window
       };
 
