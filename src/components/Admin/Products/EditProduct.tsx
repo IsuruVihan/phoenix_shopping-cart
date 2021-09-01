@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {ProductActionCreator, State} from "../../../state";
 import {bindActionCreators} from "redux";
 import Scroll from "react-scroll";
+import {toast} from "react-hot-toast";
 
 type EditProductTypes = {
   editProductId: number,
@@ -33,7 +34,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
   const [imgSrc, setImgSrc] = useState<string>(vegiPic);
   const [crossPrice, setCrossPrice] = useState<string>("");
   const [sellPrice, setSellPrice] = useState<string>("");
-  const [category, setCategory] = useState<{value: string, label: string}>(
+  const [category, setCategory] = useState<{ value: string, label: string }>(
     {value: Products[editProductId].category, label: Products[editProductId].category}
   );
 
@@ -79,6 +80,10 @@ const EditProduct: FC<EditProductTypes> = (props) => {
         price: sellPrice,
         category: category.value
       });
+
+    toast.success((t) => (
+      <span>Product updated</span>
+    ));
 
     handleOnClickCancel();
   }
@@ -243,9 +248,9 @@ const EditProduct: FC<EditProductTypes> = (props) => {
                 </Form.Group>
                 {previewVisible &&
                 <Form.Group as={Row} className="preview-small mb-3">
-                    <Col className="px-0" lg={{offset: 2}}>
-                        <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
-                    </Col>
+                  <Col className="px-0" lg={{offset: 2}}>
+                    <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice}/>
+                  </Col>
                 </Form.Group>}
                 <Form.Group as={Row} className="mb-3">
                   <Col lg={{offset: 2}}>
@@ -272,7 +277,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
         </Col>
         {previewVisible &&
         <Col className="preview px-0 ps-xl-5 ps-lg-4 mt-3 pt-4">
-            <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
+          <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice}/>
         </Col>
         }
       </Row>

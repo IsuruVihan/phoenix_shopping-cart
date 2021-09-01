@@ -1,9 +1,9 @@
 import React from 'react';
 import {Col, Image, Row} from "react-bootstrap";
-import {FiTrash} from "react-icons/all";
 import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {CartActionCreator} from '../../../state';
+import ItemDeleteButton from "../../Common/ItemDeleteButton";
 
 type CartPopupItemProps = {
   itemId: number,
@@ -17,10 +17,6 @@ const CartPopupItem: React.FC<CartPopupItemProps> = (props) => {
   const {itemId, itemImage, itemName, itemQty, itemPrice} = props;
   const dispatch = useDispatch();
   const {RemoveItem} = bindActionCreators(CartActionCreator, dispatch);
-  const handleOnItemRemoveClick = (orderItemIndex: number) => {
-    RemoveItem(orderItemIndex);
-    alert(`Item ${orderItemIndex} removed`);
-  }
 
   return (
     <>
@@ -34,8 +30,7 @@ const CartPopupItem: React.FC<CartPopupItemProps> = (props) => {
               <label className="item-name">{itemName}</label>
             </Col>
             <Col xs={2} className="mb-3 pt-1 text-end">
-              <label className="item-delete-btn" onClick={
-                () => handleOnItemRemoveClick(itemId)}><FiTrash/></label>
+              <ItemDeleteButton orderItemIndex={itemId} orderItemName={itemName}/>
             </Col>
             <Col xs={7} className="mb-3">
               <label className="item-qty">Qty: {itemQty}</label>
