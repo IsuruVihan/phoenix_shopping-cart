@@ -4,6 +4,7 @@ import Select from "react-select";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import SLFlag from "../../../assets/images/srilanka.svg";
 import PasswordStrengthBar from "react-password-strength-bar";
+// import ReactPasswordStrength from "react-password-strength" ;
 
 const ShippingForm: FC = () => {
   const [countryList, setCountryList] = useState([
@@ -90,7 +91,19 @@ const ShippingForm: FC = () => {
               <Form.Group>
                 <Form.Label className="label">Choose your password<sup>*</sup></Form.Label>
                 <Form.Control className="input-field" type="password"/>
-                <PasswordStrengthBar password={""}/>
+                {/*<ReactPasswordStrength*/}
+                {/*  className="customClass"*/}
+                {/*  style={{ display: 'none' }}*/}
+                {/*  minLength={5}*/}
+                {/*  minScore={2}*/}
+                {/*  scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}*/}
+                {/*  inputProps={{ name: "password_input", autoComplete: "off", className: "form-control" }}*/}
+                {/*/>*/}
+                <Row>
+                  <Col lg={7}>
+                    <PasswordStrengthBar />
+                  </Col>
+                </Row>
               </Form.Group>
             </Col>
           </Row>
