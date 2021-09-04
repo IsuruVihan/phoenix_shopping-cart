@@ -3,24 +3,21 @@ import {Button, Col, Form, Row} from "react-bootstrap";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
 import Preview from "./Preview";
-import * as dotenv from 'dotenv';
-// require('dotenv').config({path: '../../../'});
+// import * as dotenv from 'dotenv';
 import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProductActionCreator} from "../../../state";
 import ReactS3Client from 'react-aws-s3-typescript'
-// import S3 from 'react-aws-s3'
-import axios from 'axios';
-import {SubmitHandler, useForm} from "react-hook-form";
-import {IConfig} from "react-aws-s3-typescript/dist/types";
+import {useMutation} from "@apollo/client";
+import {ADD_PRODUCT} from "../../../data/mutations";
 
 type AddProductProps = {
   cancel: () => void
 };
 
 const AddProduct: FC<AddProductProps> = (props): any => {
-  dotenv.config();
-  const env = require('../../../env');
+  // dotenv.config();
+  const [addProduct, { data, loading, error }] = useMutation(ADD_PRODUCT)
 
   const {cancel} = props;
   const dispatch = useDispatch();
@@ -35,38 +32,44 @@ const AddProduct: FC<AddProductProps> = (props): any => {
 
   const [name, setName] = useState<string>("");
   const [imgUrl, setImgUrl] = useState<string>("");
-  const [imgFile, setImgFile] = useState<File>();
-  const [crossPrice, setCrossPrice] = useState<string>("");
-  const [sellPrice, setSellPrice] = useState<string>("");
+  const [imgValid, setImgValid] = useState<boolean>(true);
+  const [crossPrice, setCrossPrice] = useState<number>("");
+  const [sellPrice, setSellPrice] = useState<number>("");
   const [category, setCategory] = useState<{value: string, label: string}>(categoryList[0]);
 
   const fileInput: React.MutableRefObject<any> = useRef();
   
-  // const getImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   event.preventDefault();
-  //
-  //   const files= event.target.files;
-  //
-  //   if (files && files.length > 0) {
-  //     // const file = files[0];
-  //     setImgFile(files[0]);
-  //     console.log(imgFile.name);
-  //   }
-  // };
+  const checkImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+
+    const accepted = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
+    const fileType= fileInput.current.files[0].type;
+    const fileSize= fileInput.current.files[0].size;
+
+   if(!accepted.includes(fileType)) {
+     console.log("Error: images only");
+     setImgValid(false);
+   }
+   if(fileSize > 2097152) {
+     console.log("Error: file too Large");
+     setImgValid(false);
+   }
+
+  };
 
   const handleFormInput = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if ((name == "") || (crossPrice == "") || (sellPrice == ""))
+    if ((name == "") || (crossPrice == "") || (sellPrice == "") || (!imgValid))
       return;
 
     let file = fileInput.current.files[0];
     let newFileName = fileInput.current.files[0].name;
-    console.log(newFileName);
+    // console.log(newFileName);
 
-    const bucketName: string = env.REACT_APP_BUCKET_NAME;
-    const bucketRegion: string = env.REACT_APP_BUCKET_REGION;
-    const accessKey: string = env.REACT_APP_S3_KEY;
-    const secretKey: string = env.REACT_APP_S3_SECRET;
+    const bucketName: string = 'phoenix-cart-images';
+    const bucketRegion: string = 'ap-southeast-1';
+    const accessKey: string = 'AKIASK7672ENRMYNS46P';
+    const secretKey: string = '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';
 
     const config = {
       bucketName: bucketName,
@@ -86,41 +89,6 @@ const AddProduct: FC<AddProductProps> = (props): any => {
       console.log(exception);
     }
 
-    // ReactS3Client
-    //     .uploadFile(imgFile, newFileName)
-    //     .then((data: any) => console.log(data))
-    //     .catch((err: any) => console.error(err))
-
-
-    // console.log('Uploading...');
-    // const contentType = file.type;
-    // const generatePutUrl = 'http://localhost:4000/generate-put-url';
-    // const options = {
-    //   params: {
-    //     Key: file.name,
-    //     ContentType: contentType
-    //   },
-    //   headers: {
-    //     'Content-Type': contentType
-    //   }
-    // };
-
-    // axios.get(generatePutUrl, options).then(res => {
-    //   const {
-    //     data: { putUrl }
-    //   } = res;
-    //   axios
-    //       .put(putUrl, file, options)
-    //       .then(res => {
-    //         console.log('Upload Successful!');
-    //       })
-    //       .catch(err => {
-    //         console.log('Sorry, something went wrong');
-    //         console.log('err', err);
-    //       });
-    //   // console.log(message.message);
-    // });
-
     AddItem({
       picSrc: imgUrl,
       name: name,
@@ -128,6 +96,20 @@ const AddProduct: FC<AddProductProps> = (props): any => {
       price: sellPrice,
       category: category.value
     });
+
+    addProduct({
+      variables: {
+        name: name,
+        imgUrl: imgUrl,
+        crossedPrice: crossPrice,
+        price: price,
+        category: category,
+      },
+    });
+
+    if (loading) console.log('Loading...');
+    if (error) console.log(error);
+    if (!data) console.log('No data!');
 
     cancel();
   }
@@ -209,7 +191,7 @@ const AddProduct: FC<AddProductProps> = (props): any => {
                         className="input-field"
                         name="cross-price"
                         size="sm"
-                        type="text"
+                        type="number"
                         onChange={handleOnChangeCrossPrice}
                       />
                       <Form.Control.Feedback>
@@ -231,7 +213,7 @@ const AddProduct: FC<AddProductProps> = (props): any => {
                         className="input-field"
                         name="sell-price"
                         size="sm"
-                        type="text"
+                        type="number"
                         onChange={handleOnChangeSellPrice}
                       />
                       <Form.Control.Feedback>
@@ -271,7 +253,7 @@ const AddProduct: FC<AddProductProps> = (props): any => {
                         ref={fileInput}
                         accept='image/*'
                         className="input-field"
-                        // onChange={ getImage }
+                        onChange={ checkImage }
                       />
                     </Col>
                   </Form.Group>
@@ -288,7 +270,7 @@ const AddProduct: FC<AddProductProps> = (props): any => {
                   {previewVisible &&
                     <Form.Group as={Row} className="preview-small mb-3">
                         <Col className="px-0" lg={{offset: 2}}>
-                            <Preview image={imgFile} name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
+                            <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
                         </Col>
                     </Form.Group>}
                   <Form.Group as={Row} className="mb-3">
@@ -316,7 +298,7 @@ const AddProduct: FC<AddProductProps> = (props): any => {
         </Col>
         {previewVisible &&
           <Col className="preview px-0 ps-xl-5 ps-lg-4 mt-3 pt-4">
-              <Preview image={imgFile} name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
+              <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
           </Col>
         }
       </Row>

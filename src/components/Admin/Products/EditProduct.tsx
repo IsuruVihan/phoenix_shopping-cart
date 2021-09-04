@@ -201,7 +201,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
                 {previewVisible &&
                 <Form.Group as={Row} className="preview-small mb-3">
                     <Col className="px-0" lg={{offset: 2}}>
-                        <Preview image={"blah"} name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
+                        <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
                     </Col>
                 </Form.Group>}
                 <Form.Group as={Row} className="mb-3">
@@ -229,7 +229,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
         </Col>
         {previewVisible &&
         <Col className="preview px-0 ps-xl-5 ps-lg-4 mt-3 pt-4">
-            <Preview image={"blah"} name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
+            <Preview name={name} crossPrice={crossPrice} sellPrice={sellPrice} />
         </Col>
         }
       </Row>

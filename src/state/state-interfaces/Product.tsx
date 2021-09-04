@@ -1,8 +1,8 @@
 export interface Product {
   picSrc: string,
   name: string,
-  crossedPrice: string,
-  price: string,
+  crossedPrice: number,
+  price: number,
   category: string
 }
 
