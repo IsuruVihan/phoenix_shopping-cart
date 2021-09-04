@@ -33,8 +33,8 @@ const AddProduct: FC<AddProductProps> = (props): any => {
   const [name, setName] = useState<string>("");
   const [imgUrl, setImgUrl] = useState<string>("");
   const [imgValid, setImgValid] = useState<boolean>(true);
-  const [crossPrice, setCrossPrice] = useState<number>("");
-  const [sellPrice, setSellPrice] = useState<number>("");
+  const [crossPrice, setCrossPrice] = useState<number>(0);
+  const [sellPrice, setSellPrice] = useState<number>(0);
   const [category, setCategory] = useState<{value: string, label: string}>(categoryList[0]);
 
   const fileInput: React.MutableRefObject<any> = useRef();
@@ -59,7 +59,7 @@ const AddProduct: FC<AddProductProps> = (props): any => {
 
   const handleFormInput = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if ((name == "") || (crossPrice == "") || (sellPrice == "") || (!imgValid))
+    if ((name == "") || (crossPrice === 0) || (sellPrice === 0) || (!imgValid))
       return;
 
     let file = fileInput.current.files[0];
