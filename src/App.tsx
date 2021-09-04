@@ -11,50 +11,56 @@ import NavbarMain from "./components/NavbarSection/NavbarMain";
 import NavbarTop from "./components/NavbarSection/NavbarTop";
 import NavbarLinks from "./components/NavbarSection/NavbarLinks";
 import Admin from "./components/Admin/Admin";
+import {Provider} from "react-redux";
+import {Store} from "./state";
+import {client} from "./data/apollo/client";
+import {ApolloProvider} from "@apollo/client";
 
 const App: FC = () => {
   return (
-      <>
-        <Router>
-          <NavbarTop/>
-          <NavbarMain/>
-          <NavbarLinks/>
-          <Container fluid className="px-0">
-            <Switch>
-              <Route exact path="/">
-                <ShoppingSite/>
-              </Route>
-              <Route path="/about-us">
-                <h1>About us</h1>
-              </Route>
-              <Route path="/faq">
-                <h1>FAQ</h1>
-              </Route>
-              <Route path="/pricing">
-                <h1>Pricing</h1>
-              </Route>
-              <Route path="/contact-us">
-                <h1>Contact us</h1>
-              </Route>
-              <Route path="/checkout">
-                <Checkout/>
-              </Route>
-              <Route path="/Login">
-                <LogIn/>
-              </Route>
-              <Route path="/Register">
-                <Registration/>
-              </Route>
-              <Route path="/Admin">
-                <Admin/>
-              </Route>
-            </Switch>
-          </Container>
-          <Container fluid className="px-0">
-            <Footer/>
-          </Container>
-        </Router>
-      </>
+        <ApolloProvider client={client}>
+          <Provider store={Store}>
+            <Router>
+              <NavbarTop/>
+              <NavbarMain/>
+              <NavbarLinks/>
+              <Container fluid className="px-0">
+                <Switch>
+                  <Route exact path="/">
+                    <ShoppingSite/>
+                  </Route>
+                  <Route path="/about-us">
+                    <h1>About us</h1>
+                  </Route>
+                  <Route path="/faq">
+                    <h1>FAQ</h1>
+                  </Route>
+                  <Route path="/pricing">
+                    <h1>Pricing</h1>
+                  </Route>
+                  <Route path="/contact-us">
+                    <h1>Contact us</h1>
+                  </Route>
+                  <Route path="/checkout">
+                    <Checkout/>
+                  </Route>
+                  <Route path="/Login">
+                    <LogIn/>
+                  </Route>
+                  <Route path="/Register">
+                    <Registration/>
+                  </Route>
+                  <Route path="/Admin">
+                    <Admin/>
+                  </Route>
+                </Switch>
+              </Container>
+              <Container fluid className="px-0">
+                <Footer/>
+              </Container>
+            </Router>
+          </Provider>
+        </ApolloProvider>
   );
 }
 

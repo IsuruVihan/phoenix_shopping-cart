@@ -3,20 +3,21 @@ import coconutImg from "../../../assets/images/product_coconut.webp";
 import React, {FC} from "react";
 
 type PreviewProps = {
+  image: any,
   name: string,
   crossPrice: string,
   sellPrice: string
 };
 
 const Preview: FC<PreviewProps> = (props) => {
-  const {name, crossPrice, sellPrice} = props;
+  const {image, name, crossPrice, sellPrice} = props;
 
   return (
     <Col xs={12} className="px-0 mx-0">
       <Card className="preview-card text-center m-2 px-0">
         <Row className="text-center py-0">
           <Col className="p-0">
-            <Image className="text-center" width="50%" height="auto" src={coconutImg}/>
+            <Image className="text-center" width="50%" height="auto" src={image}/>
           </Col>
         </Row>
         <Card.Body className="pt-0 pb-1">
