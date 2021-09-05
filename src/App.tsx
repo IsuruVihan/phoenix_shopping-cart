@@ -11,6 +11,10 @@ import NavbarMain from "./components/NavbarSection/NavbarMain";
 import NavbarTop from "./components/NavbarSection/NavbarTop";
 import NavbarLinks from "./components/NavbarSection/NavbarLinks";
 import Admin from "./components/Admin/Admin";
+import {Store} from "./state";
+import {Provider} from "react-redux";
+import {client} from "./data/apollo/client";
+import {ApolloProvider} from "@apollo/client";
 
 const App: FC = () => {
   return (
@@ -53,7 +57,6 @@ const App: FC = () => {
 
 
                 <Footer/>
-              </Container>
             </Router>
           </Provider>
         </ApolloProvider>

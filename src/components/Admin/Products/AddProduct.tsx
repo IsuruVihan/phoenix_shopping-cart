@@ -8,6 +8,10 @@ import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProductActionCreator} from "../../../state";
 import {toast} from "react-hot-toast";
+import {useMutation} from "@apollo/client";
+import {ADD_PRODUCT} from "../../../data/mutations";
+import {GET_ALL_PRODUCTS} from "../../../data/queries";
+import ReactS3Client from "react-aws-s3-typescript";
 
 type AddProductProps = {
   cancel: () => void
