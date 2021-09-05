@@ -1,4 +1,5 @@
 export interface Product {
+  id: string,
   picSrc: string,
   name: string,
   crossedPrice: number,

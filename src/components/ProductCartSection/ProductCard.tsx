@@ -8,8 +8,8 @@ type ProductCardProps = {
   id: number,
   imgSrc: string,
   name: string,
-  price: string,
-  crossedPrice: string,
+  price: number,
+  crossedPrice: number,
   category: string,
   inCartQty: number
   // addToCart: (id: number) => void
@@ -41,7 +41,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
       name: name,
       qty: cardQty,
       unitPrice: price,
-      amount: (parseFloat(price) * cardQty).toString()
+      amount: (price * cardQty).toString()
     });
 
   }

@@ -5,7 +5,7 @@ export const ADD_PRODUCT = gql`
         addProduct(input: $input) {
             _id
             name
-            imgUrl
+            imagUrl
             crossedPrice
             price
             category

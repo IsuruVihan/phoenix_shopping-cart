@@ -9,8 +9,8 @@ type ProductCardProps = {
   onClickEdit: (id: number) => void,
   id: number,
   name: string,
-  crossedPrice: string,
-  sellPrice: string,
+  crossedPrice: number,
+  sellPrice: number,
   category: string
 };
 

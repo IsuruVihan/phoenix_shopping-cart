@@ -1,4 +1,4 @@
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
@@ -10,6 +10,7 @@ import {ProductActionCreator} from "../../../state";
 import ReactS3Client from 'react-aws-s3-typescript'
 import {useMutation} from "@apollo/client";
 import {ADD_PRODUCT} from "../../../data/mutations";
+import {GET_ALL_PRODUCTS} from "../../../data/queries";
 
 type AddProductProps = {
   cancel: () => void
@@ -17,11 +18,16 @@ type AddProductProps = {
 
 const AddProduct: FC<AddProductProps> = (props): any => {
   // dotenv.config();
-  const [addProduct, { data, loading, error }] = useMutation(ADD_PRODUCT)
 
   const {cancel} = props;
   const dispatch = useDispatch();
   const {AddItem} = bindActionCreators(ProductActionCreator, dispatch);
+  const fileInput: React.MutableRefObject<any> = useRef();
+  const [addProduct, { data, loading, error }] = useMutation(ADD_PRODUCT, {
+    refetchQueries: [
+      { query: GET_ALL_PRODUCTS }
+    ],
+  });
 
   const categoryList = [
     {value: 'Grocery', label: 'Grocery'},
@@ -30,14 +36,12 @@ const AddProduct: FC<AddProductProps> = (props): any => {
     {value: 'Electronic', label: 'Electronic'}
   ];
 
+  let imageLink: string;
   const [name, setName] = useState<string>("");
-  const [imgUrl, setImgUrl] = useState<string>("");
   const [imgValid, setImgValid] = useState<boolean>(true);
   const [crossPrice, setCrossPrice] = useState<number>(0);
   const [sellPrice, setSellPrice] = useState<number>(0);
   const [category, setCategory] = useState<{value: string, label: string}>(categoryList[0]);
-
-  const fileInput: React.MutableRefObject<any> = useRef();
   
   const checkImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -59,12 +63,11 @@ const AddProduct: FC<AddProductProps> = (props): any => {
 
   const handleFormInput = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if ((name == "") || (crossPrice === 0) || (sellPrice === 0) || (!imgValid))
+    if ((name === "") || (crossPrice === 0) || (sellPrice === 0) || (!imgValid))
       return;
 
     let file = fileInput.current.files[0];
     let newFileName = fileInput.current.files[0].name;
-    // console.log(newFileName);
 
     const bucketName: string = 'phoenix-cart-images';
     const bucketRegion: string = 'ap-southeast-1';
@@ -82,38 +85,42 @@ const AddProduct: FC<AddProductProps> = (props): any => {
 
     try {
       const res = await s3.uploadFile(file, newFileName);
-      console.log(res.location);
-      setImgUrl(res.location);
-
+      imageLink = res.location;
+      console.log("Image Uploaded!");
     } catch (exception) {
       console.log(exception);
     }
 
-    AddItem({
-      picSrc: imgUrl,
-      name: name,
-      crossedPrice: crossPrice,
-      price: sellPrice,
-      category: category.value
-    });
+    // AddItem({
+    //   id: "",
+    //   picSrc: imageLink,
+    //   name: name,
+    //   crossedPrice: crossPrice,
+    //   price: sellPrice,
+    //   category: category.value
+    // });
 
-    addProduct({
+    await addProduct({
       variables: {
-        name: name,
-        imgUrl: imgUrl,
-        crossedPrice: crossPrice,
-        price: price,
-        category: category,
+        input: {
+          name: name,
+          imagUrl: imageLink,
+          crossedPrice: crossPrice,
+          price: sellPrice,
+          category: category.value,
+        }
       },
     });
-
-    if (loading) console.log('Loading...');
-    if (error) console.log(error);
-    if (!data) console.log('No data!');
 
     cancel();
   }
 
+  useEffect(() => {
+    if (loading) console.log('Loading...');
+    if (error) console.log(error);
+    if (!data) console.log('No data!')
+    console.log(data);
+  }, [data]);
 
   const [previewVisible, setPreviewVisible] = useState<boolean>(false);
   const handleOnClickPreview = () => {
@@ -121,8 +128,8 @@ const AddProduct: FC<AddProductProps> = (props): any => {
   }
 
   const handleOnChangeName = (event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value);
-  const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(event.target.value);
-  const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(event.target.value);
+  const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(parseFloat(event.target.value));
+  const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(parseFloat(event.target.value));
   const handleOnChangeCategory = (item: any) => {
     let productCategory: { label: string; value: string };
     switch (item.value) {

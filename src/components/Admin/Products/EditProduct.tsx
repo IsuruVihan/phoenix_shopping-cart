@@ -30,8 +30,8 @@ const EditProduct: FC<EditProductTypes> = (props) => {
 
   const [name, setName] = useState<string>("");
   const [imgSrc, setImgSrc] = useState<string>(vegiPic);
-  const [crossPrice, setCrossPrice] = useState<string>("");
-  const [sellPrice, setSellPrice] = useState<string>("");
+  const [crossPrice, setCrossPrice] = useState<number>(0);
+  const [sellPrice, setSellPrice] = useState<number>(0);
   const [category, setCategory] = useState<string>("");
 
   useEffect(() => {
@@ -46,12 +46,13 @@ const EditProduct: FC<EditProductTypes> = (props) => {
     event.stopPropagation();
     setValidated(true);
 
-    if ((name == "") || (crossPrice == "") || (sellPrice == ""))
+    if ((name === "") || (crossPrice === 0) || (sellPrice === 0))
       return;
 
     UpdateItem(
       editProductId,
       {
+        id: "",
         picSrc: imgSrc,
         name: name,
         crossedPrice: crossPrice,
@@ -69,8 +70,8 @@ const EditProduct: FC<EditProductTypes> = (props) => {
 
   const handleOnChangeName = (event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value);
   const handleOnChangeImgSrc = (event: React.ChangeEvent<HTMLInputElement>) => setImgSrc(event.target.value);
-  const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(event.target.value);
-  const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(event.target.value);
+  const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(parseFloat(event.target.value));
+  const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(parseFloat(event.target.value));
   const handleOnChangeCategory = (item: any) => {
     setCategory(item.value);
   }
@@ -123,7 +124,7 @@ const EditProduct: FC<EditProductTypes> = (props) => {
                       required
                       className="input-field"
                       size="sm"
-                      type="text"
+                      type="number"
                       value={crossPrice}
                       onChange={handleOnChangeCrossPrice}
                     />

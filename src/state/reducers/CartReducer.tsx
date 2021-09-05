@@ -21,7 +21,7 @@ const CartReducer = (state: CartItem[] = initState, action: CartAction) => {
       const stateDuplicate = state.slice();
       const item = stateDuplicate[action.payload.itemIndex];
       item.qty = action.payload.updatedQty;
-      item.amount = (parseFloat(item.unitPrice)*item.qty).toString();
+      item.amount = (item.unitPrice*item.qty).toString();
       stateDuplicate.splice(action.payload.itemIndex, 1, item);
       return stateDuplicate;
     }
@@ -29,7 +29,7 @@ const CartReducer = (state: CartItem[] = initState, action: CartAction) => {
       const stateDuplicate = state.slice();
       const item = stateDuplicate[action.payload];
       item.qty += 1;
-      item.amount = (parseFloat(item.unitPrice)*item.qty).toString();
+      item.amount = (item.unitPrice*item.qty).toString();
       stateDuplicate.splice(action.payload, 1, item);
       return stateDuplicate;
     }
@@ -37,7 +37,7 @@ const CartReducer = (state: CartItem[] = initState, action: CartAction) => {
       const stateDuplicate = state.slice();
       const item = stateDuplicate[action.payload];
       item.qty -= 1;
-      item.amount = (parseFloat(item.unitPrice)*item.qty).toString();
+      item.amount = (item.unitPrice*item.qty).toString();
       stateDuplicate.splice(action.payload, 1, item);
       return stateDuplicate;
     }
