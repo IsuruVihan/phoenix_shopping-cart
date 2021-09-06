@@ -26,10 +26,10 @@ const ShoppingSite: React.FC = () => {
   useEffect(() => {
     if(data){
       data.getAllProducts.map((p: any) => {
-        // console.log(p);
+        console.log(p);
           AddItem({
             id: "",
-            picSrc: imgName,
+            picSrc: p.imagUrl,
             name: p.name,
             crossedPrice: p.crossedPrice,
             price: p.price,

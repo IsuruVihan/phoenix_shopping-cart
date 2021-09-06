@@ -1,0 +1,6 @@
+{
+  "REACT_APP_S3_KEY" : "AKIASK7672ENRMYNS46P",
+  "REACT_APP_S3_SECRET" : "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",
+  "REACT_APP_BUCKET_NAME" : "phoenix-cart-images",
+  "REACT_APP_BUCKET_REGION" : "ap-southeast-1"
+}
