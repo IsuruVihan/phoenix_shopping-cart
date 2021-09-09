@@ -4,9 +4,6 @@ import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
 import Preview from "./Preview";
 import dotenv from 'dotenv';
-import {useDispatch} from "react-redux";
-import {bindActionCreators} from "redux";
-import {ProductActionCreator} from "../../../state";
 import {toast} from "react-hot-toast";
 import {useMutation} from "@apollo/client";
 import {ADD_PRODUCT} from "../../../data/mutations";
@@ -18,9 +15,9 @@ type AddProductProps = {
   cancel: () => void
 };
 
-const AddProduct: FC<AddProductProps> = (props): any => {
-  // dotenv.config({ path: './.env' });
+dotenv.config();
 
+const AddProduct: FC<AddProductProps> = (props): any => {
   console.log('Bucket name');
   console.log(dotenv.config());
   console.log(process.env.REACT_APP_BUCKET_NAME);
@@ -33,8 +30,6 @@ const AddProduct: FC<AddProductProps> = (props): any => {
 
   const {cancel} = props;
 
-  const dispatch = useDispatch();
-  const {AddItem} = bindActionCreators(ProductActionCreator, dispatch);
   const fileInput: React.MutableRefObject<any> = useRef();
   const [addProduct, { data, loading, error }] = useMutation(ADD_PRODUCT, {
     refetchQueries: [
@@ -101,15 +96,6 @@ const AddProduct: FC<AddProductProps> = (props): any => {
     } catch (exception) {
       console.log(exception);
     }
-
-    // AddItem({
-    //   id: "",
-    //   picSrc: imageLink,
-    //   name: name,
-    //   crossedPrice: crossPrice,
-    //   price: sellPrice,
-    //   category: category.value
-    // });
 
     await addProduct({
       variables: {

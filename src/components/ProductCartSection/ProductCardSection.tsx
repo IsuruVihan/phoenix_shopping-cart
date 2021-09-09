@@ -4,8 +4,6 @@ import ProductCard from "./ProductCard";
 import {useSelector} from "react-redux";
 import {State} from "../../state";
 import NoProductsAvailable from "../Admin/Products/NoProductsAvailable";
-import {useQuery} from "@apollo/client";
-import {GET_ALL_PRODUCTS} from "../../data/queries";
 
 type productCardTypes = {
   categoryName: string
@@ -26,36 +24,12 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
   const Products = useSelector((state: State) => state.Products);
   const CartItems = useSelector((state: State) => state.Cart);
 
-  const { loading, data, error } = useQuery(
-      GET_ALL_PRODUCTS
-  );
-  if (loading) console.log('Loading...');
-  if (error) console.log(error);
-  if (!data) console.log('No data!');
-
-  // console.log(data);
-  //
-  // useEffect(() => {
-  //   if(data){
-  //     data.getAllProducts.map((p: any) => {
-  //       // console.log(p);
-  //       AddItem({
-  //         id: "",
-  //         picSrc: imgName,
-  //         name: p.name,
-  //         crossedPrice: p.crossedPrice,
-  //         price: p.price,
-  //         category: p.category});
-  //     })
-  //   }
-  // }, [data]);
-
   useEffect(() => {
-    Products.map((p) => {
+    Products.map((p: { category: string; }) => {
       (p.category === "Grocery") ? setGroceryEmpty(false) :
-        (p.category === "Food") ? setFoodEmpty(false) :
-          (p.category === "Pharmacy") ? setPharmacyEmpty(false) :
-            setElectronicEmpty(false);
+          (p.category === "Food") ? setFoodEmpty(false) :
+              (p.category === "Pharmacy") ? setPharmacyEmpty(false) :
+                  setElectronicEmpty(false);
     })
   }, [Products]);
 
@@ -142,12 +116,12 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
         <Row className={(Products.length > 0) ? "mx-xl-4 mx-lg-4 mx-0" : "mx-xl-4 mx-lg-4 mx-0 px-3"}>
           {(Products.length > 0) ? Products.map((p) => {
             if (p.category === categoryName) {
-              const inCartItem: any = CartItems.find(item => item.name === p.name);
+              const inCartItem: any = CartItems.find(item => item.id === p.id);
               const inCartQty: number = inCartItem === undefined ? 0 : inCartItem.qty;
               return (
                 <ProductCard
                   key={productId}
-                  id={productId++}
+                  id={p.id}
                   imgSrc={p.picSrc}
                   name={p.name}
                   price={p.price}

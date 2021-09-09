@@ -6,7 +6,7 @@ import {CartActionCreator, State} from '../../state';
 import {toast} from "react-hot-toast";
 
 type ProductCardProps = {
-  id: number,
+  id: string,
   imgSrc: string,
   name: string,
   price: number,
@@ -38,6 +38,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
     setIsFocused(true);
 
     AddItem({
+      id: id,
       picSrc: imgSrc,
       name: name,
       qty: cardQty,
@@ -51,14 +52,14 @@ const ProductCard: FC<ProductCardProps> = (props) => {
 
   }
 
-  const handleUpdateClick = () => {
-
-    UpdateItem(id, cardQty);
-    toast.success((t) => (
-      <span>Cart updated</span>
-    ));
-
-  }
+  // const handleUpdateClick = () => {
+  //
+  //   UpdateItem(id, cardQty);
+  //   toast.success((t) => (
+  //     <span>Cart updated</span>
+  //   ));
+  //
+  // }
 
   const handleQtyChange = (value: string) => {
     setCardQty(parseInt(value));
@@ -101,7 +102,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
             </Col>
             <Col className="col-7 px-0" lg={7} md={7} sm={12} xs={12}>
               <Button
-                onClick={isFocused ? handleUpdateClick : handleAddToCartClick}
+                // onClick={isFocused ? handleUpdateClick : handleAddToCartClick}
                 className={isFocused ?
                   "add-btn-update my-1 py-1 px-3 my-sm-2" : "add-btn my-1 py-1 px-3 my-sm-2 "
                 }

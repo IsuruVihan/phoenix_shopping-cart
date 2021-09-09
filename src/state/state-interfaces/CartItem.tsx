@@ -1,4 +1,5 @@
 export interface CartItem {
+  id: string,
   picSrc: string,
   name: string,
   qty: number,
