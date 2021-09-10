@@ -173,19 +173,19 @@ const ShippingForm: FC = () => {
                 <Row>
                   <Col
                        className={ passwordStrength==="none" ?
-                         "password-strength-bar-0 ms-lg-3 mt-2" :
+                         "password-strength-bar-0 mx-lg-3 mt-2" :
                          passwordStrength==="weak1" ?
-                         "password-strength-bar-1 ms-lg-3 mt-2" :
+                         "password-strength-bar-1 mx-lg-3 mt-2" :
                          passwordStrength==="weak2" ?
-                          "password-strength-bar-2 ms-lg-3 mt-2" :
+                          "password-strength-bar-2 mx-lg-3 mt-2" :
                          passwordStrength==="moderate1" ?
-                           "password-strength-bar-3 ms-lg-3 mt-2" :
+                           "password-strength-bar-3 mx-lg-3 mt-2" :
                          passwordStrength==="moderate2" ?
-                           "password-strength-bar-4 ms-lg-3 mt-2" :
+                           "password-strength-bar-4 mx-lg-3 mt-2" :
                          passwordStrength==="good1" ?
-                           "password-strength-bar-5 ms-lg-3 mt-2" :
-                            "password-strength-bar-6 ms-lg-3 mt-2"
-                       } lg={7}>
+                           "password-strength-bar-5 mx-lg-3 mt-2" :
+                            "password-strength-bar-6 mx-lg-3 mt-2"
+                       } >
                     <Row>
                       <Col className="inner-bar-1"></Col>
                       <Col className="inner-bar-2"></Col>
