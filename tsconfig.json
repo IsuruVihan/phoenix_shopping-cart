@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["src/@types", "node_modules/@types"],
     "target": "es5",
     "lib": [
       "dom",
@@ -8,6 +9,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
+    "strictNullChecks": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,

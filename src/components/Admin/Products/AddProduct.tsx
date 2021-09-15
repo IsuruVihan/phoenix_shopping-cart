@@ -1,23 +1,35 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
 import Preview from "./Preview";
-import vegiPic from "../../../assets/images/vegi.webp";
+// import * as dotenv from 'dotenv';
 import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProductActionCreator} from "../../../state";
 import {toast} from "react-hot-toast";
+import {useMutation} from "@apollo/client";
+import {ADD_PRODUCT} from "../../../data/mutations";
+import {GET_ALL_PRODUCTS} from "../../../data/queries";
+import ReactS3Client from "react-aws-s3-typescript";
 
 type AddProductProps = {
   cancel: () => void
 };
 
-const AddProduct: FC<AddProductProps> = (props) => {
+const AddProduct: FC<AddProductProps> = (props): any => {
+  // dotenv.config();
+
   const {cancel} = props;
 
   const dispatch = useDispatch();
   const {AddItem} = bindActionCreators(ProductActionCreator, dispatch);
+  const fileInput: React.MutableRefObject<any> = useRef();
+  const [addProduct, { data, loading, error }] = useMutation(ADD_PRODUCT, {
+    refetchQueries: [
+      { query: GET_ALL_PRODUCTS }
+    ],
+  });
 
   const categoryList = [
     {value: 'Grocery', label: 'Grocery'},
@@ -26,26 +38,83 @@ const AddProduct: FC<AddProductProps> = (props) => {
     {value: 'Electronic', label: 'Electronic'}
   ];
 
+  let imageLink: string;
   const [name, setName] = useState<string>("");
-  const [imgSrc, setImgSrc] = useState<string>(vegiPic);
-  const [crossPrice, setCrossPrice] = useState<string>("");
-  const [sellPrice, setSellPrice] = useState<string>("");
+  const [imgValid, setImgValid] = useState<boolean>(true);
+  const [crossPrice, setCrossPrice] = useState<number>(0);
+  const [sellPrice, setSellPrice] = useState<number>(0);
   const [category, setCategory] = useState<{value: string, label: string}>(categoryList[0]);
 
-  const handleOnClickCreateBtn = (event: React.FormEvent) => {
+  const checkImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+
+    const accepted = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
+    const fileType= fileInput.current.files[0].type;
+    const fileSize= fileInput.current.files[0].size;
+
+   if(!accepted.includes(fileType)) {
+     console.log("Error: images only");
+     setImgValid(false);
+   }
+   if(fileSize > 2097152) {
+     console.log("Error: file too Large");
+     setImgValid(false);
+   }
+
+  };
+
+  const handleFormInput = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     event.stopPropagation();
     setValidated(true);
 
-    if ((name == "") || (crossPrice == "") || (sellPrice == ""))
+    if ((name === "") || (crossPrice === 0) || (sellPrice === 0) || (!imgValid))
       return;
 
-    AddItem({
-      picSrc: imgSrc,
-      name: name,
-      crossedPrice: crossPrice,
-      price: sellPrice,
-      category: category.value
+    let file = fileInput.current.files[0];
+    let newFileName = fileInput.current.files[0].name;
+
+    const bucketName: string = 'phoenix-cart-images';
+    const bucketRegion: string = 'ap-southeast-1';
+    const accessKey: string = 'AKIASK7672ENRMYNS46P';
+    const secretKey: string = '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';
+
+    const config = {
+      bucketName: bucketName,
+      region: bucketRegion,
+      accessKeyId: accessKey,
+      secretAccessKey: secretKey,
+    }
+
+    const s3 = new ReactS3Client(config);
+
+    try {
+      const res = await s3.uploadFile(file, newFileName);
+      imageLink = res.location;
+      console.log("Image Uploaded!");
+    } catch (exception) {
+      console.log(exception);
+    }
+
+    // AddItem({
+    //   id: "",
+    //   picSrc: imageLink,
+    //   name: name,
+    //   crossedPrice: crossPrice,
+    //   price: sellPrice,
+    //   category: category.value
+    // });
+
+    await addProduct({
+      variables: {
+        input: {
+          name: name,
+          imagUrl: imageLink,
+          crossedPrice: crossPrice,
+          price: sellPrice,
+          category: category.value,
+        }
+      },
     });
 
     toast.success((t) => (
@@ -55,15 +124,21 @@ const AddProduct: FC<AddProductProps> = (props) => {
     cancel();
   }
 
+  useEffect(() => {
+    if (loading) console.log('Loading...');
+    if (error) console.log(error);
+    if (!data) console.log('No data!')
+    console.log(data);
+  }, [data]);
+
   const [previewVisible, setPreviewVisible] = useState<boolean>(false);
   const handleOnClickPreview = () => {
     setPreviewVisible(!previewVisible);
   }
 
   const handleOnChangeName = (event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value);
-  const handleOnChangeImgSrc = (event: React.ChangeEvent<HTMLInputElement>) => setImgSrc(event.target.value);
-  const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(event.target.value);
-  const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(event.target.value);
+  const handleOnChangeCrossPrice = (event: React.ChangeEvent<HTMLInputElement>) => setCrossPrice(parseFloat(event.target.value));
+  const handleOnChangeSellPrice = (event: React.ChangeEvent<HTMLInputElement>) => setSellPrice(parseFloat(event.target.value));
   const handleOnChangeCategory = (item: any) => {
     let productCategory: { label: string; value: string };
     switch (item.value) {
@@ -96,7 +171,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                 <Form
                   noValidate
                   validated={validated}
-                  onSubmit={(event: React.FormEvent) => handleOnClickCreateBtn(event)}
+                  onSubmit={handleFormInput}
                 >
                   <Form.Group as={Row} className="mb-3">
                     <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
@@ -108,6 +183,7 @@ const AddProduct: FC<AddProductProps> = (props) => {
                         required
                         className="input-field"
                         size="sm"
+                        name="name"
                         type="text"
                         value={name}
                         onChange={handleOnChangeName}
@@ -129,8 +205,9 @@ const AddProduct: FC<AddProductProps> = (props) => {
                       <Form.Control
                         required
                         className="input-field"
+                        name="cross-price"
                         size="sm"
-                        type="text"
+                        type="number"
                         onChange={handleOnChangeCrossPrice}
                       />
                       <Form.Control.Feedback>
@@ -150,8 +227,9 @@ const AddProduct: FC<AddProductProps> = (props) => {
                       <Form.Control
                         required
                         className="input-field"
+                        name="sell-price"
                         size="sm"
-                        type="text"
+                        type="number"
                         onChange={handleOnChangeSellPrice}
                       />
                       <Form.Control.Feedback>
@@ -182,14 +260,16 @@ const AddProduct: FC<AddProductProps> = (props) => {
                     <Form.Label className="label" column="sm" lg={2} sm={12} xs={12}>
                       Image
                     </Form.Label>
-                    <label className="label-small">Image</label>
+                    <label className="label-small">Image (Max size: 2MB)</label>
                     <Col lg={10} sm={12} xs={12}>
                       <Form.Control
+                        id='upload-image'
                         size="sm"
                         type="file"
-                        name="file"
+                        ref={fileInput}
+                        accept='image/*'
                         className="input-field"
-                        onChange={handleOnChangeImgSrc}
+                        onChange={ checkImage }
                       />
                     </Col>
                   </Form.Group>

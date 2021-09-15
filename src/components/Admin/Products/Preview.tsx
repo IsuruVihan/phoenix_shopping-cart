@@ -4,8 +4,8 @@ import React, {FC} from "react";
 
 type PreviewProps = {
   name: string,
-  crossPrice: string,
-  sellPrice: string
+  crossPrice: number,
+  sellPrice: number
 };
 
 const Preview: FC<PreviewProps> = (props) => {

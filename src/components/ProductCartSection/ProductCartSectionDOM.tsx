@@ -4,7 +4,7 @@ import SearchBarSection from "./SearchBarSection";
 import ProductCategorySection from "./ProductCategorySection";
 import ProductCardsSection from "./ProductCardSection";
 
-const ProductCartSectionDOM: React.FC = () => {
+const  ProductCartSectionDOM: React.FC = () => {
   const [categoryName, setCategoryName] = useState<string>('All');
   const clickedCategory = (catClicked: string) => {
     setCategoryName(catClicked);
