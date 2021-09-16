@@ -32,7 +32,10 @@ const ProductCard: FC<ProductCardProps> = (props) => {
       setCardQty(inCartQty);
       setIsFocused(true);
     }
-  },[])
+    else{
+      setIsFocused(false);
+    }
+  },[inCartQty])
 
   const handleAddToCartClick = () => {
     setIsFocused(true);
