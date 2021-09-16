@@ -1,5 +1,3 @@
-/// <reference types="react-scripts" />
-
 declare namespace NodeJS {
     interface ProcessEnv {
         REACT_APP_S3_KEY: string;
@@ -8,3 +6,5 @@ declare namespace NodeJS {
         REACT_APP_BUCKET_REGION: string;
     }
 }
+
+export {}

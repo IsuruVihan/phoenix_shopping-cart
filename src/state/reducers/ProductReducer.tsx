@@ -7,6 +7,7 @@ const initState: Product[] = [];
 const ProductReducer = (state: Product[] = initState, action: ProductAction) => {
   switch (action.type) {
     case ProductActionType.ADD: {
+      // alert("Product Added");
       const stateDuplicate = state.slice();
       stateDuplicate.push(action.payload);
       return stateDuplicate;

@@ -31,7 +31,7 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
           (p.category === "Pharmacy") ? setPharmacyEmpty(false) :
             setElectronicEmpty(false);
     })
-  }, []);
+  }, [Products]);
 
   const renderEmptyNanner = () => {
     if ((categoryName === "Grocery" && groceryEmpty) || (categoryName === "Food" && foodEmpty) ||
