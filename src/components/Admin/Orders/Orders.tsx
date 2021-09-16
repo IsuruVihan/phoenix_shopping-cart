@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import {AdminOrderRow} from "../../../state/state-interfaces/AdminOrderRow";
+import { AdminOrderRow } from "../../../state/state-interfaces/AdminOrderRow";
 import {IAdminOrderTableRow} from "../../../Types/AdminTypes";
 import FormattedPriceValue from "../../Common/FormattedPriceValue";
 import NumberFormat from "react-number-format";
