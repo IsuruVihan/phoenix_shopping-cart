@@ -3,7 +3,6 @@ import {Button, Col, Form, Row} from "react-bootstrap";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
 import Preview from "./Preview";
-// import * as dotenv from 'dotenv';
 import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProductActionCreator} from "../../../state";
@@ -11,15 +10,13 @@ import {toast} from "react-hot-toast";
 import {useMutation} from "@apollo/client";
 import {ADD_PRODUCT} from "../../../data/mutations";
 import {GET_ALL_PRODUCTS} from "../../../data/queries";
-import ReactS3Client from "react-aws-s3-typescript";
+import axios from 'axios';
 
 type AddProductProps = {
   cancel: () => void
 };
 
 const AddProduct: FC<AddProductProps> = (props): any => {
-  // dotenv.config();
-
   const {cancel} = props;
 
   const dispatch = useDispatch();
@@ -71,32 +68,37 @@ const AddProduct: FC<AddProductProps> = (props): any => {
     if ((name === "") || (crossPrice === 0) || (sellPrice === 0) || (!imgValid))
       return;
 
-    let file = fileInput.current.files[0];
-    let newFileName = fileInput.current.files[0].name;
+    const file = fileInput.current.files[0];
+    const fileType = file.type;
 
-    const bucketName: string = 'phoenix-cart-images';
-    const bucketRegion: string = 'ap-southeast-1';
-    const accessKey: string = 'AKIASK7672ENRMYNS46P';
-    const secretKey: string = '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';
+    const generatePutUrl = 'http://localhost:4000/generate-put-url';
+    const options = {
+      params: {
+        Key: file.name,
+        ContentType: fileType
+      },
+      headers: {
+        'Content-Type': fileType
+      }
+    };
 
-    const config = {
-      bucketName: bucketName,
-      region: bucketRegion,
-      accessKeyId: accessKey,
-      secretAccessKey: secretKey,
-    }
+    axios.get(generatePutUrl, options).then(res => {
+      const {
+        data: { putURL }
+      } = res;
+      axios
+          .put(putURL, file, options)
+          .then(res => {
+            console.log('Upload Successful');
+            console.log(res);
+          })
+          .catch(err => {
+            console.log('Sorry, something went wrong');
+            console.log('err', err);
+          });
+    });
 
-    const s3 = new ReactS3Client(config);
-
-    try {
-      const res = await s3.uploadFile(file, newFileName);
-      imageLink = res.location;
-      console.log("Image Uploaded!");
-    } catch (exception) {
-      console.log(exception);
-    }
-
-    // AddItem({
+  // AddItem({
     //   id: "",
     //   picSrc: imageLink,
     //   name: name,
