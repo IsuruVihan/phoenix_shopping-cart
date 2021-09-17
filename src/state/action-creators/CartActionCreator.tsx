@@ -21,11 +21,11 @@ export const RemoveItem = (itemIndex: number) => {
   }
 }
 
-export const UpdateItem = (itemIndex: number, updatedQty: number) => {
+export const UpdateItem = (itemId: string, updatedQty: number) => {
   return (dispatch: Dispatch<CartAction>) => {
     dispatch({
       type: CartActionType.UPDATE,
-      payload: {itemIndex, updatedQty}
+      payload: {itemId, updatedQty}
     });
   }
 }

@@ -12,3 +12,15 @@ export const ADD_PRODUCT = gql`
         }
     }`
 ;
+
+export const DELETE_PRODUCT = gql`
+    mutation deleteProduct($deleteProductId: String!) {
+        deleteProduct(id: $deleteProductId) {
+            name
+            imagUrl
+            crossedPrice
+            price
+            category
+        }
+    }`
+;

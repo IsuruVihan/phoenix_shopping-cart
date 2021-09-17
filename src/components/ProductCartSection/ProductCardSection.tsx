@@ -4,6 +4,7 @@ import ProductCard from "./ProductCard";
 import {useSelector} from "react-redux";
 import {State} from "../../state";
 import NoProductsAvailable from "../Admin/Products/NoProductsAvailable";
+import {CartItem} from "../../state/state-interfaces/CartItem";
 
 type productCardTypes = {
   categoryName: string
@@ -25,15 +26,15 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
   const CartItems = useSelector((state: State) => state.Cart);
 
   useEffect(() => {
-    Products.map((p) => {
+    Products.map((p: { category: string; }) => {
       (p.category === "Grocery") ? setGroceryEmpty(false) :
-        (p.category === "Food") ? setFoodEmpty(false) :
-          (p.category === "Pharmacy") ? setPharmacyEmpty(false) :
-            setElectronicEmpty(false);
+          (p.category === "Food") ? setFoodEmpty(false) :
+              (p.category === "Pharmacy") ? setPharmacyEmpty(false) :
+                  setElectronicEmpty(false);
     })
-  }, [Products]);
+  }, []);
 
-  const renderEmptyNanner = () => {
+  const renderEmptyBanner = () => {
     if ((categoryName === "Grocery" && groceryEmpty) || (categoryName === "Food" && foodEmpty) ||
       (categoryName === "Pharmacy" && pharmacyEmpty) || (categoryName === "Electronic" && electronicEmpty)) {
       return (<NoProductsAvailable/>)
@@ -116,12 +117,12 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
         <Row className={(Products.length > 0) ? "mx-xl-4 mx-lg-4 mx-0" : "mx-xl-4 mx-lg-4 mx-0 px-3"}>
           {(Products.length > 0) ? Products.map((p) => {
             if (p.category === categoryName) {
-              const inCartItem: any = CartItems.find(item => item.name === p.name);
+              const inCartItem: CartItem | undefined = CartItems.find(i => i.id === p.id);
               const inCartQty: number = inCartItem === undefined ? 0 : inCartItem.qty;
               return (
                 <ProductCard
                   key={productId}
-                  id={productId++}
+                  id={p.id}
                   imgSrc={p.picSrc}
                   name={p.name}
                   price={p.price}
@@ -133,7 +134,7 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
             }
           }) : null}
           <React.Fragment>
-            {renderEmptyNanner()}
+            {renderEmptyBanner()}
           </React.Fragment>
         </Row>
       </Col>

@@ -3,27 +3,33 @@ import {Button, Col, Form, Row} from "react-bootstrap";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
 import Preview from "./Preview";
-// import * as dotenv from 'dotenv';
-import {useDispatch} from "react-redux";
-import {bindActionCreators} from "redux";
-import {ProductActionCreator} from "../../../state";
+import dotenv from 'dotenv';
 import {toast} from "react-hot-toast";
 import {useMutation} from "@apollo/client";
 import {ADD_PRODUCT} from "../../../data/mutations";
 import {GET_ALL_PRODUCTS} from "../../../data/queries";
 import ReactS3Client from "react-aws-s3-typescript";
+import environment from './environment.json';
 
 type AddProductProps = {
   cancel: () => void
 };
 
+dotenv.config();
+
 const AddProduct: FC<AddProductProps> = (props): any => {
-  // dotenv.config();
+  console.log('Bucket name');
+  console.log(dotenv.config());
+  console.log(process.env.REACT_APP_BUCKET_NAME);
+  console.log(`${process.env.REACT_APP_BUCKET_NAME}`);
+
+  const bucketName: string = environment["REACT_APP_BUCKET_NAME"];
+  const bucketRegion: string = environment["REACT_APP_BUCKET_REGION"];
+  const accessKey: string = environment["REACT_APP_S3_KEY"];
+  const secretKey: string = environment["REACT_APP_S3_SECRET"];
 
   const {cancel} = props;
 
-  const dispatch = useDispatch();
-  const {AddItem} = bindActionCreators(ProductActionCreator, dispatch);
   const fileInput: React.MutableRefObject<any> = useRef();
   const [addProduct, { data, loading, error }] = useMutation(ADD_PRODUCT, {
     refetchQueries: [
@@ -74,11 +80,6 @@ const AddProduct: FC<AddProductProps> = (props): any => {
     let file = fileInput.current.files[0];
     let newFileName = fileInput.current.files[0].name;
 
-    const bucketName: string = 'phoenix-cart-images';
-    const bucketRegion: string = 'ap-southeast-1';
-    const accessKey: string = 'AKIASK7672ENRMYNS46P';
-    const secretKey: string = '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';
-
     const config = {
       bucketName: bucketName,
       region: bucketRegion,
@@ -91,19 +92,10 @@ const AddProduct: FC<AddProductProps> = (props): any => {
     try {
       const res = await s3.uploadFile(file, newFileName);
       imageLink = res.location;
-      console.log("Image Uploaded!");
+      console.log(imageLink);
     } catch (exception) {
       console.log(exception);
     }
-
-    // AddItem({
-    //   id: "",
-    //   picSrc: imageLink,
-    //   name: name,
-    //   crossedPrice: crossPrice,
-    //   price: sellPrice,
-    //   category: category.value
-    // });
 
     await addProduct({
       variables: {
