@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Col, Image, Row} from 'react-bootstrap';
 import EmptyCart from "./EmptyCart";
-import {ICheckoutTableRow} from "../../../types/CartTypes";
+import {ICheckoutTableRow} from "../../../Types/CartTypes";
 import {useSelector} from "react-redux";
 import {State} from "../../../state";
 import BootstrapTable from 'react-bootstrap-table-next';

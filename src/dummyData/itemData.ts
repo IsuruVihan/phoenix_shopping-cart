@@ -1,4 +1,4 @@
-import {IOrderItem} from "../types/CartTypes";
+import {IOrderItem} from "../Types/CartTypes";
 
 const itemData: IOrderItem[] = [
   {image: 'chicken-burger.webp', name: 'Burger', qty: 1, unitPrice: 385},

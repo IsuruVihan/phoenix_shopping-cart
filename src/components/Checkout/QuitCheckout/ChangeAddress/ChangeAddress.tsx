@@ -17,6 +17,7 @@ const ChangeAddress: FC = () => {
         <Row className="mx-0">
           <Col className="px-0" md={5} xs={12}>
             <Form.Check
+              defaultChecked={true}
               className="option"
               label="Same as user address"
               name="shipping-address"
