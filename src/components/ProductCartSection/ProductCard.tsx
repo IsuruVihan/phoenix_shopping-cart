@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Button, Card, Col, Form, Image, Row} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
-import {CartActionCreator, State} from '../../state';
+import {CartActionCreator} from '../../state';
 import {toast} from "react-hot-toast";
 
 type ProductCardProps = {
@@ -19,20 +19,22 @@ type ProductCardProps = {
 const ProductCard: FC<ProductCardProps> = (props) => {
   const {id, imgSrc, name, price, crossedPrice, category, inCartQty} = props;
 
-  const cartData = useSelector((state: State) => state.Cart);
   const dispatch = useDispatch();
   const {AddItem} = bindActionCreators(CartActionCreator, dispatch);
   const {UpdateItem} = bindActionCreators(CartActionCreator, dispatch);
 
-  const [isFocused, setIsFocused] = useState(false);
-  const [cardQty, setCardQty] = useState(1);
+  const [isFocused, setIsFocused] = useState(inCartQty > 0);
+  const [cardQty, setCardQty] = useState(inCartQty > 0 ? inCartQty : 1);
 
   useEffect(() => {
     if (inCartQty > 0) {
       setCardQty(inCartQty);
       setIsFocused(true);
+    }else{
+      setCardQty(1);
+      setIsFocused(false);
     }
-  },[])
+  },[inCartQty])
 
   const handleAddToCartClick = () => {
     setIsFocused(true);
@@ -52,14 +54,14 @@ const ProductCard: FC<ProductCardProps> = (props) => {
 
   }
 
-  // const handleUpdateClick = () => {
-  //
-  //   UpdateItem(id, cardQty);
-  //   toast.success((t) => (
-  //     <span>Cart updated</span>
-  //   ));
-  //
-  // }
+  const handleUpdateClick = () => {
+
+    UpdateItem(id, cardQty);
+    toast.success((t) => (
+      <span>Cart updated</span>
+    ));
+
+  }
 
   const handleQtyChange = (value: string) => {
     setCardQty(parseInt(value));
@@ -102,7 +104,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
             </Col>
             <Col className="col-7 px-0" lg={7} md={7} sm={12} xs={12}>
               <Button
-                // onClick={isFocused ? handleUpdateClick : handleAddToCartClick}
+                onClick={isFocused ? handleUpdateClick : handleAddToCartClick}
                 className={isFocused ?
                   "add-btn-update my-1 py-1 px-3 my-sm-2" : "add-btn my-1 py-1 px-3 my-sm-2 "
                 }
