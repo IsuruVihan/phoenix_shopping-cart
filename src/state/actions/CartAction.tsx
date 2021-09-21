@@ -14,7 +14,7 @@ interface RemoveAction {
 interface UpdateQtyAction {
   type: CartActionType.UPDATE,
   payload: {
-    itemIndex: number,
+    itemId: string,
     updatedQty: number
   }
 }

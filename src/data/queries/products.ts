@@ -14,7 +14,9 @@ export const GET_PRODUCT = gql`
 export const GET_ALL_PRODUCTS = gql`
     query {
         getAllProducts {
+            _id
             name
+            imagUrl
             price
             crossedPrice
             category
