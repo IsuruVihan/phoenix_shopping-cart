@@ -12,7 +12,6 @@ type productCardTypes = {
 
 const ProductCardsSection: FC<productCardTypes> = (props) => {
   const {categoryName} = props;
-  let productId: number = 0;
 
   const [groceryEmpty, setGroceryEmpty] = useState<boolean>(true);
   const [pharmacyEmpty, setPharmacyEmpty] = useState<boolean>(true);
@@ -26,11 +25,11 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
   const CartItems = useSelector((state: State) => state.Cart);
 
   useEffect(() => {
-    Products.map((p: { category: string; }) => {
+    Products.forEach((p: { category: string; }) => {
       (p.category === "Grocery") ? setGroceryEmpty(false) :
-          (p.category === "Food") ? setFoodEmpty(false) :
-              (p.category === "Pharmacy") ? setPharmacyEmpty(false) :
-                  setElectronicEmpty(false);
+        (p.category === "Food") ? setFoodEmpty(false) :
+          (p.category === "Pharmacy") ? setPharmacyEmpty(false) :
+            setElectronicEmpty(false);
     })
   }, []);
 
@@ -121,7 +120,7 @@ const ProductCardsSection: FC<productCardTypes> = (props) => {
               const inCartQty: number = inCartItem === undefined ? 0 : inCartItem.qty;
               return (
                 <ProductCard
-                  key={productId}
+                  key={p.id}
                   id={p.id}
                   imgSrc={p.picSrc}
                   name={p.name}
