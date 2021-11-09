@@ -7,12 +7,10 @@ import {GET_ALL_PRODUCTS} from "../data/queries";
 import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProductActionCreator} from "../state";
-import vegiPic from "../assets/images/vegi.webp";
 
 const ShoppingSite: React.FC = () => {
   const dispatch = useDispatch();
   const {AddItem} = bindActionCreators(ProductActionCreator, dispatch);
-  const [imgName, setImgName] = useState<string>(vegiPic);
 
   const { loading, data, error } = useQuery(
       GET_ALL_PRODUCTS
@@ -28,8 +26,8 @@ const ShoppingSite: React.FC = () => {
       data.getAllProducts.map((p: any) => {
         // console.log(p);
           AddItem({
-            id: "",
-            picSrc: imgName,
+            id: p._id,
+            picSrc: p.imagUrl,
             name: p.name,
             crossedPrice: p.crossedPrice,
             price: p.price,

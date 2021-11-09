@@ -35,7 +35,6 @@ const AddProduct: FC<AddProductProps> = (props): any => {
     {value: 'Electronic', label: 'Electronic'}
   ];
 
-  let imageLink: string;
   const [name, setName] = useState<string>("");
   const [imgValid, setImgValid] = useState<boolean>(true);
   const [crossPrice, setCrossPrice] = useState<number>(0);
@@ -69,12 +68,13 @@ const AddProduct: FC<AddProductProps> = (props): any => {
       return;
 
     const file = fileInput.current.files[0];
+    const fileName = file.name + new Date().getTime();
     const fileType = file.type;
 
     const generatePutUrl = 'http://localhost:4000/generate-put-url';
     const options = {
       params: {
-        Key: file.name,
+        Key: fileName,
         ContentType: fileType
       },
       headers: {
@@ -82,7 +82,7 @@ const AddProduct: FC<AddProductProps> = (props): any => {
       }
     };
 
-    axios.get(generatePutUrl, options).then(res => {
+    await axios.get(generatePutUrl, options).then(res => {
       const {
         data: { putURL }
       } = res;
@@ -90,7 +90,10 @@ const AddProduct: FC<AddProductProps> = (props): any => {
           .put(putURL, file, options)
           .then(res => {
             console.log('Upload Successful');
-            console.log(res);
+
+            toast.success((t) => (
+              <span>Product added</span>
+            ));
           })
           .catch(err => {
             console.log('Sorry, something went wrong');
@@ -98,31 +101,26 @@ const AddProduct: FC<AddProductProps> = (props): any => {
           });
     });
 
-  // AddItem({
-    //   id: "",
-    //   picSrc: imageLink,
-    //   name: name,
-    //   crossedPrice: crossPrice,
-    //   price: sellPrice,
-    //   category: category.value
-    // });
-
-    await addProduct({
-      variables: {
-        input: {
-          name: name,
-          imagUrl: imageLink,
-          crossedPrice: crossPrice,
-          price: sellPrice,
-          category: category.value,
-        }
-      },
+    const generateGetUrl = 'http://localhost:4000/generate-get-url';
+    
+    await axios.get(generateGetUrl, options).then(res => {
+      const { 
+        data: getURL 
+      } = res;
+      const imageLink = res.data;
+      console.log(getURL);
+      addProduct({
+        variables: {
+          input: {
+            name: name,
+            imagUrl: imageLink,
+            crossedPrice: crossPrice,
+            price: sellPrice,
+            category: category.value,
+          }
+        },
+      });
     });
-
-    toast.success((t) => (
-      <span>Product added</span>
-    ));
-
     cancel();
   }
 
