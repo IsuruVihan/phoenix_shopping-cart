@@ -19,4 +19,9 @@ interface UpdateQtyAction {
   }
 }
 
-export type ProductAction = AddAction | RemoveAction | UpdateQtyAction;
+interface ResetAction {
+  type: ProductActionType.RESET,
+  payload: null
+}
+
+export type ProductAction = AddAction | RemoveAction | UpdateQtyAction | ResetAction;

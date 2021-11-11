@@ -8,21 +8,60 @@ import Scroll from "react-scroll";
 import {toast} from "react-hot-toast";
 import {confirmAlert} from "react-confirm-alert";
 import {IoCheckmark, IoClose} from "react-icons/all";
+import {useMutation} from "@apollo/client";
+import {DELETE_PRODUCT} from "../../../data/mutations";
+import {GET_ALL_PRODUCTS} from "../../../data/queries";
+import environment from "./environment.json";
+import ReactS3Client from "react-aws-s3-typescript";
 
 type ProductCardProps = {
   onClickEdit: (id: number) => void,
   id: number,
+  productID: string,
   name: string,
+  imgSrc: string,
   crossedPrice: number,
   sellPrice: number,
   category: string
 };
 
 const ProductCard: FC<ProductCardProps> = (props) => {
-  const {onClickEdit, id, name, crossedPrice, sellPrice, category} = props;
+  const {onClickEdit, id, productID, name, imgSrc, crossedPrice, sellPrice, category} = props;
 
-  const dispatch = useDispatch();
-  const {RemoveItem} = bindActionCreators(ProductActionCreator, dispatch);
+  const [deleteProduct, { data, loading, error }] = useMutation(DELETE_PRODUCT, {
+    refetchQueries: [
+      { query: GET_ALL_PRODUCTS }
+    ],
+  });
+  if (loading) console.log('Loading...');
+  if (error) console.log(error);
+  if (!data) console.log('No data!');
+
+  // const dispatch = useDispatch();
+  // const {RemoveItem} = bindActionCreators(ProductActionCreator, dispatch);
+
+  const deleteProductFromS3 = async () => {
+    const bucketName: string = environment["REACT_APP_BUCKET_NAME"];
+    const bucketRegion: string = environment["REACT_APP_BUCKET_REGION"];
+    const accessKey: string = environment["REACT_APP_S3_KEY"];
+    const secretKey: string = environment["REACT_APP_S3_SECRET"];
+
+    const config = {
+      bucketName: bucketName,
+      region: bucketRegion,
+      accessKeyId: accessKey,
+      secretAccessKey: secretKey,
+    }
+    const s3 = new ReactS3Client(config);
+
+    try {
+      await s3.deleteFile(imgSrc);
+      console.log('File deleted');
+    } catch (exception) {
+      console.log(exception);
+    }
+
+  }
 
   const handleOnClickDelete = () => {
     confirmAlert({
@@ -36,13 +75,19 @@ const ProductCard: FC<ProductCardProps> = (props) => {
               <span>Delete product <b>{name}</b> ?</span>
             </div>
 
-            <Button className="m-2 btn-outline-danger" onClick={() => {
-              RemoveItem(id);
+            <Button className="m-2 btn-outline-danger" onClick={ () => {
+              deleteProduct({
+                variables: {
+                  deleteProductId: productID
+                },
+              });
+              deleteProductFromS3();
               onClose();
               toast.success((t) => (
-                <span>Product <b>{name}</b> deleted</span>
+                  <span>Product <b>{name}</b> deleted</span>
               ));
-            }}>
+            }
+            }>
               <IoCheckmark/> Okay
             </Button>
 
@@ -70,7 +115,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
       <Card className="item-card text-center m-2 px-0">
         <Row className="text-center py-0">
           <Col className="p-0">
-            <Image className="text-center" width="50%" height="auto" src={coconutImg}/>
+            <Image className="text-center" width="50%" height="auto" src={imgSrc}/>
           </Col>
         </Row>
         <Card.Body className="pt-0 pb-1">

@@ -18,10 +18,11 @@ const CartReducer = (state: CartItem[] = initState, action: CartAction) => {
     }
     case CartActionType.UPDATE: {
       const stateDuplicate = state.slice();
-      const item = stateDuplicate[action.payload.itemIndex];
+      const itemIndex = stateDuplicate.findIndex(i => i.id === action.payload.itemId);
+      const item = stateDuplicate[itemIndex];
       item.qty = action.payload.updatedQty;
       item.amount = (item.unitPrice*item.qty).toString();
-      stateDuplicate.splice(action.payload.itemIndex, 1, item);
+      stateDuplicate.splice(itemIndex, 1, item);
       return stateDuplicate;
     }
     case CartActionType.INCREMENT: {

@@ -3,18 +3,20 @@ import {Col, Container, Image, Row} from "react-bootstrap";
 
 
 type CategoryItemProps = {
-  image: string
-  catName: string
-  productCategoryTypes: (catName: string) => void;
+  image: string,
+  name: string,
+  selectedCategory: string,
+  setSelectedCategory: (name: string) => void
 }
 
-function CategoryItem(props: CategoryItemProps) {
+const CategoryItem = (props: CategoryItemProps) => {
   return (
     // <Col className="category-cont justify-content-center px-0 py-2">
-    <Container className="category-cont justify-content-center mx-lg-2 mx-1  px-0 py-4">
+    <Container
+      className={"category-cont justify-content-center mx-lg-2 mx-1 px-0 py-4 " + (props.selectedCategory === props.name && "selected")}>
       <Row className="text-center">
-        <Col id={props.catName} onClick={() => {
-          props.productCategoryTypes(props.catName)
+        <Col id={props.name} onClick={() => {
+          props.setSelectedCategory(props.name)
         }}>
           <Image src={props.image}
                  width="50%"
@@ -24,7 +26,7 @@ function CategoryItem(props: CategoryItemProps) {
         </Col>
       </Row>
       <Row className="text-center py-2">
-        <Col className="category-name"><label>{props.catName}</label> </Col>
+        <Col className="category-name"><label>{props.name}</label> </Col>
       </Row>
     </Container>
   )

@@ -1,212 +1,236 @@
-$project-green : #4caf50;
-$project-gray : #757575;
-$border-color : #BDBDBD;
+$project-green: #4caf50;
+$project-gray: #757575;
+$border-color: #BDBDBD;
 $border-color-add-btn-active: #17A2B8;
-$receipt-upload-border :#0288D1;
-$receipt-upload-background :#FAFAFA;
-$receipt-upload-text :#BDBDBD;
-.product-cart-cont{
-  overflow-x: hidden;
-  padding-bottom: 4em;
+$receipt-upload-border: #0288D1;
+$receipt-upload-background: #FAFAFA;
+$receipt-upload-text: #BDBDBD;
+
+.product-cart-cont {
+    overflow-x: hidden;
+    padding-bottom: 4em;
 
 
+    .search-bar-section {
+        .search-bar {
+            border-color: $project-green;
+            border-radius: 1em;
 
-  .search-bar-section{
-    .search-bar{
-      border-color: $project-green;
-      border-radius: 1em ;
+            &:hover {
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19);
+            }
+        }
 
-      &:hover{
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19);
-      }
+        .search-icon {
+            margin-bottom: -6.5em;
+            margin-left: 1.2em;
+            font-size: 0.7em;
+
+            :hover {
+                cursor: pointer;
+                box-shadow: none;
+            }
+        }
+
     }
 
-    .search-icon{
-      margin-bottom: -6.5em;
-      margin-left: 1.2em;
-      font-size:0.7em;
 
-      :hover{
+    .our-products {
+        color: $project-green;
+    }
+
+    .category-cont {
+        width: 100%;
+        border-radius: 0.5em;
         cursor: pointer;
-        box-shadow: none;
-      }
+        border: 1px solid $border-color;
+
+        &.selected {
+            background-color: #f1f8e9;
+            border: 2px solid $project-green;
+        }
     }
+}
 
-  }
-
-
-  .our-products{
-    color: $project-green;
-  }
-
-  .category-cont{
-    width:100%;
-    border: 1px solid $border-color;
-    border-radius: 0.5em;
-    cursor: pointer;
-  }
-
-  .our-products-category-items{
+.our-products-category-items {
     display: flex;
     width: 100%;
     justify-content: space-between;
-  }
+}
 
-  .item-card{
+.item-card {
     border: 1px solid $border-color;
     border-radius: 0.5em;
-  }
 
-  .crossed-val{
+}
+
+.crossed-val {
     text-decoration: line-through;
     color: $project-gray;
     font-size: medium;
-  }
+}
 
-  .item-val{
-    color: $project-green ;
+.item-val {
+    color: $project-green;
     font-size: medium;
     font-weight: 600;
 
     .cent-val {
-      font-size: 0.8em;
+        font-size: 0.8em;
     }
-  }
+}
 
-  .add-btn{
-    border-radius: 2.3em;
-    background-color: $project-green;
+.action-btn {
+    border-radius: 2.2em;
     border-color: transparent;
-    font-size: 0.9em;
+    font-size: 0.95em;
     font-weight: normal;
-  }
-  .add-btn-update{
-    background-color: transparent;
-    color:$border-color-add-btn-active ;
-    content: 'Update';
-    border-radius: 2.3em;
-    font-size: 0.9em;
-  }
+    cursor: pointer;
+    outline: none;
 
-  .product-cards-selection{
+    &:hover {
+        border-color: transparent;
+        background-color: initial;
+        color: white;
+    }
+
+    &.add-btn {
+        background-color: $project-green;
+    }
+
+    &.update-btn {
+        padding-left: 25px !important;
+        padding-right: 25px !important;
+        background-color: transparent;
+        color: $border-color-add-btn-active;
+        border: 1px solid $border-color-add-btn-active;
+    }
+
+    .action-btn-text {
+        cursor: pointer;
+    }
+}
+
+.product-cards-selection {
     padding: 0 10em;
 
     .no-products-available {
-      color: $receipt-upload-text !important;
-      border: 2px solid $receipt-upload-text;
-      padding: 1.5em 0 1.5em 0;
+        color: $receipt-upload-text !important;
+        border: 2px solid $receipt-upload-text;
+        padding: 1.5em 0 1.5em 0;
 
-      .text {
-        font-size: 1.2em;
-        font-weight: 600;
-      }
+        .text {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
     }
-  }
 }
 
-.category-name{
-  font-size: small;
-  font-weight: bold;
+.category-name {
+    font-size: small;
+    font-weight: bold;
 }
 
-.cat-title{
-  font-weight: 500;
+.cat-title {
+    font-weight: 500;
 }
-.cat-title-medi{
-  font-weight: 500;
-  font-size: 0.9em;
+
+.cat-title-medi {
+    font-weight: 500;
+    font-size: 0.9em;
 }
 
 @media only screen and (max-width: 1200px) {
-  .item-card{
-    margin-left: 1px;
-    margin-right: 1px;
-  }
+    .item-card {
+        margin-left: 1px;
+        margin-right: 1px;
+    }
 
-  .add-btn-text{
-    font-size: 0.8em;
-  }
-  .item-input{
-    font-size: 0.8em;
-  }
+    .action-btn-text {
+        font-size: 0.8em;
+    }
+    .item-input {
+        font-size: 0.8em;
+    }
 }
 
 @media only screen and (max-width: 992px) {
-  .item-input{
-    font-size: 0.7em;
-  }
-  .add-btn-text{
-    font-size: 0.7em;
-  }
-}
-
-@media only screen and (max-width: 767px){
-  .category-name{
-    font-size: 0.7em;
-  }
-  .search-bar{
-    width: 100%;
-  }
-}
-
-@media only screen and (max-width: 505px){
-  .category-name{
-    font-size: 0.5em;
-  }
-  .card-title{
-    font-size: 1em;
-  }
-
-}
-
-@media only screen and (max-width: 367px){
-  .category-name{
-    font-size: 0.5em;
-  }
-  .card-title{
-    font-size: 0.9em;
-  }
-
-  .crossed-val{
-    font-size: 0.7em;
-  }
-
-  .item-val {
-    font-size: 0.7em;
-
-    .cent-val {
-      font-size: 0.7em;
+    .item-input {
+        font-size: 0.7em;
     }
-  }
+    .action-btn-text {
+        font-size: 0.7em;
+    }
 }
+
+@media only screen and (max-width: 767px) {
+    .category-name {
+        font-size: 0.7em;
+    }
+    .search-bar {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 505px) {
+    .category-name {
+        font-size: 0.5em;
+    }
+    .card-title {
+        font-size: 1em;
+    }
+
+}
+
+@media only screen and (max-width: 367px) {
+    .category-name {
+        font-size: 0.5em;
+    }
+    .card-title {
+        font-size: 0.9em;
+    }
+
+    .crossed-val {
+        font-size: 0.7em;
+    }
+
+    .item-val {
+        font-size: 0.7em;
+
+        .cent-val {
+            font-size: 0.7em;
+        }
+    }
+}
+
 .upload-receipt-div {
-  border-style: dashed;
-  border-color: $receipt-upload-border;
-  border-width: 0.14em;
-  background-color: $receipt-upload-background;
+    border-style: dashed;
+    border-color: $receipt-upload-border;
+    border-width: 0.14em;
+    background-color: $receipt-upload-background;
 
-  .upload-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-  }
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
 
-  .btn-medi {
-    color: $receipt-upload-text;
-    background-color: transparent;
-    padding: 8px 20px;
-    font-size: 1.15em;
-    font-weight: bold;
-    width: 100%;
+    .btn-medi {
+        color: $receipt-upload-text;
+        background-color: transparent;
+        padding: 8px 20px;
+        font-size: 1.15em;
+        font-weight: bold;
+        width: 100%;
 
-  }
+    }
 
-  .upload-btn-wrapper input[type=file] {
-    font-size: 60px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    cursor: pointer;
-  }
+    .upload-btn-wrapper input[type=file] {
+        font-size: 60px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
 }

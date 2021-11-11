@@ -23,7 +23,7 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
     let selectedProducts: Product[] = [];
 
     Products.map((product) => {
-      if (product.category == category || category == "All")
+      if (product.category === category || category === "All")
         selectedProducts.push(product);
     });
 
@@ -43,8 +43,10 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
                 return <ProductCard
                   key={count}
                   id={count++}
+                  productID={p.id}
                   onClickEdit={onClickEdit}
                   name={p.name}
+                  imgSrc={p.picSrc}
                   crossedPrice={p.crossedPrice}
                   sellPrice={p.price}
                   category={p.category}

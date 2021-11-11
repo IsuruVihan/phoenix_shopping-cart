@@ -22,6 +22,9 @@ const ProductReducer = (state: Product[] = initState, action: ProductAction) => 
       stateDuplicate.splice(action.payload.itemIndex, 1, action.payload.item);
       return stateDuplicate;
     }
+    case ProductActionType.RESET: {
+      return initState;
+    }
     default:
       return state;
   }

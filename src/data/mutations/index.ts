@@ -1,1 +1,1 @@
-export { ADD_PRODUCT } from './products';
+export { ADD_PRODUCT, DELETE_PRODUCT } from './products';

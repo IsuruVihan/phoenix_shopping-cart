@@ -73,7 +73,7 @@ const CheckoutPay: FC = () => {
           </Col>
         </Row>
       </Col>
-      <Col className="order px-0 text-center mt-4 mb-5" xs={12}>
+      <Col className="order px-0 text-end mt-4 mb-5" xs={12}>
         <Button className="order-btn btn btn-primary" size="sm" onClick={handleOrderButtonClick}>
           Order
         </Button>

@@ -29,3 +29,12 @@ export const UpdateItem = (itemIndex: number, item: Product) => {
     });
   }
 }
+
+export const ResetProducts = () => {
+  return (dispatch: Dispatch<ProductAction>) => {
+    dispatch({
+      type: ProductActionType.RESET,
+      payload: null
+    });
+  }
+}
