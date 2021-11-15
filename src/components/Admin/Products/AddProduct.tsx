@@ -71,7 +71,7 @@ const AddProduct: FC<AddProductProps> = (props): any => {
     const fileName = file.name + new Date().getTime();
     const fileType = file.type;
 
-    const generatePutUrl = 'http://localhost:4000/generate-put-url';
+    const generatePutUrl = 'http://13.212.203.7:4000/generate-put-url';
     const options = {
       params: {
         Key: fileName,
@@ -101,7 +101,7 @@ const AddProduct: FC<AddProductProps> = (props): any => {
           });
     });
 
-    const generateGetUrl = 'http://localhost:4000/generate-get-url';
+    const generateGetUrl = 'http://13.212.203.7:4000/generate-get-url';
     
     await axios.get(generateGetUrl, options).then(res => {
       const { 
