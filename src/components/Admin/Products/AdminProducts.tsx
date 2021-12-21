@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useState,useEffect} from 'react';
 import {Col, Row} from "react-bootstrap";
 import ProductCard from "./ProductCard";
 import {Scrollbars} from 'react-custom-scrollbars';
@@ -16,12 +16,12 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
   const {onClickEdit} = props;
 
   const Products = useSelector((state: State) => state.Products);
+  console.log(useSelector((state: State) => state.Products));
   const [visibleProducts, setVisibleProducts] = useState<Product[]>([]);
   let count: number = 0;
 
   const handleOnSelectCategory = (category: string) => {
     let selectedProducts: Product[] = [];
-
     Products.map((product) => {
       if (product.category === category || category === "All")
         selectedProducts.push(product);
@@ -29,6 +29,13 @@ const AdminProducts: FC<AdminProductsProps> = (props) => {
 
     setVisibleProducts(selectedProducts);
   }
+
+  useEffect(()=>{
+    // handleOnSelectCategory("All");
+    // console.log(visibleProducts);
+    console.log(Products);
+  },[]);
+
 
   return (
     <Row className="admin-products pb-4 mx-0">

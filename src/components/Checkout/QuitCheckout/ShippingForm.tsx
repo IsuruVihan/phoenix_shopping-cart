@@ -1,23 +1,18 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Col, Form, Image, InputGroup, Row} from "react-bootstrap";
 import Select from "react-select";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import SLFlag from "../../../assets/images/srilanka.svg";
 import {AiOutlineEye} from "react-icons/all";
 import {AiOutlineEyeInvisible} from "react-icons/all";
-
-import PasswordStrengthBar from "react-password-strength-bar";
-// import ReactPasswordStrength from "react-password-strength" ;
+import  countryNameList from "country-flag-emoji-json";
+import {ICountryObjSelect} from "../../../Types/CartTypes";
+import CL from "./../../../assets/country codes/CountryCodes.json"
 
 const ShippingForm: FC = () => {
-  const [countryList, setCountryList] = useState([
-    {value: 'United States of America', label: 'United States of America'},
-    {value: 'Australia', label: 'Australia'},
-    {value: 'Sri Lanka', label: 'Sri Lanka'},
-    {value: 'Singapore', label: 'Singapore'},
-    {value: 'India', label: 'India'}
-  ]);
-
+  const [countryList, setCountryList] = useState(countryNameList);
+  const [countryCode, setCountryCode] = useState<string>("+93");
+  const [defaultCountry] = useState<ICountryObjSelect>({label: "Afghanistan", value: "+93"});
   const [passwordStrength, setPasswordStrenght] = useState<string>("none");
   const [password, setPassword] = useState<string>("");
   const [hidePassword,setHidePassword] = useState<boolean>(true)
@@ -29,12 +24,30 @@ const ShippingForm: FC = () => {
   const weak2regExp = new RegExp("^((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))");
   const weak1regExp = new RegExp("^((?=.*[a-z])|(?=.*[A-Z])|(?=.*[0-9])|(?=.[!@#$%^&]))");
 
+  const [countryArrayforSelect,setCountryArrayforSelect] = useState<ICountryObjSelect[]>();
 
-  const showPassword =  ()  => {
+  useEffect(() => {
+    let arr2 : Array<ICountryObjSelect> = [] ;
+    CL.map(e => {
+      arr2.push(
+         {
+           value : e.dial_code,
+           label : e.name
+         }
+       )
+    });
+    setCountryArrayforSelect(arr2);
+  },[])
+
+  const handleSelectCountry = (item:any) => {
+    setCountryCode(item.value);
+  }
+
+  const showPassword = () => {
     hidePassword? setHidePassword(false):setHidePassword(true);
   }
 
-  const getPasswordInput =  (name: string)  => {
+  const getPasswordInput = (name: string) => {
     setPassword(name);
     analyzePassword(name);
   }
@@ -59,17 +72,6 @@ const ShippingForm: FC = () => {
       setPasswordStrenght("weak1");
     }
     else setPasswordStrenght("none");
-  }
-
-  const passwordBarStyles =  {
-  // .password-strength-bar{
-  //   .inner-bar{
-  //       background-color: #9e9e9e;
-  //       border-top: #17a2b8 solid 5px;
-  //     }
-  //   }
-
-
   }
 
   return (
@@ -110,11 +112,12 @@ const ShippingForm: FC = () => {
                 <Select
                   className="input-field"
                   classNamePrefix="select"
-                  defaultValue={countryList[0]}
                   isSearchable={true}
                   name="color"
                   styles={customStyles}
-                  options={countryList}
+                  options={countryArrayforSelect}
+                  onChange = {handleSelectCountry}
+                  defaultValue={defaultCountry}
                 />
               </Form.Group>
             </Col>
@@ -124,8 +127,8 @@ const ShippingForm: FC = () => {
                 <InputGroup>
                   <InputGroup.Prepend className="prepend-group">
                     <InputGroup.Text>
-                      <Image src={SLFlag} className="me-2" alt="sl-flag" width="20em"/>
-                      +94
+                      {/*<Image src={SLFlag} className="me-2" alt="sl-flag" width="20em"/>*/}
+                      {countryCode}
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control className="input-field no-left-border" type="text"/>

@@ -16,6 +16,9 @@ import {useQuery} from "@apollo/client";
 import {bindActionCreators} from "redux";
 import {GET_ALL_PRODUCTS} from "./data/queries";
 import {ResetProducts} from "./state/action-creators/ProductActionCreator";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -27,6 +30,7 @@ const App: FC = () => {
   if (loading) console.log('Loading...');
   if (error) console.log(error);
   if (!data) console.log('No data!');
+  if (data) console.log(data);
 
   useEffect(() => {
     if(data){
@@ -42,6 +46,10 @@ const App: FC = () => {
       })
     }
   }, [data]);
+
+  useEffect(()=>{
+    console.log(process.env.PORT);
+  })
 
   return (
       <>

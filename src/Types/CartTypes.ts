@@ -1,3 +1,5 @@
+import {str} from "envalid";
+
 export interface IOrderItem {
   image: string,
   name: string,
@@ -13,4 +15,18 @@ export interface ICheckoutTableRow {
   unitPrice: JSX.Element,
   amount: JSX.Element,
   deleteBtn: JSX.Element;
+}
+
+export interface ICountryObj {
+  value : string,
+  label : string,
+  name: string,
+  code : string,
+  unicode : string,
+  image: string,
+}
+
+export interface ICountryObjSelect {
+  value: string,
+  label: string
 }
