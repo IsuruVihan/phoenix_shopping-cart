@@ -30,11 +30,11 @@ const ProductCard: FC<ProductCardProps> = (props) => {
     if (inCartQty > 0) {
       setCardQty(inCartQty);
       setIsFocused(true);
-    }else{
+    } else {
       setCardQty(1);
       setIsFocused(false);
     }
-  },[inCartQty])
+  }, [inCartQty])
 
   const handleAddToCartClick = () => {
     setIsFocused(true);
@@ -48,7 +48,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
       amount: (price * cardQty).toString()
     });
 
-    toast.success((t) => (
+    toast.success(() => (
       <span><b>{name}</b> added to cart</span>
     ));
 
@@ -57,7 +57,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
   const handleUpdateClick = () => {
 
     UpdateItem(id, cardQty);
-    toast.success((t) => (
+    toast.success(() => (
       <span>Cart updated</span>
     ));
 
@@ -70,17 +70,17 @@ const ProductCard: FC<ProductCardProps> = (props) => {
   return (
     <Col lg={3} md={4} sm={6} xs={6} className="px-0 mx-0">
       <Card className="item-card text-center my-2 mx-3 px-0">
-        <Row className="text-center py-0">
-          <Col className="p-0">
+        <Row className="text-center pt-1 pb-0">
+          <Col className="p-2 mt-1">
             <Image className="text-center" width="50%" height="auto" src={imgSrc}/>
           </Col>
         </Row>
         <Card.Body className="pt-0 pb-1">
-          <Col className="card-title pb-xl-3 pb-lg-3 pb-xl-1 pb-lg-1 pb-0 pb-sm-1 pt-1">
+          <Col className="card-title">
             <Card.Title className="px-3">{name}</Card.Title>
           </Col>
           <Row>
-            <Col className="card-price px-0 pt-xl-4 pt-lg-4 pt-1 pt-sm-1 pb-xl-1 pb-lg-1 pb-0">
+            <Col className="card-price px-0 pt-xl-3 pt-lg-3 pt-1 pt-sm-1 pb-xl-1 pb-lg-1 pb-0">
               <Row>
                 <Col>
                   <h5 className="crossed-val">Rs.{crossedPrice}</h5>
@@ -105,12 +105,10 @@ const ProductCard: FC<ProductCardProps> = (props) => {
             <Col className="col-7 px-0" lg={7} md={7} sm={12} xs={12}>
               <Button
                 onClick={isFocused ? handleUpdateClick : handleAddToCartClick}
-                className={isFocused ?
-                  "add-btn-update my-1 py-1 px-3 my-sm-2" : "add-btn my-1 py-1 px-3 my-sm-2 "
-                }
+                className={"action-btn my-1 py-1 px-3 my-sm-2 " + (isFocused ? "update-btn" : "add-btn")}
               >
-                <label className="add-btn-text">
-                  {isFocused ? "Update" : "Add to Cart"}
+                <label className="action-btn-text">
+                  {isFocused ? " Update " : "Add to Cart"}
                 </label>
               </Button>
             </Col>

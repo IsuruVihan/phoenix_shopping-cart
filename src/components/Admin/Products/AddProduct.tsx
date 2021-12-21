@@ -3,33 +3,24 @@ import {Button, Col, Form, Row} from "react-bootstrap";
 import customStyles from "../../../assets/styles/partials/customStyles";
 import Select from "react-select";
 import Preview from "./Preview";
-import dotenv from 'dotenv';
+import {useDispatch} from "react-redux";
+import {bindActionCreators} from "redux";
+import {ProductActionCreator} from "../../../state";
 import {toast} from "react-hot-toast";
 import {useMutation} from "@apollo/client";
 import {ADD_PRODUCT} from "../../../data/mutations";
 import {GET_ALL_PRODUCTS} from "../../../data/queries";
-import ReactS3Client from "react-aws-s3-typescript";
-import environment from './environment.json';
+import axios from 'axios';
 
 type AddProductProps = {
   cancel: () => void
 };
 
-dotenv.config();
-
 const AddProduct: FC<AddProductProps> = (props): any => {
-  console.log('Bucket name');
-  console.log(dotenv.config());
-  console.log(process.env.REACT_APP_BUCKET_NAME);
-  console.log(`${process.env.REACT_APP_BUCKET_NAME}`);
-
-  const bucketName: string = environment["REACT_APP_BUCKET_NAME"];
-  const bucketRegion: string = environment["REACT_APP_BUCKET_REGION"];
-  const accessKey: string = environment["REACT_APP_S3_KEY"];
-  const secretKey: string = environment["REACT_APP_S3_SECRET"];
-
   const {cancel} = props;
 
+  const dispatch = useDispatch();
+  const {AddItem} = bindActionCreators(ProductActionCreator, dispatch);
   const fileInput: React.MutableRefObject<any> = useRef();
   const [addProduct, { data, loading, error }] = useMutation(ADD_PRODUCT, {
     refetchQueries: [
@@ -44,7 +35,6 @@ const AddProduct: FC<AddProductProps> = (props): any => {
     {value: 'Electronic', label: 'Electronic'}
   ];
 
-  let imageLink: string;
   const [name, setName] = useState<string>("");
   const [imgValid, setImgValid] = useState<boolean>(true);
   const [crossPrice, setCrossPrice] = useState<number>(0);
@@ -77,42 +67,60 @@ const AddProduct: FC<AddProductProps> = (props): any => {
     if ((name === "") || (crossPrice === 0) || (sellPrice === 0) || (!imgValid))
       return;
 
-    let file = fileInput.current.files[0];
-    let newFileName = fileInput.current.files[0].name;
+    const file = fileInput.current.files[0];
+    const fileName = file.name + new Date().getTime();
+    const fileType = file.type;
 
-    const config = {
-      bucketName: bucketName,
-      region: bucketRegion,
-      accessKeyId: accessKey,
-      secretAccessKey: secretKey,
-    }
-
-    const s3 = new ReactS3Client(config);
-
-    try {
-      const res = await s3.uploadFile(file, newFileName);
-      imageLink = res.location;
-      console.log(imageLink);
-    } catch (exception) {
-      console.log(exception);
-    }
-
-    await addProduct({
-      variables: {
-        input: {
-          name: name,
-          imagUrl: imageLink,
-          crossedPrice: crossPrice,
-          price: sellPrice,
-          category: category.value,
-        }
+    const generatePutUrl = 'http://13.212.203.7:4000/generate-put-url';
+    const options = {
+      params: {
+        Key: fileName,
+        ContentType: fileType
       },
+      headers: {
+        'Content-Type': fileType
+      }
+    };
+
+    await axios.get(generatePutUrl, options).then(res => {
+      const {
+        data: { putURL }
+      } = res;
+      axios
+          .put(putURL, file, options)
+          .then(res => {
+            console.log('Upload Successful');
+
+            toast.success((t) => (
+              <span>Product added</span>
+            ));
+          })
+          .catch(err => {
+            console.log('Sorry, something went wrong');
+            console.log('err', err);
+          });
     });
 
-    toast.success((t) => (
-      <span>Product added</span>
-    ));
-
+    const generateGetUrl = 'http://13.212.203.7:4000/generate-get-url';
+    
+    await axios.get(generateGetUrl, options).then(res => {
+      const { 
+        data: getURL 
+      } = res;
+      const imageLink = res.data;
+      console.log(getURL);
+      addProduct({
+        variables: {
+          input: {
+            name: name,
+            imagUrl: imageLink,
+            crossedPrice: crossPrice,
+            price: sellPrice,
+            category: category.value,
+          }
+        },
+      });
+    });
     cancel();
   }
 
