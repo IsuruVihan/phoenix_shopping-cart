@@ -1,5 +1,3 @@
-import {str} from "envalid";
-
 export interface IOrderItem {
   image: string,
   name: string,
@@ -14,7 +12,7 @@ export interface ICheckoutTableRow {
   qty: JSX.Element,
   unitPrice: JSX.Element,
   amount: JSX.Element,
-  deleteBtn: JSX.Element;
+  deleteBtn: JSX.Element
 }
 
 export interface ICountryObj {
@@ -23,7 +21,7 @@ export interface ICountryObj {
   name: string,
   code : string,
   unicode : string,
-  image: string,
+  image: string
 }
 
 export interface ICountryObjSelect {
