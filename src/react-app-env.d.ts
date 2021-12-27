@@ -6,5 +6,6 @@ declare namespace NodeJS {
         REACT_APP_S3_SECRET: string;
         REACT_APP_BUCKET_NAME: string;
         REACT_APP_BUCKET_REGION: string;
+        PORT: string;
     }
 }
